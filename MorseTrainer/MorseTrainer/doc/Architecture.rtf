@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf330
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs20 \cf2 Player\
+======\
+* Responsibilities\
+	* Instantiating Core Audio units and wiring them up\
+	* Starting stopping the Audio graph\
+	* Application controller's main entry point into the sound system\
+	* Instantiates a SoundPlayer for each input\
+	\
+SoundPlayer\
+===========\
+* Responsibilities\
+	* Serves as wrapper around producing audio for a Core Audio unit\
+	* Handles all scheduling of audio samples with Core Audio API\
+	* Has a single SoundSource that supplies the audio data stream\
+	\
+SoundSource\
+===========\
+* Responsibilities\
+	* Populates a Core Audio scheduled slice if data is available\
+	* Can return various status about name, data availability, etc\
+	* Can reset the data source\
+	\
+NoiseSource\
+===========\
+* Generates an endless stream of noise\
+* Allows either pink or white noise\
+\
+FifoDataSource\
+==============\
+* Implements a base data source for an arbitrarily sized data source such as\
+  a QSO file that would be too large to create entirely in memory\
+* Provides a callback mechanism for subclasses \
+\
+FileDataSource\
+==============\
+* Implements a data source that reads text from a file and generates the \
+  equivalent morse audio at a specified wpm/amplitude\
+\
+  \
+BufferGen\
+=========\
+* Given an NSString along with various parameters (frequency, amplitude, text analysis)\
+  generates a 32 bit float uncompressed representation of the NSString in morse\
+  \
+TimeUtils\
+=========\
+* Utilities to determine the number of dit-times for a character/string\
+* Utilities to analyze given text and generate correct timing for characters and spaces\
+\
+PatternMap\
+==========\
+* Maps of characters/prosigns to morse encodings\
+* Provides a prosign parsing utility\
+\
+}

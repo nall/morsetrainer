@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD58160DA1D0A300B32029 /* MorseTrainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MorseTrainer.xib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A444BB540E40093D00A65384 /* MTSourcePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A444BB530E40093D00A65384 /* MTSourcePlayer.m */; };
+		A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5B0E4009F100A65384 /* AudioToolbox.framework */; };
+		A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5D0E4009FC00A65384 /* AudioUnit.framework */; };
+		A444BB600E400A0700A65384 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5F0E400A0700A65384 /* CoreAudio.framework */; };
+		A4546C780E4CF8CB00237295 /* Architecture.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4546C770E4CF8CB00237295 /* Architecture.rtf */; };
+		A4546CC00E4D0E0100237295 /* MTRandomCWSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */; };
+		A46DECBC0E41741000D8C13C /* MTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECBB0E41741000D8C13C /* MTPlayer.m */; };
+		A46DECD00E417B1700D8C13C /* MTNoiseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */; };
+		A46DED880E41829F00D8C13C /* MTFifoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DED870E41829F00D8C13C /* MTFifoSource.m */; };
+		A4A02D560E4B3C51001F2F8C /* MTFIFO.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A02D550E4B3C51001F2F8C /* MTFIFO.m */; };
+		A4A02E240E4B4DCC001F2F8C /* MTFileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A02E230E4B4DCC001F2F8C /* MTFileSource.m */; };
+		A4A699020E3ED6B200B7E22D /* MTPatternMap.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A699010E3ED6B100B7E22D /* MTPatternMap.m */; };
+		A4A699090E3EDBBF00B7E22D /* MTTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A699080E3EDBBF00B7E22D /* MTTimeUtils.m */; };
+		A4A6995F0E3EE61C00B7E22D /* MTController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6995E0E3EE61C00B7E22D /* MTController.m */; };
+		A4BE28810E3EEE3C0099926B /* MTCWSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE28800E3EEE3C0099926B /* MTCWSource.m */; };
+		A4C6575E0E4354A60064F74B /* MTQRMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C6575D0E4354A60064F74B /* MTQRMSource.m */; };
+		A4C658D20E438CC90064F74B /* QSO5.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CC0E438CC90064F74B /* QSO5.txt */; };
+		A4C658D30E438CC90064F74B /* QSO4.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CD0E438CC90064F74B /* QSO4.txt */; };
+		A4C658D40E438CC90064F74B /* QSO3.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CE0E438CC90064F74B /* QSO3.txt */; };
+		A4C658D50E438CC90064F74B /* QSO2.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CF0E438CC90064F74B /* QSO2.txt */; };
+		A4C658D60E438CC90064F74B /* QSO1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D00E438CC90064F74B /* QSO1.txt */; };
+		A4C658D70E438CC90064F74B /* QSO0.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D10E438CC90064F74B /* QSO0.txt */; };
+		A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MorseTrainer.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MorseTrainer_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* MorseTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A444BB520E40093D00A65384 /* MTSourcePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSourcePlayer.h; sourceTree = "<group>"; };
+		A444BB530E40093D00A65384 /* MTSourcePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSourcePlayer.m; sourceTree = "<group>"; };
+		A444BB5B0E4009F100A65384 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
+		A444BB5D0E4009FC00A65384 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = /System/Library/Frameworks/AudioUnit.framework; sourceTree = "<absolute>"; };
+		A444BB5F0E400A0700A65384 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
+		A4546C770E4CF8CB00237295 /* Architecture.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Architecture.rtf; sourceTree = "<group>"; };
+		A4546CBE0E4D0E0100237295 /* MTRandomCWSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRandomCWSource.h; sourceTree = "<group>"; };
+		A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRandomCWSource.m; sourceTree = "<group>"; };
+		A46DECBA0E41741000D8C13C /* MTPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlayer.h; sourceTree = "<group>"; };
+		A46DECBB0E41741000D8C13C /* MTPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlayer.m; sourceTree = "<group>"; };
+		A46DECCD0E417A3F00D8C13C /* MTSoundSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSoundSource.h; sourceTree = "<group>"; };
+		A46DECCE0E417B1700D8C13C /* MTNoiseSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTNoiseSource.h; sourceTree = "<group>"; };
+		A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTNoiseSource.m; sourceTree = "<group>"; };
+		A46DED860E41829F00D8C13C /* MTFifoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFifoSource.h; sourceTree = "<group>"; };
+		A46DED870E41829F00D8C13C /* MTFifoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFifoSource.m; sourceTree = "<group>"; };
+		A4A02D540E4B3C51001F2F8C /* MTFIFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFIFO.h; sourceTree = "<group>"; };
+		A4A02D550E4B3C51001F2F8C /* MTFIFO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFIFO.m; sourceTree = "<group>"; };
+		A4A02E220E4B4DCC001F2F8C /* MTFileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFileSource.h; sourceTree = "<group>"; };
+		A4A02E230E4B4DCC001F2F8C /* MTFileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFileSource.m; sourceTree = "<group>"; };
+		A4A699000E3ED6B100B7E22D /* MTPatternMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPatternMap.h; sourceTree = "<group>"; };
+		A4A699010E3ED6B100B7E22D /* MTPatternMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPatternMap.m; sourceTree = "<group>"; };
+		A4A699070E3EDBBF00B7E22D /* MTTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTimeUtils.h; sourceTree = "<group>"; };
+		A4A699080E3EDBBF00B7E22D /* MTTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTimeUtils.m; sourceTree = "<group>"; };
+		A4A6990E0E3EDD6600B7E22D /* MTDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDefines.h; sourceTree = "<group>"; };
+		A4A6995D0E3EE61C00B7E22D /* MTController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTController.h; sourceTree = "<group>"; };
+		A4A6995E0E3EE61C00B7E22D /* MTController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTController.m; sourceTree = "<group>"; };
+		A4BE287F0E3EEE3C0099926B /* MTCWSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCWSource.h; sourceTree = "<group>"; };
+		A4BE28800E3EEE3C0099926B /* MTCWSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCWSource.m; sourceTree = "<group>"; };
+		A4C6575C0E4354A60064F74B /* MTQRMSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTQRMSource.h; sourceTree = "<group>"; };
+		A4C6575D0E4354A60064F74B /* MTQRMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTQRMSource.m; sourceTree = "<group>"; };
+		A4C658CC0E438CC90064F74B /* QSO5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO5.txt; sourceTree = "<group>"; };
+		A4C658CD0E438CC90064F74B /* QSO4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO4.txt; sourceTree = "<group>"; };
+		A4C658CE0E438CC90064F74B /* QSO3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO3.txt; sourceTree = "<group>"; };
+		A4C658CF0E438CC90064F74B /* QSO2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO2.txt; sourceTree = "<group>"; };
+		A4C658D00E438CC90064F74B /* QSO1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO1.txt; sourceTree = "<group>"; };
+		A4C658D10E438CC90064F74B /* QSO0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO0.txt; sourceTree = "<group>"; };
+		A4DB92C80E528BCF00080FA2 /* MTOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOperationQueue.h; sourceTree = "<group>"; };
+		A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOperationQueue.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */,
+				A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */,
+				A444BB600E400A0700A65384 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A4D96A7E0E52CB7E008986A4 /* App Support */,
+				A4D96A7D0E52CB61008986A4 /* Morse Utilities */,
+				A4D96A7C0E52CB44008986A4 /* Sound Players */,
+				A4546C680E4CF86700237295 /* Data Sources */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A444BB5F0E400A0700A65384 /* CoreAudio.framework */,
+				A444BB5D0E4009FC00A65384 /* AudioUnit.framework */,
+				A444BB5B0E4009F100A65384 /* AudioToolbox.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* MorseTrainer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* MorseTrainer */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = MorseTrainer;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				A4A6990E0E3EDD6600B7E22D /* MTDefines.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A4C658CB0E438CC90064F74B /* QSO Files */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				A4546C770E4CF8CB00237295 /* Architecture.rtf */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MorseTrainer.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4546C680E4CF86700237295 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A4BE287F0E3EEE3C0099926B /* MTCWSource.h */,
+				A4BE28800E3EEE3C0099926B /* MTCWSource.m */,
+				A4A02D540E4B3C51001F2F8C /* MTFIFO.h */,
+				A4A02D550E4B3C51001F2F8C /* MTFIFO.m */,
+				A46DED860E41829F00D8C13C /* MTFifoSource.h */,
+				A46DED870E41829F00D8C13C /* MTFifoSource.m */,
+				A4A02E220E4B4DCC001F2F8C /* MTFileSource.h */,
+				A4A02E230E4B4DCC001F2F8C /* MTFileSource.m */,
+				A46DECCE0E417B1700D8C13C /* MTNoiseSource.h */,
+				A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */,
+				A4C6575C0E4354A60064F74B /* MTQRMSource.h */,
+				A4C6575D0E4354A60064F74B /* MTQRMSource.m */,
+				A4546CBE0E4D0E0100237295 /* MTRandomCWSource.h */,
+				A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */,
+				A46DECCD0E417A3F00D8C13C /* MTSoundSource.h */,
+			);
+			name = "Data Sources";
+			path = src;
+			sourceTree = "<group>";
+		};
+		A4C658CB0E438CC90064F74B /* QSO Files */ = {
+			isa = PBXGroup;
+			children = (
+				A4C658D10E438CC90064F74B /* QSO0.txt */,
+				A4C658D00E438CC90064F74B /* QSO1.txt */,
+				A4C658CF0E438CC90064F74B /* QSO2.txt */,
+				A4C658CE0E438CC90064F74B /* QSO3.txt */,
+				A4C658CD0E438CC90064F74B /* QSO4.txt */,
+				A4C658CC0E438CC90064F74B /* QSO5.txt */,
+			);
+			path = "QSO Files";
+			sourceTree = "<group>";
+		};
+		A4D96A7C0E52CB44008986A4 /* Sound Players */ = {
+			isa = PBXGroup;
+			children = (
+				A46DECBA0E41741000D8C13C /* MTPlayer.h */,
+				A46DECBB0E41741000D8C13C /* MTPlayer.m */,
+				A444BB520E40093D00A65384 /* MTSourcePlayer.h */,
+				A444BB530E40093D00A65384 /* MTSourcePlayer.m */,
+			);
+			name = "Sound Players";
+			path = src;
+			sourceTree = "<group>";
+		};
+		A4D96A7D0E52CB61008986A4 /* Morse Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A4A699000E3ED6B100B7E22D /* MTPatternMap.h */,
+				A4A699010E3ED6B100B7E22D /* MTPatternMap.m */,
+				A4A699070E3EDBBF00B7E22D /* MTTimeUtils.h */,
+				A4A699080E3EDBBF00B7E22D /* MTTimeUtils.m */,
+			);
+			name = "Morse Utilities";
+			path = src;
+			sourceTree = "<group>";
+		};
+		A4D96A7E0E52CB7E008986A4 /* App Support */ = {
+			isa = PBXGroup;
+			children = (
+				A4A6995D0E3EE61C00B7E22D /* MTController.h */,
+				A4A6995E0E3EE61C00B7E22D /* MTController.m */,
+				A4DB92C80E528BCF00080FA2 /* MTOperationQueue.h */,
+				A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */,
+			);
+			name = "App Support";
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* MorseTrainer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MorseTrainer" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MorseTrainer;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MorseTrainer;
+			productReference = 8D1107320486CEB800E47090 /* MorseTrainer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MorseTrainer" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* MorseTrainer */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* MorseTrainer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MorseTrainer.xib in Resources */,
+				A4C658D20E438CC90064F74B /* QSO5.txt in Resources */,
+				A4C658D30E438CC90064F74B /* QSO4.txt in Resources */,
+				A4C658D40E438CC90064F74B /* QSO3.txt in Resources */,
+				A4C658D50E438CC90064F74B /* QSO2.txt in Resources */,
+				A4C658D60E438CC90064F74B /* QSO1.txt in Resources */,
+				A4C658D70E438CC90064F74B /* QSO0.txt in Resources */,
+				A4546C780E4CF8CB00237295 /* Architecture.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				A4A699020E3ED6B200B7E22D /* MTPatternMap.m in Sources */,
+				A4A699090E3EDBBF00B7E22D /* MTTimeUtils.m in Sources */,
+				A4A6995F0E3EE61C00B7E22D /* MTController.m in Sources */,
+				A4BE28810E3EEE3C0099926B /* MTCWSource.m in Sources */,
+				A444BB540E40093D00A65384 /* MTSourcePlayer.m in Sources */,
+				A46DECBC0E41741000D8C13C /* MTPlayer.m in Sources */,
+				A46DECD00E417B1700D8C13C /* MTNoiseSource.m in Sources */,
+				A46DED880E41829F00D8C13C /* MTFifoSource.m in Sources */,
+				A4C6575E0E4354A60064F74B /* MTQRMSource.m in Sources */,
+				A4A02D560E4B3C51001F2F8C /* MTFIFO.m in Sources */,
+				A4A02E240E4B4DCC001F2F8C /* MTFileSource.m in Sources */,
+				A4546CC00E4D0E0100237295 /* MTRandomCWSource.m in Sources */,
+				A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MorseTrainer.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MorseTrainer.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MorseTrainer_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = MorseTrainer;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MorseTrainer_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = MorseTrainer;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MorseTrainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MorseTrainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
