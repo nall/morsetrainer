@@ -145,6 +145,7 @@
 		29B97314FDCFA39411CA2CEA /* MorseTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				A4E0A27F0E533B0700DBB658 /* Documentation */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -169,7 +170,6 @@
 			children = (
 				A4C658CB0E438CC90064F74B /* QSO Files */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				A4546C770E4CF8CB00237295 /* Architecture.rtf */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MorseTrainer.xib */,
 			);
@@ -255,6 +255,15 @@
 			);
 			name = "App Support";
 			path = src;
+			sourceTree = "<group>";
+		};
+		A4E0A27F0E533B0700DBB658 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				A4546C770E4CF8CB00237295 /* Architecture.rtf */,
+			);
+			name = Documentation;
+			path = doc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
