@@ -15,7 +15,7 @@
 
 +(NSUInteger)charDits:(NSString*)character
 {
-	NSString* pattern = [MTPatternMap getPattern:character];
+	NSString* pattern = [MTPatternMap getPatternForCharacter:character];
 	NSUInteger chardits = 0;
 	
 	for(NSUInteger idx = 0; idx < [pattern length]; ++idx)

@@ -21,8 +21,11 @@
 
 // Public static
 +(MTPatternMap*)instance;
-+(NSString*)getPattern:(NSString*)key;
++(NSString*)getPatternForCharacter:(NSString*)key;
 +(NSUInteger)numChars;
++(NSArray*)characters;
+
++(NSDictionary*)dictForCharType:(NSUInteger)theType;
 
 +(NSUInteger)parseProsign:(NSString*)theText atIndex:(NSUInteger)theIndex
 			 finalProsign:(NSMutableString*)theProsign;

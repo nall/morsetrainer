@@ -1,5 +1,5 @@
 //
-//  MTFileSource.h
+//  MTURLSource.h
 //  MorseTrainer
 //
 //  Created by Jon Nall on 8/7/08.
@@ -10,15 +10,16 @@
 #import "MTSoundSource.h"
 #import "MTCWSource.h"
 
-@interface MTFileSource : MTCWSource
+@interface MTURLSource : MTCWSource
 {
-	NSFileHandle* file;
+	NSURL* url;
+    NSFileHandle* theFile;
 	NSString* sourceName;
 }
 -(NSData*)generateData:(NSNumber*)floatsAvailable;
 
 // Public
--(id)initWithFile:(NSString*)theFilename
+-(id)initWithURL:(NSURL*)theURL
 	withFrequency:(NSUInteger)theFrequency
    withSampleRate:(double)theRate
 	withAmplitude:(double)theAmplitude

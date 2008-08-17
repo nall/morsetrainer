@@ -126,7 +126,7 @@
 -(NSUInteger)generateChar:(NSString*)character withBuffer:(float*)buffer
 {
 	float* curBuf = buffer;
-	NSString* pattern = [MTPatternMap getPattern:character];
+	NSString* pattern = [MTPatternMap getPatternForCharacter:character];
 	const NSUInteger length = [pattern length];
 	
 	for(NSUInteger i = 0; i < length; ++i)

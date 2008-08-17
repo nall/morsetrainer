@@ -41,10 +41,6 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	
 	enabled = NO;
 	
-	completionCallback = 0;
-	completionCallbackData = 0;
-	textCallback = 0;
-	textCallbackData = 0;
 	
 	slicesInProgress = 0;
 	
@@ -133,33 +129,22 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	return [source name];
 }
 
--(void)registerCompletionCallback:(SourcePlayerCompletionCallback)theCallback
-						 userData:(void*)theData
-{
-	completionCallback = theCallback;
-	completionCallbackData = theData;
-}
-
--(void)registerTextTrackingCallback:(TextTrackingCallback)theCallback
-						 userData:(void*)theData
-{
-	textCallback = theCallback;
-	textCallbackData = theData;
-}
-
 -(void)invokeTextTrackingCallback:(NSString*)theText
 {
-	if([self enabled])
-	{
-		textCallback(self, theText, textCallbackData);		
-	}
+    if([self enabled])
+    {
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+        [dict setObject:theText forKey:kNotifTextKey];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifTextWasPlayed object: self userInfo:dict];        
+    }
 }
 
 -(void)sliceCompleted:(ScheduledAudioSlice*)theSlice;
 {
 	--slicesInProgress;
 	
-	if(textCallback != 0 && [source supportsTextTracking])
+	if([source supportsTextTracking])
 	{
 		NSString* text = [source getTextForTime:theSlice->mTimeStamp.mSampleTime];
 		if([text length] > 0)
@@ -173,12 +158,10 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 		}		
 	}
 	
-	if(slicesInProgress == 0 && completionCallback != 0)
-	{
-		completionCallback(self, completionCallbackData);
-		completionCallback = 0;
-		completionCallbackData = 0;
-	}
+    if(slicesInProgress == 0)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSoundPlayerComplete object:self];
+    }
 }
 
 
@@ -241,6 +224,11 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	return scheduledSlices;
 }
 
+-(void)reset
+{
+    [source reset];
+}
+
 -(void)start
 {
 	if(![self enabled])
@@ -280,13 +268,6 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	if(err != noErr)
 	{
 		NSLog(@"ERROR: Couldn't reset audio unit");
-	}
-	
-	if(completionCallback != 0)
-	{
-		completionCallback(self, completionCallbackData);
-		completionCallback = 0;
-		completionCallbackData = 0;
 	}
 }
 @end

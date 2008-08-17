@@ -22,17 +22,6 @@ static const NSUInteger noiseMixerElement = 1;
 static const NSUInteger baseQRMElement = 2;
 
 
-void CWComplete(MTSourcePlayer* soundPlayer, void* userData)
-{
-	NSLog(@"CW COMPLETE! [%@]", [soundPlayer name]);
-	MTPlayer* player = userData;
-	
-	if(![player stopped])
-	{
-		[player stop];		
-	}
-}
-
 @implementation MTPlayer
 
 -(id)init
@@ -44,13 +33,34 @@ void CWComplete(MTSourcePlayer* soundPlayer, void* userData)
 		isStopped = YES;
 		
 		cwPlayer = [[MTSourcePlayer alloc] initWithAU:cwUnit];		
-		noisePlayer = [[MTSourcePlayer alloc] initWithAU:noiseUnit];
+
+		// Setup Noise Source
+        noisePlayer = [[MTSourcePlayer alloc] initWithAU:noiseUnit];
+        
+        MTNoiseSource* noiseSource = [[MTNoiseSource alloc] init];
+        [noiseSource reset];
+        [noisePlayer setSource:noiseSource];
 		
+        // Setup QRM Source
 		for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
 		{
 			qrmPlayer[i] = [[MTSourcePlayer alloc] initWithAU:qrmUnit[i]];
+
+            MTQRMSource* qrmSource = [[MTQRMSource alloc] initWithID:i];
+            [qrmSource reset];
+            [qrmPlayer[i] setSource:qrmSource];
 		}
+                
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(CWComplete:)
+                                                     name:kNotifSoundPlayerComplete
+                                                   object:cwPlayer];
 	
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(textTracker:)
+                                                     name:kNotifTextWasPlayed
+                                                   object:cwPlayer];
+                
 		[self setQRMStations:0];
 		[self setNoise:NO];		
 	}
@@ -200,6 +210,26 @@ void CWComplete(MTSourcePlayer* soundPlayer, void* userData)
 	return isStopped;
 }
 
+-(void)CWComplete:(id)object
+{
+    NSNotification* notification = object;
+	NSLog(@"CW COMPLETE! [%@]", [[notification object] name]);
+	
+	if(![self stopped])
+	{
+		[self stop];		
+	}
+}
+
+-(void)textTracker:(id)object
+{
+    // Re-Post for UI objects that don't have access to SoundPlayers
+    NSNotification* notification = object;
+    [[NSNotificationCenter defaultCenter] postNotificationName:[notification name]
+                                                        object:self
+                                                      userInfo:[notification userInfo]];
+}
+
 -(void)playCW:(id<MTSoundSource>)theSource
 {
 	isStopped = NO;
@@ -207,22 +237,15 @@ void CWComplete(MTSourcePlayer* soundPlayer, void* userData)
 	[theSource setTextTracking:YES];
 	[theSource reset];
 	[cwPlayer setSource:theSource];
-	[cwPlayer registerCompletionCallback:CWComplete userData:self];
-	
-	MTNoiseSource* noiseSource = [[MTNoiseSource alloc] init];
-	[noiseSource reset];
-	[noisePlayer setSource:noiseSource];
-	
-	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
-	{
-		MTQRMSource* qrmSource = [[MTQRMSource alloc] initWithID:i];
-		[qrmSource reset];
-		
-		[qrmPlayer[i] setSource:qrmSource];
-	}
+    
+    [noisePlayer reset];
+    for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
+    {
+        [qrmPlayer[i] reset];
+    }
 	
 	AUGraphStart(graph);	
-	CAShow(graph);
+	// CAShow(graph);
 	
 	[cwPlayer setEnabled:YES];
 	[cwPlayer start];
@@ -244,11 +267,6 @@ void CWComplete(MTSourcePlayer* soundPlayer, void* userData)
 	{
 		[qrmPlayer[i] stop];
 	}
-}
-
--(void)setTextTrackingCallback:(TextTrackingCallback)theCallback userData:(void*)theData;
-{
-	[cwPlayer registerTextTrackingCallback:theCallback userData:theData];
 }
 
 @end

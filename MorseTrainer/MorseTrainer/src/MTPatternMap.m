@@ -6,14 +6,9 @@
 //  Copyright 2008 STUNTAZ!!!. All rights reserved.
 //
 
+#include "MTDefines.h"
 #import "MTPatternMap.h"
 #include <wctype.h>
-
-static const NSUInteger kPatternLetter = 0;
-static const NSUInteger kPatternNumber = 1;
-static const NSUInteger kPatternPunctuation = 2;
-static const NSUInteger kPatternProsign = 3;
-static const NSUInteger kMaxPatternTypes = 4;
 
 @implementation MTPatternMap
 
@@ -139,7 +134,14 @@ static const NSUInteger kMaxPatternTypes = 4;
 	return map;
 }
 
-+(NSString*)getPattern:(NSString*)key
++(NSDictionary*)dictForCharType:(NSUInteger)theType
+{
+    MTPatternMap* map = [MTPatternMap instance];
+    return [map->patternArray objectAtIndex:theType];
+}
+
+
++(NSString*)getPatternForCharacter:(NSString*)key
 {
 	MTPatternMap* map = [MTPatternMap instance];
 	
@@ -197,6 +199,21 @@ static const NSUInteger kMaxPatternTypes = 4;
 	}
 	
 	return count;
+}
+
++(NSArray*)characters
+{
+	MTPatternMap* map = [MTPatternMap instance];
+
+    NSMutableArray* characters = [NSMutableArray array];
+    
+	for(NSUInteger i = 0; i < [map->patternArray count]; ++i)
+    {
+        NSDictionary* dict = [map->patternArray objectAtIndex:i];
+        [characters addObjectsFromArray:[dict allKeys]];
+    }
+    
+    return characters;
 }
 
 

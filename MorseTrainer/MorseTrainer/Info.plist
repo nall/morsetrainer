@@ -24,5 +24,7 @@
 	<string>MorseTrainer</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://stuntaz.org/software/morsetrainer/sparkle.xml</string>
 </dict>
 </plist>

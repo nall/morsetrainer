@@ -27,7 +27,9 @@
 
 	NSString* paramString = [self generateParameters];
 	
-	if([super initWithFile:qsoPath
+    NSURL* qsoURL = [NSURL URLWithString:[[NSString stringWithString:@"file://"]
+                                          stringByAppendingString:qsoPath]];
+	if([super initWithURL:qsoURL
 			 withFrequency:frequency
 			withSampleRate:kSampleRate
 			 withAmplitude:amplitude

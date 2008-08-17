@@ -8,9 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MTSoundSource.h"
-#import "MTFileSource.h"
+#import "MTURLSource.h"
 
-@interface MTQRMSource : MTFileSource
+@interface MTQRMSource : MTURLSource
 {
 	NSUInteger qrmID;	
 }

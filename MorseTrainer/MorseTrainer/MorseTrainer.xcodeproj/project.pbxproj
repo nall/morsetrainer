@@ -11,6 +11,8 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A41C94720E55FE93002DCC58 /* MTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = A41C94710E55FE93002DCC58 /* MTDefines.m */; };
+		A41C95960E560ED1002DCC58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41C95950E560ED1002DCC58 /* Sparkle.framework */; };
 		A444BB540E40093D00A65384 /* MTSourcePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A444BB530E40093D00A65384 /* MTSourcePlayer.m */; };
 		A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5B0E4009F100A65384 /* AudioToolbox.framework */; };
 		A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5D0E4009FC00A65384 /* AudioUnit.framework */; };
@@ -20,8 +22,9 @@
 		A46DECBC0E41741000D8C13C /* MTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECBB0E41741000D8C13C /* MTPlayer.m */; };
 		A46DECD00E417B1700D8C13C /* MTNoiseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */; };
 		A46DED880E41829F00D8C13C /* MTFifoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DED870E41829F00D8C13C /* MTFifoSource.m */; };
+		A47DC8D80E537D36007BD324 /* MTPrefController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47DC8D70E537D36007BD324 /* MTPrefController.m */; };
 		A4A02D560E4B3C51001F2F8C /* MTFIFO.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A02D550E4B3C51001F2F8C /* MTFIFO.m */; };
-		A4A02E240E4B4DCC001F2F8C /* MTFileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A02E230E4B4DCC001F2F8C /* MTFileSource.m */; };
+		A4A02E240E4B4DCC001F2F8C /* MTURLSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A02E230E4B4DCC001F2F8C /* MTURLSource.m */; };
 		A4A699020E3ED6B200B7E22D /* MTPatternMap.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A699010E3ED6B100B7E22D /* MTPatternMap.m */; };
 		A4A699090E3EDBBF00B7E22D /* MTTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A699080E3EDBBF00B7E22D /* MTTimeUtils.m */; };
 		A4A6995F0E3EE61C00B7E22D /* MTController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6995E0E3EE61C00B7E22D /* MTController.m */; };
@@ -34,6 +37,8 @@
 		A4C658D60E438CC90064F74B /* QSO1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D00E438CC90064F74B /* QSO1.txt */; };
 		A4C658D70E438CC90064F74B /* QSO0.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D10E438CC90064F74B /* QSO0.txt */; };
 		A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */; };
+		A4ECE4930E57A28B008265A1 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4ECE4920E57A28B008265A1 /* Preferences.xib */; };
+		A4ECE5C10E57E61A008265A1 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = A4ECE5C00E57E61A008265A1 /* TODO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,8 @@
 		32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MorseTrainer_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MorseTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A41C94710E55FE93002DCC58 /* MTDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDefines.m; sourceTree = "<group>"; };
+		A41C95950E560ED1002DCC58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../../../Library/Frameworks/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		A444BB520E40093D00A65384 /* MTSourcePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSourcePlayer.h; sourceTree = "<group>"; };
 		A444BB530E40093D00A65384 /* MTSourcePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSourcePlayer.m; sourceTree = "<group>"; };
 		A444BB5B0E4009F100A65384 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -62,10 +69,12 @@
 		A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTNoiseSource.m; sourceTree = "<group>"; };
 		A46DED860E41829F00D8C13C /* MTFifoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFifoSource.h; sourceTree = "<group>"; };
 		A46DED870E41829F00D8C13C /* MTFifoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFifoSource.m; sourceTree = "<group>"; };
+		A47DC8D70E537D36007BD324 /* MTPrefController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MTPrefController.m; sourceTree = "<group>"; };
+		A47DC8EF0E537DC9007BD324 /* MTPrefController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPrefController.h; sourceTree = "<group>"; };
 		A4A02D540E4B3C51001F2F8C /* MTFIFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFIFO.h; sourceTree = "<group>"; };
 		A4A02D550E4B3C51001F2F8C /* MTFIFO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFIFO.m; sourceTree = "<group>"; };
-		A4A02E220E4B4DCC001F2F8C /* MTFileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTFileSource.h; sourceTree = "<group>"; };
-		A4A02E230E4B4DCC001F2F8C /* MTFileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTFileSource.m; sourceTree = "<group>"; };
+		A4A02E220E4B4DCC001F2F8C /* MTURLSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTURLSource.h; sourceTree = "<group>"; };
+		A4A02E230E4B4DCC001F2F8C /* MTURLSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTURLSource.m; sourceTree = "<group>"; };
 		A4A699000E3ED6B100B7E22D /* MTPatternMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPatternMap.h; sourceTree = "<group>"; };
 		A4A699010E3ED6B100B7E22D /* MTPatternMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPatternMap.m; sourceTree = "<group>"; };
 		A4A699070E3EDBBF00B7E22D /* MTTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTimeUtils.h; sourceTree = "<group>"; };
@@ -85,6 +94,8 @@
 		A4C658D10E438CC90064F74B /* QSO0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO0.txt; sourceTree = "<group>"; };
 		A4DB92C80E528BCF00080FA2 /* MTOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOperationQueue.h; sourceTree = "<group>"; };
 		A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOperationQueue.m; sourceTree = "<group>"; };
+		A4ECE4900E57A282008265A1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
+		A4ECE5C00E57E61A008265A1 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +107,7 @@
 				A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */,
 				A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */,
 				A444BB600E400A0700A65384 /* CoreAudio.framework in Frameworks */,
+				A41C95960E560ED1002DCC58 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +136,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A41C95950E560ED1002DCC58 /* Sparkle.framework */,
 				A444BB5F0E400A0700A65384 /* CoreAudio.framework */,
 				A444BB5D0E4009FC00A65384 /* AudioUnit.framework */,
 				A444BB5B0E4009F100A65384 /* AudioToolbox.framework */,
@@ -161,6 +174,7 @@
 				32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				A4A6990E0E3EDD6600B7E22D /* MTDefines.h */,
+				A41C94710E55FE93002DCC58 /* MTDefines.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -172,6 +186,7 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MorseTrainer.xib */,
+				A4ECE4920E57A28B008265A1 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -194,8 +209,8 @@
 				A4A02D550E4B3C51001F2F8C /* MTFIFO.m */,
 				A46DED860E41829F00D8C13C /* MTFifoSource.h */,
 				A46DED870E41829F00D8C13C /* MTFifoSource.m */,
-				A4A02E220E4B4DCC001F2F8C /* MTFileSource.h */,
-				A4A02E230E4B4DCC001F2F8C /* MTFileSource.m */,
+				A4A02E220E4B4DCC001F2F8C /* MTURLSource.h */,
+				A4A02E230E4B4DCC001F2F8C /* MTURLSource.m */,
 				A46DECCE0E417B1700D8C13C /* MTNoiseSource.h */,
 				A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */,
 				A4C6575C0E4354A60064F74B /* MTQRMSource.h */,
@@ -252,6 +267,8 @@
 				A4A6995E0E3EE61C00B7E22D /* MTController.m */,
 				A4DB92C80E528BCF00080FA2 /* MTOperationQueue.h */,
 				A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */,
+				A47DC8EF0E537DC9007BD324 /* MTPrefController.h */,
+				A47DC8D70E537D36007BD324 /* MTPrefController.m */,
 			);
 			name = "App Support";
 			path = src;
@@ -261,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				A4546C770E4CF8CB00237295 /* Architecture.rtf */,
+				A4ECE5C00E57E61A008265A1 /* TODO */,
 			);
 			name = Documentation;
 			path = doc;
@@ -318,6 +336,8 @@
 				A4C658D60E438CC90064F74B /* QSO1.txt in Resources */,
 				A4C658D70E438CC90064F74B /* QSO0.txt in Resources */,
 				A4546C780E4CF8CB00237295 /* Architecture.rtf in Resources */,
+				A4ECE4930E57A28B008265A1 /* Preferences.xib in Resources */,
+				A4ECE5C10E57E61A008265A1 /* TODO in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,9 +359,11 @@
 				A46DED880E41829F00D8C13C /* MTFifoSource.m in Sources */,
 				A4C6575E0E4354A60064F74B /* MTQRMSource.m in Sources */,
 				A4A02D560E4B3C51001F2F8C /* MTFIFO.m in Sources */,
-				A4A02E240E4B4DCC001F2F8C /* MTFileSource.m in Sources */,
+				A4A02E240E4B4DCC001F2F8C /* MTURLSource.m in Sources */,
 				A4546CC00E4D0E0100237295 /* MTRandomCWSource.m in Sources */,
 				A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */,
+				A47DC8D80E537D36007BD324 /* MTPrefController.m in Sources */,
+				A41C94720E55FE93002DCC58 /* MTDefines.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +386,14 @@
 			name = MorseTrainer.xib;
 			sourceTree = "<group>";
 		};
+		A4ECE4920E57A28B008265A1 /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4ECE4900E57A282008265A1 /* English */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -372,6 +402,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = required;
@@ -390,6 +424,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

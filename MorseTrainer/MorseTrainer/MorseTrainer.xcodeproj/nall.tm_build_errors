@@ -1,1 +1,10 @@
-2008-08-13 08|54|53.232 xcodebuild[40812:613] Unable to load platform at path /Developer/Platforms/Aspen.platform
+2008-08-13 13|33|54.049 xcodebuild[45079:613] Unable to load platform at path /Developer/Platforms/Aspen.platform
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1245|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1251|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1226|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1226|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1226|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1226|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1233|note: This view overlaps one of its siblings.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1269|note: This view is clipped by its superview.
+/Users/nall/t/svn/MorseTrainer/MorseTrainer/English.lproj/MorseTrainer.xib|1253|note: This view overlaps one of its siblings.

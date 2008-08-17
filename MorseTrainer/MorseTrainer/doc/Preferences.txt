@@ -1,0 +1,45 @@
+Source
+    * Type: koch, user-defined, text file
+    
+        * Koch
+            * Number of Koch characters to use
+        
+        * User-define
+            * Charset
+        
+        * Text File
+            * Filename
+
+Sending
+    * Actual WPM
+        Min: Effective WPM
+        Max: 100
+
+    * Effective WPM
+        Min: 5
+        Max: Actual WPM
+
+    * Tone Pitch
+
+    * Minimum Characters Per Group
+        Min: 1
+        Max: Maximum Characters Per Group
+
+    * Maximum Characters Per Group
+        Min: Minimum Characters Per Group
+        Max: 10
+
+    * Duration in minutes:
+        Min: 0 [infinite]
+        Max: None
+        
+Noise / QRM
+    * Noise Level: Off - S9
+    
+    * Signal Strength: S1 - S9
+    
+    * QRM Stations: 0 - 2
+    
+Hidden
+    * wpmPhrase
+        * Defaults to PARIS

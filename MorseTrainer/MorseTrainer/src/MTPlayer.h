@@ -9,8 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #include <AudioToolbox/AudioToolbox.h>
 #import "MTSourcePlayer.h"
-
-#define kMaxQRMStations 3 // define instead of const int to be used in array decls
+#include "MTDefines.h"
 
 @interface MTPlayer : NSObject
 {
@@ -38,6 +37,4 @@
 
 -(void)setQRMStations:(NSUInteger)numStations;
 -(void)setNoise:(double)noiseLevel;
-
--(void)setTextTrackingCallback:(TextTrackingCallback)theCallback userData:(void*)theData;
 @end
