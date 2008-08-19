@@ -9,8 +9,18 @@
 #import "MTPatternMap.h"
 #include "MTDefines.h"
 
-@implementation MTPrefController
+@interface MTPrefController (Private)
+    -(void)switchCharsetViewTo:(NSView*)theNewView;
+    
+    -(NSArray*)makeBindingArrayWithValues:(NSArray*)theValues withLabels:(NSArray*)theLabels;
 
+    -(NSArray*)makeCharsetFromArray:(NSArray*)theCharacters;
+    -(NSArray*)makeCharset:(NSUInteger)charType;
+    
+    -(void)removeUnusedCells:(NSUInteger)numValidCells inMatrix:(NSMatrix*)theMatrix;
+@end
+
+@implementation MTPrefController
 
 -(NSArray*)makeBindingArrayWithValues:(NSArray*)theValues withLabels:(NSArray*)theLabels
 {
@@ -31,19 +41,16 @@
     return theArray;
 }
 
--(NSArray*)makeCharset:(NSUInteger)charType
+-(NSArray*)makeCharsetFromArray:(NSArray*)theCharacters
 {
-    NSDictionary* charDict = [MTPatternMap dictForCharType:charType];
-    NSArray* keys = [[charDict allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     NSMutableArray* theArray = [NSMutableArray array];
-    for(NSUInteger i = 0; i < [keys count]; ++i)
+    for(NSUInteger i = 0; i < [theCharacters count]; ++i)
     {
-        NSString* value = [keys objectAtIndex:i];
-
+        NSString* value = [theCharacters objectAtIndex:i];
+        
         NSDictionary* entry = [NSDictionary dictionaryWithObjectsAndKeys:
                                value, @"value",
                                value, @"title",
-                               [NSNumber numberWithBool:NO], @"hidden",
                                nil];
         [theArray addObject:entry];
     }
@@ -51,12 +58,35 @@
     return theArray;
 }
 
--(void)removeUnusedCells:(NSUInteger)charType inMatrix:(NSMatrix*)theMatrix
+-(NSArray*)makeCharset:(NSUInteger)charType
 {
-    const NSUInteger validCells = [[MTPatternMap dictForCharType:charType] count];
+    NSDictionary* charDict = [MTPatternMap dictForCharType:charType];
+    NSArray* keys = [[charDict allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    
+    return [self makeCharsetFromArray:keys];
+}
+
+-(void)removeUnusedCells:(NSUInteger)numValidCells inView:(NSView*)theView
+{
+    if([theView class] == [NSMatrix class])
+    {
+        NSMatrix* matrix = (NSMatrix*)theView;
+        [self removeUnusedCells:numValidCells inMatrix:matrix];
+    }
+    else
+    {
+        for (NSView* v in [theView subviews])
+        {
+            [self removeUnusedCells:numValidCells inView:v];
+        }
+    }
+}
+
+-(void)removeUnusedCells:(NSUInteger)numValidCells inMatrix:(NSMatrix*)theMatrix
+{
     NSArray* cells = [theMatrix cells];
         
-    for(NSUInteger i = validCells; i < [cells count]; ++i)
+    for(NSUInteger i = numValidCells; i < [cells count]; ++i)
     {
         NSCell* blankCell = [[NSCell alloc] init];
         [blankCell setEnabled:NO];
@@ -78,15 +108,92 @@
 	textFileEnabled = value;
 }
 
+-(void)updateCellsToUserDefaults:(NSView*)theView
+{
+    if([theView class] == [NSButtonCell class])
+    {
+        NSButtonCell* cell = (NSButtonCell*)theView;
+        const BOOL checked = [masterCharSet containsObject:[cell title]];
+        [cell setState:(checked ? NSOnState : NSOffState)];
+    }
+    else if([theView class] == [NSMatrix class])
+    {
+        for(NSView* cell in [(NSMatrix*)theView cells])
+        {
+            [self updateCellsToUserDefaults:cell];
+        }
+    }
+    else if([theView class] == [NSCell class])
+    {
+        // Do nothing -- these are empty cells
+    }    
+    else
+    {
+        for(NSView* subview in [theView subviews])
+        {
+            [self updateCellsToUserDefaults:subview];            
+        }
+    }
+}
+
 -(void)windowDidLoad
 {
+    charsetViews = [NSArray arrayWithObjects:
+                    letterBox,
+                    numberBox,
+                    punctuationBox,
+                    prosignBox,
+                    kochBox,
+                    allCharBox,
+                    nil];
+    
     // We layout NSMatrix's in rows/cols, but might not need them all.
     // Remove unused cells before displaying.
+    {        
+        // Check all of those included in masterCharSet
+        for(NSView* v in charsetViews)
+        {
+            [self updateCellsToUserDefaults:v];
+        }
+
+        // The All Char Box matrices
+        NSUInteger counts[kPrefNumCharBoxes] =
+        {
+            [[MTPatternMap dictForCharType:kPatternLetter] count],
+            [[MTPatternMap dictForCharType:kPatternNumber] count],
+            [[MTPatternMap dictForCharType:kPatternPunctuation] count],
+            [[MTPatternMap dictForCharType:kPatternProsign] count],
+            [kochCharacters count]
+        };
+        
+        const NSUInteger letterCount = [[MTPatternMap dictForCharType:kPatternLetter] count];
+        const NSUInteger numberCount = [[MTPatternMap dictForCharType:kPatternNumber] count];
+        const NSUInteger punctuationCount = [[MTPatternMap dictForCharType:kPatternPunctuation] count];
+        const NSUInteger prosignCount = [[MTPatternMap dictForCharType:kPatternProsign] count];
+        
+        [self removeUnusedCells:letterCount inMatrix:allCharLetterMatrix];
+        [self removeUnusedCells:numberCount inMatrix:allCharNumberMatrix];
+        [self removeUnusedCells:punctuationCount inMatrix:allCharPunctuationMatrix];
+        [self removeUnusedCells:prosignCount inMatrix:allCharProsignMatrix];
+        
+        // The individual box matrices -- each of this is a box which contains a matrix
+        for(NSUInteger i = 0; i < kPrefNumCharBoxes; ++i)
+        {
+            [self removeUnusedCells:counts[i] inView:[charsetViews objectAtIndex:i]];
+        }
+    }
+     
     
-    [self removeUnusedCells:kPatternLetter inMatrix:letterMatrix];
-    [self removeUnusedCells:kPatternNumber inMatrix:numberMatrix];
-    [self removeUnusedCells:kPatternPunctuation inMatrix:punctuationMatrix];
-    [self removeUnusedCells:kPatternProsign inMatrix:prosignMatrix];
+    // Generate mapping of view strings -> views
+    {
+        characterViewMap = [NSMutableDictionary dictionaryWithCapacity:[characterViewMapLabels count]];
+        [characterViewMap setValue:allCharBox forKey:kCharViewAll];
+        [characterViewMap setValue:letterBox forKey:kCharViewLetters];
+        [characterViewMap setValue:numberBox forKey:kCharViewNumbers];
+        [characterViewMap setValue:punctuationBox forKey:kCharViewPunctuation];
+        [characterViewMap setValue:prosignBox forKey:kCharViewProsigns];
+        [characterViewMap setValue:kochBox forKey:kCharViewKoch];
+    }
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSString* textURL = [defaults stringForKey:kPrefTextFile];
@@ -94,6 +201,9 @@
 
     [textFileLabel setStringValue:(textURL == nil) ? @"[None Selected]" :
         [textURL lastPathComponent]];
+    
+    currentView = allCharBox;
+    [self switchCharsetViewTo:currentView];
 }
 
 -(id)init
@@ -120,7 +230,7 @@
                      @"O", @"W", @"I", @".", @"N", @"J", @"E", @"F", @"0",
                      @"Y", @"V", @",", @"G", @"5", @"/", @"Q", @"9", @"Z",
                      @"H", @"3", @"8", @"B", @"?", @"4", @"2", @"7", @"C",
-                     @"1", @"D", @"6", @"X", @"^BT", @"^SK", @"^AR", nil
+                     @"1", @"D", @"6", @"X", @"BT", @"SK", @"AR", nil
                     ];
 		
 		minKochCharacters = kPrefMinKochChars;
@@ -133,7 +243,7 @@
 		[defaults setObject:[NSNumber numberWithInt:2] forKey:kPrefKochChars];
         [defaults setObject:kochCharacters forKey:kPrefKochCharset];
         [defaults setObject:[MTPatternMap characters] forKey:kPrefCharSet];
-		
+        
 		// Sending 
 		[defaults setObject:[NSNumber numberWithInt:20] forKey:kPrefActualWPM];
 		[defaults setObject:[NSNumber numberWithInt:15] forKey:kPrefEffectiveWPM];
@@ -196,6 +306,18 @@
         charsetNumbers = [self makeCharset:kPatternNumber];
         charsetPunctuation = [self makeCharset:kPatternPunctuation];
         charsetProsigns = [self makeCharset:kPatternProsign];
+        charsetKoch = [self makeCharsetFromArray:kochCharacters];
+        
+        masterCharSet = [NSMutableSet setWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kPrefCharSet]];
+        
+
+        characterViewMapLabels = [NSArray arrayWithObjects:kCharViewAll,
+                                    kCharViewLetters,
+                                    kCharViewNumbers,
+                                    kCharViewPunctuation,
+                                    kCharViewProsigns,
+                                    kCharViewKoch,
+                                    nil];
 	}
 
 	return self;
@@ -204,8 +326,8 @@
 -(IBAction)validateTiming:(id)value
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSUInteger actualWPM = [defaults integerForKey:@"actualWPM"];
-	NSUInteger effectiveWPM = [defaults integerForKey:@"effectiveWPM"];
+	NSUInteger actualWPM = [defaults integerForKey:kPrefActualWPM];
+	NSUInteger effectiveWPM = [defaults integerForKey:kPrefEffectiveWPM];
 
 	// Check that actual >= effective
 	if(effectiveWPM > actualWPM)
@@ -213,11 +335,11 @@
 		if([value isEqual:actualWPMField])
 		{
 			// user changed actual -- update effective
-			[defaults setInteger:actualWPM forKey:@"effectiveWPM"];
+			[defaults setInteger:actualWPM forKey:kPrefEffectiveWPM];
 		}
 		else
 		{
-			[defaults setInteger:effectiveWPM forKey:@"actualWPM"];
+			[defaults setInteger:effectiveWPM forKey:kPrefActualWPM];
 		}
 	}
 }
@@ -290,34 +412,61 @@
     }
 }
 
--(IBAction)clearAllLetters:(id)value
+-(void)toggleCharsInViewRecursively:(NSView*)theView enableValue:(BOOL)theEnable
 {
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSArray array] forKey:@"letterCharset"];
-    [defaults setObject:[NSArray array] forKey:@"numberCharset"];
-    [defaults setObject:[NSArray array] forKey:@"punctuationCharset"];
-    [defaults setObject:[NSArray array] forKey:@"prosignCharset"];
+    if([theView class] == [NSButtonCell class])
+    {
+        NSButtonCell* cell = (NSButtonCell*)theView;
+
+        if(theEnable == YES)
+        {
+            [masterCharSet addObject:[cell title]];
+        }
+        else
+        {
+            [masterCharSet removeObject:[cell title]];
+        }
+    }
+    else if([theView class] == [NSMatrix class])
+    {
+        for(NSView* cell in [(NSMatrix*)theView cells])
+        {
+            [self toggleCharsInViewRecursively:cell enableValue:theEnable];
+        }
+    }
+    else if([theView class] == [NSCell class])
+    {
+        // Do nothing -- these are empty cells
+    }
+    else
+    {
+        for (NSView* subview in [theView subviews])
+        {
+            [self toggleCharsInViewRecursively:subview enableValue:theEnable];
+        }
+    }
 }
 
--(IBAction)checkAllLetters:(id)value
+-(IBAction)clearCharsInView:(id)value
 {
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[[MTPatternMap dictForCharType:kPatternLetter] allKeys] forKey:@"letterCharset"];
-    [defaults setObject:[[MTPatternMap dictForCharType:kPatternNumber] allKeys] forKey:@"numberCharset"];
-    [defaults setObject:[[MTPatternMap dictForCharType:kPatternPunctuation] allKeys] forKey:@"punctuationCharset"];
-    [defaults setObject:[[MTPatternMap dictForCharType:kPatternProsign] allKeys] forKey:@"prosignCharset"];
+    [self toggleCharsInViewRecursively:currentView enableValue:NO];
+    [[NSUserDefaults standardUserDefaults] setObject:[masterCharSet allObjects] forKey:kPrefCharSet];
+    
+    for(NSView* v in charsetViews)
+    {
+        [self updateCellsToUserDefaults:v];
+    }
 }
 
--(IBAction)copyFromKoch:(id)value
+-(IBAction)checkCharsInView:(id)value
 {
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    const NSUInteger numKChars = [defaults integerForKey:@"kochCharacters"];
-    NSArray* allKChars = [defaults arrayForKey:kPrefKochCharset];
-    NSArray* kChars = [allKChars subarrayWithRange:NSMakeRange(0, numKChars)];
-    [defaults setObject:kChars forKey:@"letterCharset"];
-    [defaults setObject:kChars forKey:@"numberCharset"];
-    [defaults setObject:kChars forKey:@"punctuationCharset"];
-    [defaults setObject:kChars forKey:@"prosignCharset"];
+    [self toggleCharsInViewRecursively:currentView enableValue:YES];
+    [[NSUserDefaults standardUserDefaults] setObject:[masterCharSet allObjects] forKey:kPrefCharSet];
+
+    for(NSView* v in charsetViews)
+    {
+        [self updateCellsToUserDefaults:v];
+    }
 }
 
 -(IBAction)openTextFile:(id)value
@@ -340,6 +489,98 @@
 	}
 }
 
+-(IBAction)updateCharset:(id)value
+{
+    NSMatrix* matrix = value;
 
+    for (NSButtonCell* cell in [matrix cells])
+    {
+        NSString* character = [cell title];
+        if([cell state] == NSOnState)
+        {
+            [masterCharSet addObject:character];
+        }
+        else
+        {
+            [masterCharSet removeObject:character];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[masterCharSet allObjects]
+                                              forKey:kPrefCharSet];
+    for(NSView* v in charsetViews)
+    {
+        [self updateCellsToUserDefaults:v];
+    }    
+}
+
+-(void)dumpViews:(NSView*)theView withSpace:(NSString*)spaces
+{
+    NSRect f = [theView frame];
+    NSLog(@"%@VIEW: (%fx%f) @ (%fx%f) %@", spaces, f.size.width, f.size.height, f.origin.x, f.origin.y, theView);
+    
+    for(NSView* subView in [theView subviews])
+    {
+        NSString* newSpaces = [spaces stringByAppendingString:@"    "];
+        [self dumpViews:subView withSpace:newSpaces];
+    }
+}
+
+-(void)switchCharsetViewTo:(NSView*)theNewView
+{    
+    if(currentView == theNewView) return;
+    
+    //[self dumpViews:currentView withSpace:@""];
+    //[self dumpViews:theNewView withSpace:@""];
+    NSRect oldBoxFrame = [currentView frame];
+    NSRect newBoxFrame = [theNewView frame];
+    
+    // The origin of the new frame should be identical to the old
+    newBoxFrame.origin = oldBoxFrame.origin;
+    
+    NSWindow* window = [currentView window];
+    NSRect oldWinFrame = [window frame];
+    NSRect newWinFrame = oldWinFrame;
+    
+
+    newBoxFrame.origin = oldBoxFrame.origin;
+    newBoxFrame.size.width = oldBoxFrame.size.width;
+    
+    const double heightDiff = (newBoxFrame.size.height - oldBoxFrame.size.height);
+    newWinFrame.size.height += heightDiff;
+    
+    NSMutableDictionary* boxDict = [NSMutableDictionary dictionaryWithCapacity:3];
+    [boxDict setObject:currentView forKey:@"NSViewAnimationTargetKey"];
+    [boxDict setObject:[NSValue valueWithRect:oldBoxFrame] forKey:@"NSViewAnimationStartFrameKey"];
+    [boxDict setObject:[NSValue valueWithRect:newBoxFrame] forKey:@"NSViewAnimationEndFrameKey"];
+    
+    NSMutableDictionary* winDict = [NSMutableDictionary dictionaryWithCapacity:3];
+    [winDict setObject:window forKey:@"NSViewAnimationTargetKey"];
+    [winDict setObject:[NSValue valueWithRect:oldWinFrame] forKey:@"NSViewAnimationStartFrameKey"];
+    [winDict setObject:[NSValue valueWithRect:newWinFrame] forKey:@"NSViewAnimationEndFrameKey"];
+    
+    NSViewAnimation* animation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObjects:boxDict, winDict, nil]];
+    [animation setDuration:0.2];
+    [animation setAnimationCurve:NSAnimationLinear];
+    [animation setAnimationBlockingMode:NSAnimationBlocking];
+
+    NSView* blankView = [[NSView alloc] initWithFrame:oldBoxFrame];
+    [[currentView superview] replaceSubview:currentView with:blankView];
+    [animation startAnimation];
+    [theNewView setFrame:newBoxFrame];
+    [[blankView superview] replaceSubview:blankView with:theNewView];
+    [[theNewView superview] setNeedsDisplay:YES];
+    
+    [currentView setFrame:oldBoxFrame]; // use its original size -- not the resized version
+    currentView = theNewView;
+}
+
+-(IBAction)changeCharView:(id)value
+{
+    NSPopUpButton* button = value;
+    NSView* theView = [characterViewMap objectForKey:[button titleOfSelectedItem]];
+    
+    [self switchCharsetViewTo:theView];
+}
 
 @end

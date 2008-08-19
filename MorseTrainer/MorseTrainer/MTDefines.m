@@ -70,3 +70,10 @@ const NSUInteger kPrefMinMinutes = 0;
 const NSUInteger kPrefMinTonePitch = 300;
 const NSUInteger kPrefMaxTonePitch = 800;
 const NSUInteger kPrefMinKochChars = 2;
+
+NSString* const kCharViewAll = @"All Characters";
+NSString* const kCharViewLetters = @"Letters";
+NSString* const kCharViewNumbers = @"Numbers";
+NSString* const kCharViewPunctuation = @"Punctuation";
+NSString* const kCharViewProsigns = @"Prosigns";
+NSString* const kCharViewKoch = @"Koch Characters";

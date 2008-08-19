@@ -7,7 +7,19 @@
 
 * Error support for nonexistent files
 
+* Error support for unknown characters
+
+* Support for user defined characters
+
 * UI Items
-    * Character Set "Views"
     * Artwork
-    * Resizing Panels
+    * Resizing Panels    
+    * Explicitly Select random groups if setTextFile is disabled
+    
+* Check that all preferences use string constants
+
+* Verify all defaults
+
+* Verify all validations
+
+* Resize non-source panels

@@ -50,9 +50,8 @@ extern NSString* const kNotifSoundPlayerComplete;
 extern NSString* const kNotifTextWasPlayed;
 extern NSString* const kNotifTextKey;
 
-#define kSourceTypeKoch   0
-#define kSourceTypeCustom 1
-#define kSourceTypeURL    2
+#define kSourceTypeCustom 0
+#define kSourceTypeURL    1
 
 // Preferences
 extern NSString* const kPrefSourceType;
@@ -82,5 +81,15 @@ extern const NSUInteger kPrefMinMinutes;
 extern const NSUInteger kPrefMinTonePitch;
 extern const NSUInteger kPrefMaxTonePitch;
 extern const NSUInteger kPrefMinKochChars;
+
+// Character Views
+#define kPrefNumCharBoxes 5 // Number of views that are comprised of the form: NSBox -> NSMatrix
+
+extern NSString* const kCharViewAll;
+extern NSString* const kCharViewLetters;
+extern NSString* const kCharViewNumbers;
+extern NSString* const kCharViewPunctuation;
+extern NSString* const kCharViewProsigns;
+extern NSString* const kCharViewKoch;
 
 #endif // __DEFINES_H_

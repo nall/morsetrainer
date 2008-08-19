@@ -111,35 +111,12 @@
     id<MTSoundSource> soundSource = nil;
     {
         const NSUInteger type = [defaults integerForKey:kPrefSourceType];
-        NSLog(@"type: %d", type);
         switch(type)
         {
-            case kSourceTypeKoch:
-            {
-                const NSUInteger numKChars = [defaults integerForKey:kPrefKochChars];
-                NSArray* kochCharacters = [defaults arrayForKey:kPrefKochCharset];
-                NSArray* kChars = [kochCharacters subarrayWithRange:NSMakeRange(0, numKChars)];
-                soundSource = [[MTRandomCWSource alloc] initWithCharset:kChars
-                                                          withFrequency:baseFreq
-                                                         withSampleRate:kSampleRate
-                                                          withAmplitude:signalStrength
-                                                           withAnalysis:analysis];
-                break;
-            }
             case kSourceTypeCustom:
             {
-                NSArray* letters = [defaults arrayForKey:@"letterCharset"];
-                NSArray* numbers = [defaults arrayForKey:@"numberCharset"];
-                NSArray* punctuation = [defaults arrayForKey:@"punctuationCharset"];
-                NSArray* prosigns = [defaults arrayForKey:@"prosignCharset"];
-                
-                NSMutableArray* allChars = [NSMutableArray array];
-                [allChars addObjectsFromArray:letters];
-                [allChars addObjectsFromArray:numbers];
-                [allChars addObjectsFromArray:punctuation];
-                [allChars addObjectsFromArray:prosigns];
-                
-                soundSource = [[MTRandomCWSource alloc] initWithCharset:allChars
+                NSArray* chars = [defaults arrayForKey:kPrefCharSet];                
+                soundSource = [[MTRandomCWSource alloc] initWithCharset:chars
                                                           withFrequency:baseFreq
                                                          withSampleRate:kSampleRate
                                                           withAmplitude:signalStrength
