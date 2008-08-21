@@ -20,11 +20,16 @@
 {
 	if([super init] != nil)
 	{		
+        prefController = [[MTPrefController alloc] init];
 		player = [[MTPlayer alloc] init];
-        
 	}
 	
 	return self;
+}
+
+-(BOOL)windowShouldClose:(id)window
+{
+    return NO;
 }
 
 -(void)updateText:(NSString*)theText
@@ -73,12 +78,7 @@
 
 -(IBAction)showPreferencePanel:(id)sender
 {
-    if(prefController == nil)
-    {
-        prefController = [[MTPrefController alloc] init];
-    }
-    
-    [prefController showWindow:self];
+    [prefController showPreferences:sender];
 }
 
 
@@ -104,7 +104,6 @@
 	
     const double noiseLevel = [defaults doubleForKey:kPrefNoiseLevel];
     const double signalStrength = [defaults doubleForKey:kPrefSignalStrength];
-    NSLog(@"noiseLevel: %f, signal: %f", noiseLevel, signalStrength);
 	
 
     // Create correct sound source
@@ -178,17 +177,33 @@
 	[player stop];
 }
 
+- (void)speechSynthesizer:(NSSpeechSynthesizer *)sender willSpeakWord:(NSRange)wordToSpeak ofString:(NSString *)text
+{
+    NSLog(@"reading '%@'", [text substringWithRange:wordToSpeak]);
+}
+
 -(IBAction)speakBuffer:(id)sender
 {
     NSString* text = [textField stringValue];
-    NSString* voice = [NSSpeechSynthesizer defaultVoice];
-    NSSpeechSynthesizer* synth = [[NSSpeechSynthesizer alloc] initWithVoice:@"com.apple.speech.synthesis.voice.Vicki"];
-    [synth setRate:105.0];
+
+    NSMutableString* spacedOut = [NSMutableString stringWithCapacity:[text length] * 2];
+    for(NSUInteger i = 0; i < [text length]; ++i)
+    {
+        [spacedOut appendString:[text substringWithRange:NSMakeRange(i, 1)]];
+        [spacedOut appendString:@". "];
+    }
     
-    NSArray* pro = [NSArray arrayWithObject:@"BR"];
-    NSArray* xlate = [NSArray arrayWithObject:@"break"];
+    NSSpeechSynthesizer* synth = [[NSSpeechSynthesizer alloc] initWithVoice:[NSSpeechSynthesizer defaultVoice]];
+    [synth setRate:80];
+    [synth setDelegate:self];
     
-    [synth startSpeakingString:text];
+    
+    [synth startSpeakingString:spacedOut];
+    
+    while([synth isSpeaking])
+    {
+        [NSThread sleepForTimeInterval:0.25];
+    }
 }
 
 @end

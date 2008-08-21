@@ -49,7 +49,6 @@ NSString* const kPrefSourceType = @"sourceType";
 NSString* const kPrefTextFile = @"textFile";
 NSString* const kPrefCharSet = @"charSet";
 NSString* const kPrefKochCharset = @"kochCharset";
-NSString* const kPrefKochChars = @"kochCharacters";
 NSString* const kPrefActualWPM = @"actualWPM";
 NSString* const kPrefEffectiveWPM = @"effectiveWPM";
 NSString* const kPrefTonePitch = @"tonePitch";
@@ -61,15 +60,20 @@ NSString* const kPrefNoiseLevel = @"noiseLevel";
 NSString* const kPrefNumQRMStations = @"qrmStations";
 NSString* const kPrefWPMPhrase = @"wpmPhrase";
 
+const NSUInteger kViewSource = 0;
+const NSUInteger kViewSending = 1;
+const NSUInteger kViewNoiseQRM = 2;
+const NSUInteger kViewUpdate = 3;
+
 // Preference defaults
-const NSUInteger kPrefMinWPM = 5;
-const NSUInteger kPrefMaxWPM = 100;
-const NSUInteger kPrefMinGroupChars = 5;
-const NSUInteger kPrefMaxGroupChars = 10;
-const NSUInteger kPrefMinMinutes = 0;
-const NSUInteger kPrefMinTonePitch = 300;
-const NSUInteger kPrefMaxTonePitch = 800;
-const NSUInteger kPrefMinKochChars = 2;
+const NSInteger kPrefMinWPM = 5;
+const NSInteger kPrefMaxWPM = 100;
+const NSInteger kPrefMinGroupChars = 1;
+const NSInteger kPrefMaxGroupChars = 10;
+const NSInteger kPrefMinMinutes = 0;
+const NSInteger kPrefMinTonePitch = 300;
+const NSInteger kPrefMaxTonePitch = 800;
+const NSInteger kPrefMinKochChars = 2;      // K & M
 
 NSString* const kCharViewAll = @"All Characters";
 NSString* const kCharViewLetters = @"Letters";

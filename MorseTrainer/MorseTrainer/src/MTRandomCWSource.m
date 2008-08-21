@@ -42,8 +42,8 @@
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	
-	const NSUInteger minCharsPerWord = [defaults integerForKey:@"minimumCharsPerGroup"];
-	const NSUInteger maxCharsPerWord = [defaults integerForKey:@"maximumCharsPerGroup"];
+	const NSUInteger minCharsPerWord = [defaults integerForKey:kPrefMinimumCharsPerGroup];
+	const NSUInteger maxCharsPerWord = [defaults integerForKey:kPrefMaximumCharsPerGroup];
 	
 	NSMutableString* sentence = [NSMutableString string];	
 	const NSUInteger range = maxCharsPerWord - minCharsPerWord + 1;

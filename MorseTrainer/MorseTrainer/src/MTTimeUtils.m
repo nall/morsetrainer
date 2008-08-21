@@ -37,6 +37,9 @@
 		{
 			NSLog(@"ERROR: Found non-dit/dah for letter %c",
 				  [pattern characterAtIndex:idx]);
+            NSRunAlertPanel(@"Internal Error Occurred",
+                            @"ERROR: Found non-dit/dah for letter %c.",
+                            @"Quit", nil, nil, [pattern characterAtIndex:idx]);
 			exit(1);
 		}
 	}

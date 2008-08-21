@@ -45,8 +45,8 @@
 
 -(NSString*)generateParameters
 {
-	NSUInteger baseFreq = [[NSUserDefaults standardUserDefaults] integerForKey:@"tonePitch"];
-	NSString* timingPhrase = [[NSUserDefaults standardUserDefaults] stringForKey:@"wpmPhrase"];
+	NSUInteger baseFreq = [[NSUserDefaults standardUserDefaults] integerForKey:kPrefTonePitch];
+	NSString* timingPhrase = [[NSUserDefaults standardUserDefaults] stringForKey:kPrefWPMPhrase];
 	
 	NSUInteger wpm = (random() % 40) + 5; // Generate WPM between 5 and 45
 	

@@ -50,15 +50,14 @@ extern NSString* const kNotifSoundPlayerComplete;
 extern NSString* const kNotifTextWasPlayed;
 extern NSString* const kNotifTextKey;
 
-#define kSourceTypeCustom 0
-#define kSourceTypeURL    1
+#define kSourceTypeURL    0
+#define kSourceTypeCustom 1
 
 // Preferences
 extern NSString* const kPrefSourceType;
 extern NSString* const kPrefTextFile;
 extern NSString* const kPrefCharSet;
 extern NSString* const kPrefKochCharset;
-extern NSString* const kPrefKochChars;
 extern NSString* const kPrefActualWPM;
 extern NSString* const kPrefEffectiveWPM;
 extern NSString* const kPrefTonePitch;
@@ -73,17 +72,23 @@ extern NSString* const kPrefWPMPhrase;
 // Preference defaults
 #define kMaxQRMStations 3 // define instead of const int to be used in array decls
 
-extern const NSUInteger kPrefMinWPM;
-extern const NSUInteger kPrefMaxWPM;
-extern const NSUInteger kPrefMinGroupChars;
-extern const NSUInteger kPrefMaxGroupChars;
-extern const NSUInteger kPrefMinMinutes;
-extern const NSUInteger kPrefMinTonePitch;
-extern const NSUInteger kPrefMaxTonePitch;
-extern const NSUInteger kPrefMinKochChars;
+extern const NSInteger kPrefMinWPM;
+extern const NSInteger kPrefMaxWPM;
+extern const NSInteger kPrefMinGroupChars;
+extern const NSInteger kPrefMaxGroupChars;
+extern const NSInteger kPrefMinMinutes;
+extern const NSInteger kPrefMinTonePitch;
+extern const NSInteger kPrefMaxTonePitch;
+extern const NSInteger kPrefMinKochChars;
 
 // Character Views
 #define kPrefNumCharBoxes 5 // Number of views that are comprised of the form: NSBox -> NSMatrix
+
+// Preference Panel Views
+extern const NSUInteger kViewSource;
+extern const NSUInteger kViewSending;
+extern const NSUInteger kViewNoiseQRM;
+extern const NSUInteger kViewUpdate;
 
 extern NSString* const kCharViewAll;
 extern NSString* const kCharViewLetters;

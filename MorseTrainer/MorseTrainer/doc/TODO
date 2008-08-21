@@ -1,25 +1,27 @@
-* Export Sound File
+* Next Version
+    * Export Sound File
+    * Support full URLs
+    * Support for user defined characters
 
 * Add speech synth
     * Check prosign phenomes
-
-* Support full URLs
-
-* Error support for nonexistent files
-
+    
 * Error support for unknown characters
 
-* Support for user defined characters
 
 * UI Items
     * Artwork
+    * Play/Pause/Speak buttons
     * Resizing Panels    
-    * Explicitly Select random groups if setTextFile is disabled
     
-* Check that all preferences use string constants
-
 * Verify all defaults
 
 * Verify all validations
 
 * Resize non-source panels
+
+* Verify base prefs (removing preferences file)
+
+* ToolTips
+
+* Move signal strength out of noise

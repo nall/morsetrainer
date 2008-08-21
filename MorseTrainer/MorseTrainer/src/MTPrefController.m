@@ -7,9 +7,12 @@
 
 #import "MTPrefController.h"
 #import "MTPatternMap.h"
+#import "Sparkle/SUUpdater.h"
 #include "MTDefines.h"
 
 @interface MTPrefController (Private)
+    -(void)initPrefPane;
+
     -(void)switchCharsetViewTo:(NSView*)theNewView;
     
     -(NSArray*)makeBindingArrayWithValues:(NSArray*)theValues withLabels:(NSArray*)theLabels;
@@ -18,6 +21,8 @@
     -(NSArray*)makeCharset:(NSUInteger)charType;
     
     -(void)removeUnusedCells:(NSUInteger)numValidCells inMatrix:(NSMatrix*)theMatrix;
+
+    -(void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem;
 @end
 
 @implementation MTPrefController
@@ -136,8 +141,13 @@
     }
 }
 
--(void)windowDidLoad
+-(void)initPrefPane
 {
+    if([NSBundle loadNibNamed:@"Preferences" owner:self] == NO)
+    {
+        NSLog(@"Error: couldn't load Preferences");
+    }
+    
     charsetViews = [NSArray arrayWithObjects:
                     letterBox,
                     numberBox,
@@ -145,6 +155,13 @@
                     prosignBox,
                     kochBox,
                     allCharBox,
+                    nil];
+    
+    toolbarViews = [NSArray arrayWithObjects:
+                    sourceView,
+                    sendingView,
+                    noiseQRMView,
+                    updateView,
                     nil];
     
     // We layout NSMatrix's in rows/cols, but might not need them all.
@@ -197,20 +214,55 @@
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSString* textURL = [defaults stringForKey:kPrefTextFile];
-    [self setTextFileEnabled:(textURL != nil)];
-
-    [textFileLabel setStringValue:(textURL == nil) ? @"[None Selected]" :
-        [textURL lastPathComponent]];
     
-    currentView = allCharBox;
-    [self switchCharsetViewTo:currentView];
+    BOOL fileExists = TRUE;
+    if(textURL == nil)
+    {
+        fileExists = FALSE;
+    }
+    else
+    {
+        NSURL* url = [NSURL URLWithString:textURL];
+        
+        if([url isFileURL])
+        {
+            NSString* path = [url path];
+            fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+        }        
+    }
+    
+    [self setTextFileEnabled:fileExists];
+    
+    [textFileLabel setStringValue:fileExists ? [textURL lastPathComponent] :
+        @"[None Selected]"];
+    
+    if(![self textFileEnabled])
+    {
+        // Automatically enable random code generation
+        [defaults setInteger:kSourceTypeCustom forKey:kPrefSourceType];
+    }
+    
+    currentCharacterView = allCharBox;
+    [self switchCharsetViewTo:currentCharacterView];
+    
+    
+    [self showToolbarPane:[[[prefWindow toolbar] items] objectAtIndex:0]];
 }
 
 -(id)init
 {
-	if([super initWithWindowNibName:@"Preferences"] != nil)
-	{
-        
+    if([super init] != nil)
+    {
+        // Koch characters as defined here:
+		// http://www.njqrp.org/rookey/KMMT_Assy_Guide_v1%5B1%5D.0.pdf
+		kochCharacters = [NSArray arrayWithObjects:
+                          @"K", @"M", @"R", @"S", @"U", @"A", @"P", @"T", @"L",
+                          @"O", @"W", @"I", @".", @"N", @"J", @"E", @"F", @"0",
+                          @"Y", @"V", @",", @"G", @"5", @"/", @"Q", @"9", @"Z",
+                          @"H", @"3", @"8", @"B", @"?", @"4", @"2", @"7", @"C",
+                          @"1", @"D", @"6", @"X", @"BT", @"SK", @"AR", nil
+                          ];
+		        
 		minimumWPM = kPrefMinWPM;
         maximumWPM = kPrefMaxWPM;
 		
@@ -223,16 +275,6 @@
         minTonePitch = kPrefMinTonePitch;
         maxTonePitch = kPrefMaxTonePitch;
 		
-		// Koch characters as defined here:
-		// http://www.njqrp.org/rookey/KMMT_Assy_Guide_v1%5B1%5D.0.pdf
-		kochCharacters = [NSArray arrayWithObjects:
-					 @"K", @"M", @"R", @"S", @"U", @"A", @"P", @"T", @"L",
-                     @"O", @"W", @"I", @".", @"N", @"J", @"E", @"F", @"0",
-                     @"Y", @"V", @",", @"G", @"5", @"/", @"Q", @"9", @"Z",
-                     @"H", @"3", @"8", @"B", @"?", @"4", @"2", @"7", @"C",
-                     @"1", @"D", @"6", @"X", @"BT", @"SK", @"AR", nil
-                    ];
-		
 		minKochCharacters = kPrefMinKochChars;
 		maxKochCharacters = [kochCharacters count];
         
@@ -240,24 +282,30 @@
         NSMutableDictionary* defaults = [[NSMutableDictionary alloc] init];
 		
 		// Source
-		[defaults setObject:[NSNumber numberWithInt:2] forKey:kPrefKochChars];
         [defaults setObject:kochCharacters forKey:kPrefKochCharset];
         [defaults setObject:[MTPatternMap characters] forKey:kPrefCharSet];
+        
+        sourceValues = [self makeBindingArrayWithValues:[NSArray arrayWithObjects:
+                                                   [NSNumber numberWithUnsignedInt:kSourceTypeURL],
+                                                   [NSNumber numberWithUnsignedInt:kSourceTypeCustom]]
+                                             withLabels:[NSArray arrayWithObjects:@"Play from text file named:",@"Generate Random Groups",nil]];
         
 		// Sending 
 		[defaults setObject:[NSNumber numberWithInt:20] forKey:kPrefActualWPM];
 		[defaults setObject:[NSNumber numberWithInt:15] forKey:kPrefEffectiveWPM];
-		[defaults setObject:[NSNumber numberWithInt:600] forKey:kPrefTonePitch];
-		[defaults setObject:[NSNumber numberWithInt:5] forKey:kPrefMinimumCharsPerGroup];
-		[defaults setObject:[NSNumber numberWithInt:5] forKey:kPrefMaximumCharsPerGroup];
-		[defaults setObject:[NSNumber numberWithInt:5] forKey:kPrefMinutesOfCopy];
+		[defaults setObject:[NSNumber numberWithInt:550] forKey:kPrefTonePitch];
+		[defaults setObject:[NSNumber numberWithInt:3] forKey:kPrefMinimumCharsPerGroup];
+		[defaults setObject:[NSNumber numberWithInt:6] forKey:kPrefMaximumCharsPerGroup];
+		[defaults setObject:[NSNumber numberWithInt:3] forKey:kPrefMinutesOfCopy];
 		
 		// Noise / QRM
 		[defaults setObject:[NSNumber numberWithInt:7] forKey:kPrefSignalStrength];  // S9
 		[defaults setObject:[NSNumber numberWithInt:0] forKey:kPrefNoiseLevel];      // Off
 		[defaults setObject:[NSNumber numberWithInt:0] forKey:kPrefNumQRMStations];
         
-		
+		// Updates
+        [defaults setObject:[NSNumber numberWithBool:FALSE] forKey:@"SUHasLaunchedBefore"];
+        
 		// Preferences not visible to users
 		[defaults setValue:@"PARIS" forKey:kPrefWPMPhrase];
         
@@ -320,15 +368,34 @@
                                     nil];
 	}
 
+    [self initPrefPane];
 	return self;
 }
 
 -(IBAction)validateTiming:(id)value
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSUInteger actualWPM = [defaults integerForKey:kPrefActualWPM];
-	NSUInteger effectiveWPM = [defaults integerForKey:kPrefEffectiveWPM];
+	NSInteger actualWPM = [defaults integerForKey:kPrefActualWPM];
+	NSInteger effectiveWPM = [defaults integerForKey:kPrefEffectiveWPM];
 
+    if(actualWPM < kPrefMinWPM)
+    {
+        [defaults setInteger:kPrefMinWPM forKey:kPrefActualWPM];
+    }
+    else if(actualWPM > kPrefMaxWPM)
+    {
+        [defaults setInteger:kPrefMaxWPM forKey:kPrefActualWPM];        
+    }
+
+    if(effectiveWPM < kPrefMinWPM)
+    {
+        [defaults setInteger:kPrefMinWPM forKey:kPrefEffectiveWPM];
+    }
+    else if(effectiveWPM > kPrefMaxWPM)
+    {
+        [defaults setInteger:kPrefMaxWPM forKey:kPrefEffectiveWPM];        
+    }
+    
 	// Check that actual >= effective
 	if(effectiveWPM > actualWPM)
 	{
@@ -347,68 +414,68 @@
 -(IBAction)validateCharGroups:(id)value
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSUInteger minCharsPerWord = [defaults integerForKey:@"minimumCharsPerGroup"];
-	NSUInteger maxCharsPerWord = [defaults integerForKey:@"maximumCharsPerGroup"];
+	NSInteger minCharsPerWord = [defaults integerForKey:kPrefMinimumCharsPerGroup];
+	NSInteger maxCharsPerWord = [defaults integerForKey:kPrefMaximumCharsPerGroup];
 
+    if(minCharsPerWord < minimumGroupChars)
+    {
+        [defaults setInteger:minimumGroupChars forKey:kPrefMinimumCharsPerGroup];
+    }
+    else if(minCharsPerWord > maximumGroupChars)
+    {
+        [defaults setInteger:maximumGroupChars forKey:kPrefMinimumCharsPerGroup];
+    }
+
+    if(maxCharsPerWord < minimumGroupChars)
+    {
+        [defaults setInteger:minimumGroupChars forKey:kPrefMaximumCharsPerGroup];
+    }
+    else if(maxCharsPerWord > maximumGroupChars)
+    {
+        [defaults setInteger:maximumGroupChars forKey:kPrefMaximumCharsPerGroup];
+    }
+    
 	// Check that min <= max
 	if(minCharsPerWord > maxCharsPerWord)
 	{
 		if([value isEqual:minimumCharGroupField])
 		{
 			// User changed min -- update max
-			[defaults setInteger:minCharsPerWord forKey:@"maximumCharsPerGroup"];			
+			[defaults setInteger:minCharsPerWord forKey:kPrefMaximumCharsPerGroup];			
 		}
 		else
 		{
-			[defaults setInteger:maxCharsPerWord forKey:@"minimumCharsPerGroup"];			
+			[defaults setInteger:maxCharsPerWord forKey:kPrefMinimumCharsPerGroup];			
 		}
-	}
-}
-
--(IBAction)validateKochCharacters:(id)value
-{
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSUInteger kChars = [defaults integerForKey:@"kochCharacters"];
-
-	if(kChars < minKochCharacters)
-	{
-		NSBeep();
-		[defaults setInteger:minKochCharacters forKey:@"kochCharacters"];
-	}
-	
-	if(kChars > maxKochCharacters)
-	{
-		NSBeep();
-		[defaults setInteger:maxKochCharacters forKey:@"kochCharacters"];
 	}
 }
 
 -(IBAction)validateTonePitch:(id)value
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSUInteger tonePitch = [defaults integerForKey:@"tonePitch"];
+    NSInteger tonePitch = [defaults integerForKey:kPrefTonePitch];
     
     if(tonePitch < minTonePitch)
     {
         NSBeep();
-        [defaults setInteger:minTonePitch forKey:@"tonePitch"];
+        [defaults setInteger:minTonePitch forKey:kPrefTonePitch];
     }
     else if(tonePitch > maxTonePitch)
     {
         NSBeep();
-        [defaults setInteger:maxTonePitch forKey:@"tonePitch"];        
+        [defaults setInteger:maxTonePitch forKey:kPrefTonePitch];        
     }
 }
 
 -(IBAction)validateMinutes:(id)value
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSUInteger minutes = [defaults integerForKey:@"minutesOfCopy"];
+    NSInteger minutes = [defaults integerForKey:kPrefMinutesOfCopy];
     
     if(minutes < minimumMinutes)
     {
         NSBeep();
-        [defaults setInteger:minimumMinutes forKey:@"minutesOfCopy"];
+        [defaults setInteger:minimumMinutes forKey:kPrefMinutesOfCopy];
     }
 }
 
@@ -449,7 +516,7 @@
 
 -(IBAction)clearCharsInView:(id)value
 {
-    [self toggleCharsInViewRecursively:currentView enableValue:NO];
+    [self toggleCharsInViewRecursively:currentCharacterView enableValue:NO];
     [[NSUserDefaults standardUserDefaults] setObject:[masterCharSet allObjects] forKey:kPrefCharSet];
     
     for(NSView* v in charsetViews)
@@ -460,7 +527,7 @@
 
 -(IBAction)checkCharsInView:(id)value
 {
-    [self toggleCharsInViewRecursively:currentView enableValue:YES];
+    [self toggleCharsInViewRecursively:currentCharacterView enableValue:YES];
     [[NSUserDefaults standardUserDefaults] setObject:[masterCharSet allObjects] forKey:kPrefCharSet];
 
     for(NSView* v in charsetViews)
@@ -528,29 +595,28 @@
 
 -(void)switchCharsetViewTo:(NSView*)theNewView
 {    
-    if(currentView == theNewView) return;
+    if(currentCharacterView == theNewView) return;
     
-    //[self dumpViews:currentView withSpace:@""];
-    //[self dumpViews:theNewView withSpace:@""];
-    NSRect oldBoxFrame = [currentView frame];
+    // [self dumpViews:[currentCharacterView superview] withSpace:@"super: "];
+    // [self dumpViews:theNewView withSpace:@""];
+    
+    NSRect oldBoxFrame = [currentCharacterView frame];
     NSRect newBoxFrame = [theNewView frame];
     
-    // The origin of the new frame should be identical to the old
-    newBoxFrame.origin = oldBoxFrame.origin;
-    
-    NSWindow* window = [currentView window];
-    NSRect oldWinFrame = [window frame];
-    NSRect newWinFrame = oldWinFrame;
-    
-
+    // The origin & width of the new frame should be identical to the old
     newBoxFrame.origin = oldBoxFrame.origin;
     newBoxFrame.size.width = oldBoxFrame.size.width;
     
     const double heightDiff = (newBoxFrame.size.height - oldBoxFrame.size.height);
+
+    NSWindow* window = [currentCharacterView window];
+    NSRect oldWinFrame = [window frame];
+    NSRect newWinFrame = oldWinFrame;    
+    
     newWinFrame.size.height += heightDiff;
     
     NSMutableDictionary* boxDict = [NSMutableDictionary dictionaryWithCapacity:3];
-    [boxDict setObject:currentView forKey:@"NSViewAnimationTargetKey"];
+    [boxDict setObject:currentCharacterView forKey:@"NSViewAnimationTargetKey"];
     [boxDict setObject:[NSValue valueWithRect:oldBoxFrame] forKey:@"NSViewAnimationStartFrameKey"];
     [boxDict setObject:[NSValue valueWithRect:newBoxFrame] forKey:@"NSViewAnimationEndFrameKey"];
     
@@ -565,14 +631,14 @@
     [animation setAnimationBlockingMode:NSAnimationBlocking];
 
     NSView* blankView = [[NSView alloc] initWithFrame:oldBoxFrame];
-    [[currentView superview] replaceSubview:currentView with:blankView];
+    [[currentCharacterView superview] replaceSubview:currentCharacterView with:blankView];
     [animation startAnimation];
     [theNewView setFrame:newBoxFrame];
     [[blankView superview] replaceSubview:blankView with:theNewView];
     [[theNewView superview] setNeedsDisplay:YES];
     
-    [currentView setFrame:oldBoxFrame]; // use its original size -- not the resized version
-    currentView = theNewView;
+    [currentCharacterView setFrame:oldBoxFrame]; // use its original size -- not the resized version
+    currentCharacterView = theNewView;
 }
 
 -(IBAction)changeCharView:(id)value
@@ -582,5 +648,40 @@
     
     [self switchCharsetViewTo:theView];
 }
+
+-(IBAction)checkForUpdates:(id)value
+{
+    [[SUUpdater sharedUpdater] checkForUpdates:value];
+}
+
+-(IBAction)showToolbarPane:(id)value
+{
+    NSToolbarItem* item = value;
+    const NSUInteger tag = [item tag];
+    
+    NSView* v = [toolbarViews objectAtIndex:tag];
+    
+    NSRect winFrame = [prefWindow frame];
+    NSRect winContentRect = [prefWindow contentRectForFrameRect:winFrame];
+
+    NSRect viewRect = [v frame];
+    
+    const double widthDiff = viewRect.size.width - winContentRect.size.width;
+    const double heightDiff = viewRect.size.height - winContentRect.size.height;
+
+    winFrame.size.height += heightDiff;
+    winFrame.size.width += widthDiff;
+    
+    NSView* blankView = [[NSView alloc] initWithFrame:viewRect];
+    [prefWindow setContentView:blankView];
+    [prefWindow setFrame:winFrame display:YES animate:YES];
+    [prefWindow setContentView:v];
+}
+
+-(void)showPreferences:(id)value
+{
+    [prefWindow makeKeyAndOrderFront:value];
+}
+
 
 @end

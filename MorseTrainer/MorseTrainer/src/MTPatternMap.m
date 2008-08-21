@@ -168,7 +168,10 @@
 	if(value == nil)
 	{
 		NSLog(@"ERROR: Couldn't find pattern for requested key [%@]", key);
-		exit(1);
+        NSRunAlertPanel(@"Internal Error Occurred",
+                        @"ERROR: Couldn't find pattern for requested key [%@]",
+                        @"Quit", nil, nil, key);
+        exit(1);
 	}
 	else
 	{

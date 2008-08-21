@@ -8,8 +8,15 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface MTPrefController : NSWindowController
+@interface MTPrefController : NSObject
 {
+    // Pref window and the various toolbar panes
+    IBOutlet NSWindow* prefWindow;
+    IBOutlet NSView* sourceView;
+    IBOutlet NSView* sendingView;
+    IBOutlet NSView* noiseQRMView;
+    IBOutlet NSView* updateView;
+    
     // Need these outlets for validation routines
 	IBOutlet NSTextField* actualWPMField;
 	IBOutlet NSTextField* effectiveWPMField;
@@ -30,49 +37,83 @@
     IBOutlet NSView* punctuationBox;
     IBOutlet NSView* prosignBox;
     IBOutlet NSView* kochBox;
-    NSView* currentView;
+    
+    // An array of all character views used in sourceView
     NSArray* charsetViews;
-	
+    
+    // A Mapping from kCharView* constants to their NSViews
     NSDictionary* characterViewMap;
+
+    // The labels used in the sourceView character view drop down menu
     NSArray* characterViewMapLabels;
     
+    // The current character view selected in sourceView
+    NSView* currentCharacterView;
+    
+    // An array of all preference toolbar views
+    NSArray* toolbarViews;
+    
+    // The source URL (can be nil)
 	NSURL* textFile;
+    
+    // True if textFile is non-nil and exists
+    // Follows KVC and used by IB to enable URL source option
 	BOOL textFileEnabled;
     
+    // Internal set of all selected random mode characters
+    NSMutableSet* masterCharSet;
+    
+    ///////////////////////////////
+    // Binding Arrays used in IB //
+    ///////////////////////////////
+    //
+    // Binding array of values for source type radio buttons
+    NSArray* sourceValues;
+    
+    // Binding array of values for noise level options
     NSArray* noiseLevels;
+    
+    // Binding array of values for signal strength options
     NSArray* signalStrengths;
+    
+    // Binding array of values for number of QRM stations drop-down
 	NSArray* qrmStationValues;
-	
+    
+    // Binding arrays for charsets in IB
     NSArray* charsetLetters;
     NSArray* charsetNumbers;
     NSArray* charsetPunctuation;
     NSArray* charsetProsigns;
     NSArray* charsetKoch;
-    
-	NSArray* currentChars;
-    	
-	NSUInteger minimumMinutes;
+
+    ////////////////////////
+    // Absolute Min/Max vals
+    // Used to set absolute min/max values for these fields
+    // Use signed values to account for user putting in -1
+	NSInteger minTonePitch;
+	NSInteger maxTonePitch;
+	NSInteger minimumWPM;
+	NSInteger maximumWPM;
+	NSInteger minimumGroupChars;
+	NSInteger maximumGroupChars;
+	NSInteger minimumMinutes;
     // No maximum minutes
-    
-	NSUInteger minimumWPM;
-	NSUInteger maximumWPM;
+	NSInteger minKochCharacters;
+	NSInteger maxKochCharacters;
+    ////////////////////////
 	
-	NSUInteger minimumGroupChars;
-	NSUInteger maximumGroupChars;
-	
+
+	// The list of characters used in the Koch method, in the order they're
+    // to be learned
 	NSArray* kochCharacters;
-	NSUInteger minKochCharacters;
-	NSUInteger maxKochCharacters;
     
-	NSUInteger minTonePitch;
-	NSUInteger maxTonePitch;
     
-    NSMutableSet* masterCharSet;
 }
+-(void)showPreferences:(id)value;
+
 // Public
 -(IBAction)validateTiming:(id)value;
 -(IBAction)validateCharGroups:(id)value;
--(IBAction)validateKochCharacters:(id)value;
 -(IBAction)validateTonePitch:(id)value;
 -(IBAction)validateMinutes:(id)value;
 
@@ -82,12 +123,15 @@
 -(IBAction)openTextFile:(id)value;
 
 -(IBAction)updateCharset:(id)value;
--(IBAction)changeCharView:(id)value;
+
+-(IBAction)checkForUpdates:(id)value;
 
 // KVC
 -(BOOL)textFileEnabled;
 -(void)setTextFileEnabled:(BOOL)value;
 
+-(IBAction)showToolbarPane:(id)value;
+-(IBAction)changeCharView:(id)value;
 
 
 @end
