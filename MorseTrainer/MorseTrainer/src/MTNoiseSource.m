@@ -15,12 +15,17 @@
 
 #import "MTNoiseSource.h"
 
+
 static unsigned long GenerateRandomNumber()
 {
 	static unsigned long randSeed = 22222;  /* Change this for different random sequences. */
 	randSeed = (randSeed * 196314165) + 907633515;
 	return randSeed;
 }
+
+@interface MTNoiseSource (Private)
+- (void)initRandomEnv:(long)numRows;
+@end
 
 @implementation MTNoiseSource
 
@@ -32,27 +37,6 @@ static unsigned long GenerateRandomNumber()
 	}
 	
 	return self;
-}
-
-- (void)initRandomEnv:(long)numRows
-{
-    int index;
-	long pmax;
-	
-	noise.pinkIndex = 0;
-	noise.pinkIndexMask = (1 << numRows) - 1;
-	noise.goWhite = NO;
-	
-	// Calculate max possible signed random value. extra 1 for white noise always added
-	pmax = (numRows + 1) * (1 << (kPinkRandomBits-1));
-	noise.pinkScalar = 1.0f / pmax;
-	
-	// Initialize rows
-	for( index = 0; index < numRows; index++ )
-	{
-		noise.pinkRows[index] = 0;		
-	}
-	noise.pinkRunningSum = 0;
 }
 
 - (void)goPink
@@ -73,6 +57,21 @@ static unsigned long GenerateRandomNumber()
 -(void)reset
 {
 	// Nothing to do
+}
+
+-(void)setTextTracking:(BOOL)isEnabled
+{
+	
+}
+
+-(BOOL)supportsTextTracking
+{
+	return NO;
+}
+
+-(NSString*)getTextForTime:(Float64)theTime
+{
+	return nil;
 }
 
 -(NSInteger)populateSlice:(ScheduledAudioSlice*)theSlice
@@ -145,20 +144,31 @@ static unsigned long GenerateRandomNumber()
 	return bufferFrames;
 }
 
--(void)setTextTracking:(BOOL)isEnabled
+-(void)dumpAU:(NSString*)theFilename
 {
+    NSRunAlertPanel(@"Unsupported Operation", @"Dumping AU Files isn't supported for MTNoiseSource", @"OK", nil, nil);
+}
+@end
+
+@implementation MTNoiseSource (Private)
+- (void)initRandomEnv:(long)numRows
+{
+    int index;
+	long pmax;
 	
+	noise.pinkIndex = 0;
+	noise.pinkIndexMask = (1 << numRows) - 1;
+	noise.goWhite = NO;
+	
+	// Calculate max possible signed random value. extra 1 for white noise always added
+	pmax = (numRows + 1) * (1 << (kPinkRandomBits-1));
+	noise.pinkScalar = 1.0f / pmax;
+	
+	// Initialize rows
+	for( index = 0; index < numRows; index++ )
+	{
+		noise.pinkRows[index] = 0;		
+	}
+	noise.pinkRunningSum = 0;
 }
-
--(BOOL)supportsTextTracking
-{
-	return NO;
-}
-
--(NSString*)getTextForTime:(Float64)theTime
-{
-	return nil;
-}
-
-
 @end

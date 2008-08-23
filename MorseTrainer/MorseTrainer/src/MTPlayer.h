@@ -27,12 +27,9 @@
 	
 	BOOL isStopped;
 }
-// Private
--(void)initGraph;
 
-// Public
--(BOOL)stopped;
 -(void)playCW:(id<MTSoundSource>)theSource;
+-(BOOL)stopped;
 -(void)stop;
 
 -(void)setQRMStations:(NSUInteger)numStations;

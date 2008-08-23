@@ -10,6 +10,14 @@
 #import "MTPatternMap.h"
 #include <wctype.h>
 
+@interface MTPatternMap (Private)
+-(void)initLetters;
+-(void)initNumbers;
+-(void)initPunctuation;
+-(void)initProsigns;
+@end
+
+
 @implementation MTPatternMap
 
 -(id)init
@@ -24,103 +32,6 @@
 	}
 	
 	return self;
-}
-
--(void)initLetters
-{
-	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
-
-	[patterns setValue:@".-" forKey:@"A"];
-	[patterns setValue:@"-..." forKey:@"B"];
-	[patterns setValue:@"-.-." forKey:@"C"];
-	[patterns setValue:@"-.." forKey:@"D"];
-	[patterns setValue:@"." forKey:@"E"];
-	[patterns setValue:@"..-." forKey:@"F"];
-	[patterns setValue:@"--." forKey:@"G"];
-	[patterns setValue:@"...." forKey:@"H"];
-	[patterns setValue:@".." forKey:@"I"];
-	[patterns setValue:@".---" forKey:@"J"];
-	[patterns setValue:@"-.-" forKey:@"K"];
-	[patterns setValue:@".-.." forKey:@"L"];
-	[patterns setValue:@"--" forKey:@"M"];
-	[patterns setValue:@"-." forKey:@"N"];
-	[patterns setValue:@"---" forKey:@"O"];
-	[patterns setValue:@".--." forKey:@"P"];
-	[patterns setValue:@"--.-" forKey:@"Q"];
-	[patterns setValue:@".-." forKey:@"R"];
-	[patterns setValue:@"..." forKey:@"S"];
-	[patterns setValue:@"-" forKey:@"T"];
-	[patterns setValue:@"..-" forKey:@"U"];
-	[patterns setValue:@"...-" forKey:@"V"];
-	[patterns setValue:@".--" forKey:@"W"];
-	[patterns setValue:@"-..-" forKey:@"X"];
-	[patterns setValue:@"-.--" forKey:@"Y"];
-	[patterns setValue:@"--.." forKey:@"Z"];
-	
-	[patternArray insertObject:patterns atIndex:kPatternLetter];
-}
-
--(void)initNumbers
-{
-	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
-
-	[patterns setValue:@"-----" forKey:@"0"];
-	[patterns setValue:@".----" forKey:@"1"];
-	[patterns setValue:@"..---" forKey:@"2"];
-	[patterns setValue:@"...--" forKey:@"3"];
-	[patterns setValue:@"....-" forKey:@"4"];
-	[patterns setValue:@"....." forKey:@"5"];
-	[patterns setValue:@"-...." forKey:@"6"];
-	[patterns setValue:@"--..." forKey:@"7"];
-	[patterns setValue:@"---.." forKey:@"8"];
-	[patterns setValue:@"----." forKey:@"9"];
-	
-	[patternArray insertObject:patterns atIndex:kPatternNumber];
-}
-
--(void)initPunctuation
-{
-	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
-
-	[patterns setValue:@".-.-.-" forKey:@"."];
-	[patterns setValue:@"--..--" forKey:@","];
-	[patterns setValue:@"..--.." forKey:@"?"];
-	[patterns setValue:@".----." forKey:@"!"];
-	[patterns setValue:@"-..-." forKey:@"/"];
-	[patterns setValue:@"-.--." forKey:@"("];
-	[patterns setValue:@"-.--.-" forKey:@")"];
-	[patterns setValue:@".-..." forKey:@"&"];
-	[patterns setValue:@"---..." forKey:@":"];
-	[patterns setValue:@"-.-.-." forKey:@";"];
-	[patterns setValue:@"-...-" forKey:@"="];
-	[patterns setValue:@".-.-." forKey:@"+"];
-	[patterns setValue:@"-....-" forKey:@"-"];
-	[patterns setValue:@"..--.-" forKey:@"_"];
-	[patterns setValue:@".-..-." forKey:@"\""];
-	[patterns setValue:@"...-..-" forKey:@"$"];
-	[patterns setValue:@".--.-." forKey:@"@"];
-	
-	[patternArray insertObject:patterns atIndex:kPatternPunctuation];
-}
-
--(void)initProsigns
-{
-	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
-	
-	[patterns setValue:@".--.-." forKey:@"AC"];
-	[patterns setValue:@".-.-." forKey:@"AR"];
-	[patterns setValue:@".-..." forKey:@"AS"];
-	[patterns setValue:@"-...-.-" forKey:@"BK"];
-	[patterns setValue:@"-...-" forKey:@"BT"];
-	[patterns setValue:@"-.-..-.." forKey:@"CL"];
-	[patterns setValue:@"-..---" forKey:@"DO"];
-	[patterns setValue:@"-.--." forKey:@"KN"];
-	[patterns setValue:@"...-.-" forKey:@"SK"];
-	[patterns setValue:@"...---..." forKey:@"SOS"];
-	[patterns setValue:@"...-.-" forKey:@"VA"];		// synonym for SK
-	
-	[patternArray insertObject:patterns atIndex:kPatternProsign];
-
 }
 
 +(MTPatternMap*)instance
@@ -141,7 +52,7 @@
 }
 
 
-+(NSString*)getPatternForCharacter:(NSString*)key
++(NSString*)getPatternForCharacter:(NSString*)key errorString:(NSString**)theErrorString
 {
 	MTPatternMap* map = [MTPatternMap instance];
 	
@@ -168,10 +79,11 @@
 	if(value == nil)
 	{
 		NSLog(@"ERROR: Couldn't find pattern for requested key [%@]", key);
-        NSRunAlertPanel(@"Internal Error Occurred",
-                        @"ERROR: Couldn't find pattern for requested key [%@]",
-                        @"Quit", nil, nil, key);
-        exit(1);
+        if(theErrorString != nil)
+        {
+            *theErrorString = @"(ERR)";
+        }
+        return @"......";
 	}
 	else
 	{
@@ -267,6 +179,104 @@
 	
 	return lastCharacterConsumed;
 }
+@end
 
+@implementation MTPatternMap (Private)
+-(void)initLetters
+{
+	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
+    
+	[patterns setValue:@".-" forKey:@"A"];
+	[patterns setValue:@"-..." forKey:@"B"];
+	[patterns setValue:@"-.-." forKey:@"C"];
+	[patterns setValue:@"-.." forKey:@"D"];
+	[patterns setValue:@"." forKey:@"E"];
+	[patterns setValue:@"..-." forKey:@"F"];
+	[patterns setValue:@"--." forKey:@"G"];
+	[patterns setValue:@"...." forKey:@"H"];
+	[patterns setValue:@".." forKey:@"I"];
+	[patterns setValue:@".---" forKey:@"J"];
+	[patterns setValue:@"-.-" forKey:@"K"];
+	[patterns setValue:@".-.." forKey:@"L"];
+	[patterns setValue:@"--" forKey:@"M"];
+	[patterns setValue:@"-." forKey:@"N"];
+	[patterns setValue:@"---" forKey:@"O"];
+	[patterns setValue:@".--." forKey:@"P"];
+	[patterns setValue:@"--.-" forKey:@"Q"];
+	[patterns setValue:@".-." forKey:@"R"];
+	[patterns setValue:@"..." forKey:@"S"];
+	[patterns setValue:@"-" forKey:@"T"];
+	[patterns setValue:@"..-" forKey:@"U"];
+	[patterns setValue:@"...-" forKey:@"V"];
+	[patterns setValue:@".--" forKey:@"W"];
+	[patterns setValue:@"-..-" forKey:@"X"];
+	[patterns setValue:@"-.--" forKey:@"Y"];
+	[patterns setValue:@"--.." forKey:@"Z"];
+	
+	[patternArray insertObject:patterns atIndex:kPatternLetter];
+}
+
+-(void)initNumbers
+{
+	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
+    
+	[patterns setValue:@"-----" forKey:@"0"];
+	[patterns setValue:@".----" forKey:@"1"];
+	[patterns setValue:@"..---" forKey:@"2"];
+	[patterns setValue:@"...--" forKey:@"3"];
+	[patterns setValue:@"....-" forKey:@"4"];
+	[patterns setValue:@"....." forKey:@"5"];
+	[patterns setValue:@"-...." forKey:@"6"];
+	[patterns setValue:@"--..." forKey:@"7"];
+	[patterns setValue:@"---.." forKey:@"8"];
+	[patterns setValue:@"----." forKey:@"9"];
+	
+	[patternArray insertObject:patterns atIndex:kPatternNumber];
+}
+
+-(void)initPunctuation
+{
+	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
+    
+	[patterns setValue:@".-.-.-" forKey:@"."];
+	[patterns setValue:@"--..--" forKey:@","];
+	[patterns setValue:@"..--.." forKey:@"?"];
+	[patterns setValue:@".----." forKey:@"!"];
+	[patterns setValue:@"-..-." forKey:@"/"];
+	[patterns setValue:@"-.--." forKey:@"("];
+	[patterns setValue:@"-.--.-" forKey:@")"];
+	[patterns setValue:@".-..." forKey:@"&"];
+	[patterns setValue:@"---..." forKey:@":"];
+	[patterns setValue:@"-.-.-." forKey:@";"];
+	[patterns setValue:@"-...-" forKey:@"="];
+	[patterns setValue:@".-.-." forKey:@"+"];
+	[patterns setValue:@"-....-" forKey:@"-"];
+	[patterns setValue:@"..--.-" forKey:@"_"];
+	[patterns setValue:@".-..-." forKey:@"\""];
+	[patterns setValue:@"...-..-" forKey:@"$"];
+	[patterns setValue:@".--.-." forKey:@"@"];
+	
+	[patternArray insertObject:patterns atIndex:kPatternPunctuation];
+}
+
+-(void)initProsigns
+{
+	NSMutableDictionary* patterns = [NSMutableDictionary dictionary];
+	
+	[patterns setValue:@".--.-." forKey:@"AC"];
+	[patterns setValue:@".-.-." forKey:@"AR"];
+	[patterns setValue:@".-..." forKey:@"AS"];
+	[patterns setValue:@"-...-.-" forKey:@"BK"];
+	[patterns setValue:@"-...-" forKey:@"BT"];
+	[patterns setValue:@"-.-..-.." forKey:@"CL"];
+	[patterns setValue:@"-..---" forKey:@"DO"];
+	[patterns setValue:@"-.--." forKey:@"KN"];
+	[patterns setValue:@"...-.-" forKey:@"SK"];
+	[patterns setValue:@"...---..." forKey:@"SOS"];
+	[patterns setValue:@"...-.-" forKey:@"VA"];		// synonym for SK
+	
+	[patternArray insertObject:patterns atIndex:kPatternProsign];
+    
+}
 
 @end

@@ -34,7 +34,6 @@
 
 -(void)reset
 {
-	// Nothing special to do here
 	[super reset];
 }
 

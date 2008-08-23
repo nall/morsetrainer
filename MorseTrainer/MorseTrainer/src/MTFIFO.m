@@ -8,6 +8,9 @@
 
 #import "MTFIFO.h"
 
+@interface MTFIFO (Private)
+-(void)checkConsistency;
+@end
 
 @implementation MTFIFO
 -(id)init
@@ -94,12 +97,12 @@
 	const NSUInteger numFloats = [theData length] / sizeof(float);
 
 	const float* floats = (const float*)[theData bytes];
-	const NSUInteger floatsAtEnd = (dataLength - endPtr + 1);
+	const NSUInteger floatsAtEnd = dataLength - endPtr;
 
 	const NSUInteger remainingEntries = dataLength - [self count];
 	if(numFloats > remainingEntries)
 	{
-		NSLog(@"ERROR: Trying to push more data that FIFO can hold");
+		NSLog(@"ERROR: Trying to push more data that FIFO can hold (pushing %d bytes with %d available)", numFloats, remainingEntries);
 		return;
 	}
 	
@@ -113,9 +116,11 @@
 	{
 		// RD <= END && (END + PUSH > LENGTH)
 		// Copy from endPtr to dataLength
-		memcpy(&(data[endPtr]), floats, floatsAtEnd);
-		memcpy(&(data[0]), &(floats[floatsAtEnd]), numFloats - floatsAtEnd);
-		endPtr += numFloats;
+		memcpy(&(data[endPtr]), floats, floatsAtEnd * sizeof(float));
+		memcpy(&(data[0]), &(floats[floatsAtEnd]), (numFloats - floatsAtEnd) * sizeof(float));
+
+        // endPtr wraps around in this case
+		endPtr = (numFloats - floatsAtEnd);
 	}
 	else if((rdPtr > endPtr) && (endPtr + numFloats < rdPtr))
 	{
@@ -126,9 +131,15 @@
 	}
 	else
 	{
-		NSLog(@"Internal Error.");
-		exit(1);
+        NSLog(@"Internal Error. Invalid FIFO condition (rdPtr = %d, endPtr = %d, numFloats = %d)",
+              rdPtr, endPtr, numFloats);
+        NSRunAlertPanel(@"Internal Error",
+                        @"Internal Error. Invalid FIFO condition (rdPtr = %d, endPtr = %d, numFloats = %d)",
+                        @"Quit", nil, nil, rdPtr, endPtr, numFloats);
+        exit(1);
 	}
+
+    [self checkConsistency];
 }
 
 -(NSData*)popData:(NSUInteger)numFloats
@@ -136,7 +147,7 @@
 	if(numFloats > [self count])
 	{
 		NSLog(@"ERROR: Trying to pop more floats than exist in FIFO");
-		return 0;
+		return nil;
 	}
 	else
 	{
@@ -147,18 +158,46 @@
 			memcpy(floats, &data[rdPtr], (numFloats * sizeof(float)));		
 			rdPtr += numFloats;
 		}
+        else if((rdPtr > endPtr) && (rdPtr + numFloats) <= dataLength)
+        {
+            // RD > END && (RD + POP <= LENGTH)
+			memcpy(floats, &data[rdPtr], (numFloats * sizeof(float)));		
+			rdPtr += numFloats;
+        }
 		else
 		{
-			// RD > END
+			// RD > END && (RD + POP > LENGTH)
 			// Have to do the wraparound
-			const NSUInteger floatsAtEnd = (dataLength - rdPtr + 1);
+			const NSUInteger floatsAtEnd = dataLength - rdPtr;
 			memcpy(floats, &(data[rdPtr]), floatsAtEnd * sizeof(float));
 			memcpy(&(floats[floatsAtEnd]), &(data[0]), (numFloats - floatsAtEnd) * sizeof(float));
-			rdPtr += numFloats;
+            
+            rdPtr = (numFloats - floatsAtEnd);
 		}
+        
+        [self checkConsistency];
 		
 		return nsdata;
 	}
 }
 
+@end
+
+@implementation MTFIFO (Private)
+-(void)checkConsistency
+{
+    if([self count] == 0)
+    {
+        assert(rdPtr == endPtr);
+    }
+    
+    if([self floatsAvailable] == 0)
+    {
+        assert((endPtr == rdPtr - 1) || (rdPtr == 0 && endPtr == (dataLength - 1)));
+    }
+    
+    assert(endPtr < dataLength);
+    assert(rdPtr < dataLength);
+    assert([self count] <= dataLength);
+}
 @end

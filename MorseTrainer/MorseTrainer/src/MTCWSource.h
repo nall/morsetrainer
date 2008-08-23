@@ -13,6 +13,8 @@
 @interface MTCWSource : MTFifoSource
 {
 	BOOL genAU;
+    
+    BOOL lastGenerationWasCharacter;
 	
 	uint32_t samplerate;
 	NSUInteger frequency;
@@ -29,6 +31,7 @@
 	
 	NSMutableString* morseText;
 }
+
 // Protected
 -(NSData*)generateData:(NSNumber*)floatsAvailable;
 -(NSUInteger)numCharsToGenerate;

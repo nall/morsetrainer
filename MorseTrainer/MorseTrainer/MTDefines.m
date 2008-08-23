@@ -2,7 +2,7 @@
 //  MTDefines.m
 //  MorseTrainer
 //
-//  Created by Jon Nall on = 8/15/08.
+//  Created by Jon Nall on 8/15/08.
 //  Copyright = 2008 STUNTAZ!!!. All rights reserved.
 //
 

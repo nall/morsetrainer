@@ -11,6 +11,10 @@
 #import "MTPatternMap.h"
 #include "MTDefines.h"
 
+@interface MTQRMSource (Private)
+-(NSString*)generateParameters;
+@end
+
 
 @implementation MTQRMSource
 
@@ -43,6 +47,15 @@
 	return self;
 }
 
+
+-(NSString*)name
+{
+	return sourceName;
+}
+
+@end
+
+@implementation MTQRMSource (Private)
 -(NSString*)generateParameters
 {
 	NSUInteger baseFreq = [[NSUserDefaults standardUserDefaults] integerForKey:kPrefTonePitch];
@@ -69,11 +82,4 @@
 	return [NSString stringWithFormat:@"{WPM=%d, EWPM=%d, F=%d, A=%f}",
 				  wpm, effectiveWPM, frequency, amplitude];
 }
-
-
--(NSString*)name
-{
-	return sourceName;
-}
-
 @end

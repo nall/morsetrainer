@@ -25,12 +25,6 @@ extern const NSUInteger INTER_PATTERN_DITS;
 extern const NSUInteger INTER_WORD_DITS;
 extern const NSUInteger INTER_PHRASE_DITS; 
 
-// Max wpm we'll support is 100wpm. At PARIS timing, this means 1 dittime is
-// 12ms. At 44.1kHz, this means 1 dit will contain 529 samples @ 4 bytes each.
-// This is 2.1kB. If a frame is 2kB, this gives us a granularity of 1 dit per
-// completion @ 100wpm. This is acceptable to update a display with the
-// character that completed.
-
 extern const NSUInteger kSampleRate;
 extern const NSUInteger kNumSlices;
 extern const NSUInteger kMaxFrameSize; // 2kb

@@ -24,13 +24,12 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	}
 	
 	[player sliceCompleted:slice];
-	
-	// If player becomes disabled, don't schedule any more
-	if([player enabled])
-	{
-		[player scheduleSlices];
-	}
 }
+
+@interface MTSourcePlayer (Private)
+-(NSUInteger)scheduleSlices;
+-(void)invokeTextTrackingCallback:(NSString*)theText;
+@end
 
 @implementation MTSourcePlayer
 
@@ -80,21 +79,6 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	return self;
 }
 
--(id)initWithSource:(id<MTSoundSource>)theSource withAU:(AudioUnit)theUnit
-{
-	if([self initWithAU:theUnit] != nil)
-	{
-		[self setSource:theSource];
-	}
-	
-	return self;
-}
-
--(void)setSource:(id<MTSoundSource>)theSource
-{
-	source = theSource;
-}
-
 -(void)dealloc
 {
 	if(sliceRing != nil)
@@ -106,12 +90,17 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 				free(sliceRing[s].mBufferList->mBuffers[b].mData);
 			}
 		}
-				
+        
 		free(sliceRing);
 		sliceRing = nil;
 	}
 	
 	[super dealloc];
+}
+
+-(void)setSource:(id<MTSoundSource>)theSource
+{
+	source = theSource;
 }
 
 -(void)setEnabled:(BOOL)isEnabled
@@ -127,17 +116,6 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 -(NSString*)name
 {
 	return [source name];
-}
-
--(void)invokeTextTrackingCallback:(NSString*)theText
-{
-    if([self enabled])
-    {
-        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-        [dict setObject:theText forKey:kNotifTextKey];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifTextWasPlayed object: self userInfo:dict];        
-    }
 }
 
 -(void)sliceCompleted:(ScheduledAudioSlice*)theSlice;
@@ -162,67 +140,15 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSoundPlayerComplete object:self];
     }
+    
+    
+	// If player becomes disabled, don't schedule any more
+	if([self enabled])
+	{
+		[self scheduleSlices];
+	}    
 }
 
-
--(NSUInteger)scheduleSlices
-{
-	// Iterate through the slices and find any that are free. Fill those with
-	// data from our data, schedule them, and update our bookkeeping.
-
-	int freeSlices = 0;
-	int scheduledSlices = 0;
-	for(NSUInteger s = 0; s < kNumSlices; ++s)
-	{
-		if(!(sliceRing[s].mFlags & kScheduledAudioSliceFlag_Complete))
-		{
-			// Don't bother with slices that still need to be played
-			continue;
-		}
-		
-		++freeSlices;
-		
-		// Setup frame request and issue to the sound source
-		sliceRing[s].mBufferList->mBuffers[0].mDataByteSize = (kMaxFrameSize * sizeof(float));
-		const NSUInteger numFrames = [source populateSlice:&(sliceRing[s])];
-
-		if(numFrames == 0)
-		{
-			continue;
-		}
-		
-		// Continue filling out slice, based on response from source
-		sliceRing[s].mTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
-		sliceRing[s].mTimeStamp.mSampleTime = offset;
-		sliceRing[s].mNumberFrames = numFrames;
-		sliceRing[s].mBufferList->mBuffers[0].mDataByteSize = numFrames * sizeof(float);
-				
-		offset += numFrames;
-		
-		++slicesInProgress;
-		++scheduledSlices;
-		// NSLog(@"%@: scheduled @ %d", [self name], offset);
-		ComponentResult err = AudioUnitSetProperty(unit,
-												   kAudioUnitProperty_ScheduleAudioSlice,
-												   kAudioUnitScope_Global,
-												   0,
-												   &(sliceRing[s]),
-												   sizeof(struct ScheduledAudioSlice));
-		if(err != noErr)
-		{
-			NSLog(@"ERROR: Can't schedule slice %d to play", s);
-			return (kNumSlices - freeSlices);
-		}			
-	}
-	
-	if(freeSlices == 0)
-	{
-		NSLog(@"WARNING: No free slices were available");
-	}
-	
-	// Return the number of scheduled slices
-	return scheduledSlices;
-}
 
 -(void)reset
 {
@@ -270,4 +196,78 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 		NSLog(@"ERROR: Couldn't reset audio unit");
 	}
 }
+@end
+
+@implementation MTSourcePlayer (Private)
+
+-(NSUInteger)scheduleSlices
+{
+	// Iterate through the slices and find any that are free. Fill those with
+	// data from our data, schedule them, and update our bookkeeping.
+    
+	int freeSlices = 0;
+	int scheduledSlices = 0;
+	for(NSUInteger s = 0; s < kNumSlices; ++s)
+	{
+		if(!(sliceRing[s].mFlags & kScheduledAudioSliceFlag_Complete))
+		{
+			// Don't bother with slices that still need to be played
+			continue;
+		}
+		
+		++freeSlices;
+		
+		// Setup frame request and issue to the sound source
+		sliceRing[s].mBufferList->mBuffers[0].mDataByteSize = (kMaxFrameSize * sizeof(float));
+		const NSUInteger numFrames = [source populateSlice:&(sliceRing[s])];
+        
+		if(numFrames == 0)
+		{
+			continue;
+		}
+		
+		// Continue filling out slice, based on response from source
+		sliceRing[s].mTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
+		sliceRing[s].mTimeStamp.mSampleTime = offset;
+		sliceRing[s].mNumberFrames = numFrames;
+		sliceRing[s].mBufferList->mBuffers[0].mDataByteSize = numFrames * sizeof(float);
+        
+		offset += numFrames;
+		
+		++slicesInProgress;
+		++scheduledSlices;
+		// NSLog(@"%@: scheduled @ %d", [self name], offset);
+		ComponentResult err = AudioUnitSetProperty(unit,
+												   kAudioUnitProperty_ScheduleAudioSlice,
+												   kAudioUnitScope_Global,
+												   0,
+												   &(sliceRing[s]),
+												   sizeof(struct ScheduledAudioSlice));
+		if(err != noErr)
+		{
+			NSLog(@"ERROR: Can't schedule slice %d to play", s);
+			return (kNumSlices - freeSlices);
+		}			
+	}
+	
+	if(freeSlices == 0)
+	{
+		NSLog(@"WARNING: No free slices were available");
+	}
+	
+	// Return the number of scheduled slices
+	return scheduledSlices;
+}
+
+-(void)invokeTextTrackingCallback:(NSString*)theText
+{
+    if([self enabled])
+    {
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+        [dict setObject:theText forKey:kNotifTextKey];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotifTextWasPlayed object: self userInfo:dict];        
+    }
+}
+
 @end

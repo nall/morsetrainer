@@ -25,15 +25,11 @@
 	BOOL enabled;
 }
 
-// Private
--(NSUInteger)scheduleSlices;
-
 // Friendly (used by callbacks)
 -(void)sliceCompleted:(ScheduledAudioSlice*)theSlice;
 
 // Public
 -(id)initWithAU:(AudioUnit)theUnit;
--(id)initWithSource:(id<MTSoundSource>)theSource withAU:(AudioUnit)theUnit;
 -(void)setSource:(id<MTSoundSource>)theSource;
 -(NSString*)name;
 -(void)reset;

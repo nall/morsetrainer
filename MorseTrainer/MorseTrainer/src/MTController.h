@@ -1,5 +1,5 @@
 //
-//  AppController.h
+//  MTController.h
 //  MorseTrainer
 //
 //  Created by Jon Nall on 7/28/08.
@@ -19,7 +19,6 @@
 	MTPlayer* player;
     MTPrefController* prefController;
 }
--(void)updateText:(NSString*)theText;
 
 // Main Window
 -(IBAction)startSending:(id)sender;

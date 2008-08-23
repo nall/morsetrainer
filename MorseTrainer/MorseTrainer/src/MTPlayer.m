@@ -21,6 +21,14 @@ static const NSUInteger cwMixerElement = 0;
 static const NSUInteger noiseMixerElement = 1;
 static const NSUInteger baseQRMElement = 2;
 
+@interface MTPlayer (Private)
+    -(void)initGraph;
+    -(void)setVolume:(AudioUnitElement)theElement withValue:(AudioUnitParameterValue)theValue;
+    -(void)CWComplete:(id)object;
+    -(void)textTracker:(id)object;
+
+
+@end
 
 @implementation MTPlayer
 
@@ -68,6 +76,87 @@ static const NSUInteger baseQRMElement = 2;
 	return self;
 }
 
+-(void)setQRMStations:(NSUInteger)numStations
+{
+	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
+	{
+		AudioUnitParameterValue value;
+		BOOL enabled;
+		if(i < numStations)
+		{
+			value = 1.0;
+			enabled = YES;
+		}
+		else
+		{
+			value = 0.0;
+			enabled = NO;
+		}
+		[qrmPlayer[i] setEnabled:enabled];
+		[self setVolume:(baseQRMElement + i) withValue:value];			
+	}
+}
+
+-(void)setNoise:(double)noiseLevel
+{
+	if(noiseLevel > 0.0)
+	{
+		[noisePlayer setEnabled:YES];
+	}
+	else
+	{
+		[noisePlayer setEnabled:NO];
+	}
+	[self setVolume:noiseMixerElement withValue:noiseLevel];
+}
+
+-(void)playCW:(id<MTSoundSource>)theSource
+{
+	isStopped = NO;
+
+	[theSource setTextTracking:YES];
+	[theSource reset];
+	[cwPlayer setSource:theSource];
+    
+    [noisePlayer reset];
+    for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
+    {
+        [qrmPlayer[i] reset];
+    }
+	
+	AUGraphStart(graph);	
+	// CAShow(graph);
+	
+	[cwPlayer setEnabled:YES];
+	[cwPlayer start];
+	[noisePlayer start];
+	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
+	{
+		[qrmPlayer[i] start];
+	}
+}	
+
+-(BOOL)stopped
+{
+	return isStopped;
+}
+
+-(void)stop
+{
+	isStopped = YES;
+	AUGraphStop(graph);
+	
+	[cwPlayer stop];
+	[noisePlayer stop];
+	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
+	{
+		[qrmPlayer[i] stop];
+	}
+}
+
+@end
+
+@implementation MTPlayer (Private)
 -(void)initGraph
 {
 	NewAUGraph(&graph);
@@ -82,7 +171,7 @@ static const NSUInteger baseQRMElement = 2;
 	cd.componentType = kAudioUnitType_Output;
 	cd.componentSubType = kAudioUnitSubType_DefaultOutput;
 	AUGraphAddNode(graph, &cd, &outputNode);
-
+    
 	// Mixer
 	AUNode mixerNode;
 	cd.componentType = kAudioUnitType_Mixer;
@@ -128,21 +217,21 @@ static const NSUInteger baseQRMElement = 2;
 	AudioStreamBasicDescription aa;
 	UInt32 size = sizeof(aa);
 	ComponentResult err = AudioUnitGetProperty(cwUnit, 
-							   kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &aa, &size);
+                                               kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &aa, &size);
 	CHECK_ERR(err, @"Getting StreamFormat Property from cwUnit");
 	
 	// Get Info from cwUnit and modify the channels to be 1. Then apply that to
 	// everything else.
 	aa.mChannelsPerFrame = 1;
-
+    
 	err = AudioUnitSetProperty(cwUnit, 
 							   kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &aa, size);
 	CHECK_ERR(err, @"Setting StreamFormat Property for cwUnit/Output");
-
+    
 	err = AudioUnitSetProperty(noiseUnit, 
 							   kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &aa, size);
 	CHECK_ERR(err, @"Setting StreamFormat Property for noiseUnit/Output");
-
+    
 	
 	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
 	{
@@ -150,13 +239,13 @@ static const NSUInteger baseQRMElement = 2;
 								   kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &aa, size);
 		CHECK_ERR(err, @"Setting StreamFormat Property for qrmUnit /Output");		
 	}
-		
+    
 	err = AudioUnitSetProperty(outputUnit, 
 							   kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &aa, size);
 	CHECK_ERR(err, @"Setting StreamFormat Property for outputUnit/Input");
 	
 	AUGraphInitialize(graph);
-
+    
 }
 
 -(void)setVolume:(AudioUnitElement)theElement withValue:(AudioUnitParameterValue)theValue
@@ -171,44 +260,6 @@ static const NSUInteger baseQRMElement = 2;
 	CHECK_ERR(err, errMsg);
 }
 
--(void)setQRMStations:(NSUInteger)numStations
-{
-	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
-	{
-		AudioUnitParameterValue value;
-		BOOL enabled;
-		if(i < numStations)
-		{
-			value = 1.0;
-			enabled = YES;
-		}
-		else
-		{
-			value = 0.0;
-			enabled = NO;
-		}
-		[qrmPlayer[i] setEnabled:enabled];
-		[self setVolume:(baseQRMElement + i) withValue:value];			
-	}
-}
-
--(void)setNoise:(double)noiseLevel
-{
-	if(noiseLevel > 0.0)
-	{
-		[noisePlayer setEnabled:YES];
-	}
-	else
-	{
-		[noisePlayer setEnabled:NO];
-	}
-	[self setVolume:noiseMixerElement withValue:noiseLevel];
-}
-
--(BOOL)stopped
-{
-	return isStopped;
-}
 
 -(void)CWComplete:(id)object
 {
@@ -228,45 +279,6 @@ static const NSUInteger baseQRMElement = 2;
     [[NSNotificationCenter defaultCenter] postNotificationName:[notification name]
                                                         object:self
                                                       userInfo:[notification userInfo]];
-}
-
--(void)playCW:(id<MTSoundSource>)theSource
-{
-	isStopped = NO;
-
-	[theSource setTextTracking:YES];
-	[theSource reset];
-	[cwPlayer setSource:theSource];
-    
-    [noisePlayer reset];
-    for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
-    {
-        [qrmPlayer[i] reset];
-    }
-	
-	AUGraphStart(graph);	
-	// CAShow(graph);
-	
-	[cwPlayer setEnabled:YES];
-	[cwPlayer start];
-	[noisePlayer start];
-	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
-	{
-		[qrmPlayer[i] start];
-	}
-}	
-
--(void)stop
-{
-	isStopped = YES;
-	AUGraphStop(graph);
-	
-	[cwPlayer stop];
-	[noisePlayer stop];
-	for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
-	{
-		[qrmPlayer[i] stop];
-	}
 }
 
 @end

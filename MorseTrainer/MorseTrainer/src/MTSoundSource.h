@@ -24,4 +24,5 @@
 -(BOOL)supportsTextTracking;
 -(NSString*)getTextForTime:(Float64)theTime;
 
+-(void)dumpAU:(NSString*)theFilename;
 @end

@@ -15,19 +15,10 @@
 @interface MTFifoSource : NSObject<MTSoundSource>
 {
 	MTFIFO* fifo;
+    NSFileHandle* auFile;
 }
-
-// Private
--(void)initiateDataFill;
 
 // Protected
 -(NSData*)generateData:(NSNumber*)floatsAvailable;
-
--(NSInteger)populateSlice:(ScheduledAudioSlice*)theSlice;
--(NSString*)name;
--(void)reset;
-
-// Public
-
 
 @end

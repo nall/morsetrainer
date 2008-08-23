@@ -6,22 +6,22 @@
 * Add speech synth
     * Check prosign phenomes
     
-* Error support for unknown characters
-
-
 * UI Items
     * Artwork
     * Play/Pause/Speak buttons
-    * Resizing Panels    
     
 * Verify all defaults
 
 * Verify all validations
 
-* Resize non-source panels
-
-* Verify base prefs (removing preferences file)
-
 * ToolTips
 
-* Move signal strength out of noise
+* Code Comments!!
+
+* QRM station binding
+
+* Text status 
+
+* Feedback
+    * Interference icon should pop more (Eric)
+    

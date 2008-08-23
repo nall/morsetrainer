@@ -13,6 +13,12 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A41C94720E55FE93002DCC58 /* MTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = A41C94710E55FE93002DCC58 /* MTDefines.m */; };
 		A41C95960E560ED1002DCC58 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A41C95950E560ED1002DCC58 /* Sparkle.framework */; };
+		A42788F50E5DEBFD00F81265 /* ToolbarNoise.png in Resources */ = {isa = PBXBuildFile; fileRef = A42788F40E5DEBFD00F81265 /* ToolbarNoise.png */; };
+		A42789010E5DF63A00F81265 /* ToolbarInterference.png in Resources */ = {isa = PBXBuildFile; fileRef = A42789000E5DF63A00F81265 /* ToolbarInterference.png */; };
+		A427890B0E5E018D00F81265 /* Software Update.icns in Resources */ = {isa = PBXBuildFile; fileRef = A427890A0E5E018D00F81265 /* Software Update.icns */; };
+		A4278AA90E5E3E2500F81265 /* ToolbarContent.png in Resources */ = {isa = PBXBuildFile; fileRef = A4278AA80E5E3E2500F81265 /* ToolbarContent.png */; };
+		A4278AB20E5E417F00F81265 /* GenericFontIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A4278AB10E5E417F00F81265 /* GenericFontIcon.icns */; };
+		A4278AB50E5E428D00F81265 /* ToolbarSource.png in Resources */ = {isa = PBXBuildFile; fileRef = A4278AB40E5E428D00F81265 /* ToolbarSource.png */; };
 		A444BB540E40093D00A65384 /* MTSourcePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A444BB530E40093D00A65384 /* MTSourcePlayer.m */; };
 		A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5B0E4009F100A65384 /* AudioToolbox.framework */; };
 		A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A444BB5D0E4009FC00A65384 /* AudioUnit.framework */; };
@@ -55,6 +61,12 @@
 		8D1107320486CEB800E47090 /* MorseTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41C94710E55FE93002DCC58 /* MTDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDefines.m; sourceTree = "<group>"; };
 		A41C95950E560ED1002DCC58 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../../../Library/Frameworks/Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		A42788F40E5DEBFD00F81265 /* ToolbarNoise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarNoise.png; sourceTree = "<group>"; };
+		A42789000E5DF63A00F81265 /* ToolbarInterference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarInterference.png; sourceTree = "<group>"; };
+		A427890A0E5E018D00F81265 /* Software Update.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Software Update.icns"; sourceTree = "<group>"; };
+		A4278AA80E5E3E2500F81265 /* ToolbarContent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarContent.png; sourceTree = "<group>"; };
+		A4278AB10E5E417F00F81265 /* GenericFontIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GenericFontIcon.icns; sourceTree = "<group>"; };
+		A4278AB40E5E428D00F81265 /* ToolbarSource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarSource.png; sourceTree = "<group>"; };
 		A444BB520E40093D00A65384 /* MTSourcePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSourcePlayer.h; sourceTree = "<group>"; };
 		A444BB530E40093D00A65384 /* MTSourcePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSourcePlayer.m; sourceTree = "<group>"; };
 		A444BB5B0E4009F100A65384 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -184,6 +196,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4278AB40E5E428D00F81265 /* ToolbarSource.png */,
+				A4278AB10E5E417F00F81265 /* GenericFontIcon.icns */,
+				A4278AA80E5E3E2500F81265 /* ToolbarContent.png */,
+				A427890A0E5E018D00F81265 /* Software Update.icns */,
+				A42789000E5DF63A00F81265 /* ToolbarInterference.png */,
+				A42788F40E5DEBFD00F81265 /* ToolbarNoise.png */,
 				A44DCD270E5D070900E54879 /* ToolbarItemBrowser.png */,
 				A4C658CB0E438CC90064F74B /* QSO Files */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -342,6 +360,12 @@
 				A4ECE4930E57A28B008265A1 /* Preferences.xib in Resources */,
 				A4ECE5C10E57E61A008265A1 /* TODO in Resources */,
 				A44DCD280E5D070900E54879 /* ToolbarItemBrowser.png in Resources */,
+				A42788F50E5DEBFD00F81265 /* ToolbarNoise.png in Resources */,
+				A42789010E5DF63A00F81265 /* ToolbarInterference.png in Resources */,
+				A427890B0E5E018D00F81265 /* Software Update.icns in Resources */,
+				A4278AA90E5E3E2500F81265 /* ToolbarContent.png in Resources */,
+				A4278AB20E5E417F00F81265 /* GenericFontIcon.icns in Resources */,
+				A4278AB50E5E428D00F81265 /* ToolbarSource.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

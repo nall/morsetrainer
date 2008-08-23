@@ -13,15 +13,10 @@
 {
 	NSMutableArray* patternArray;
 }
-// Private
--(void)initLetters;
--(void)initNumbers;
--(void)initPunctuation;
--(void)initProsigns;
 
 // Public static
 +(MTPatternMap*)instance;
-+(NSString*)getPatternForCharacter:(NSString*)key;
++(NSString*)getPatternForCharacter:(NSString*)key errorString:(NSString**)theErrorString;
 +(NSUInteger)numChars;
 +(NSArray*)characters;
 

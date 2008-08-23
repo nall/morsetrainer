@@ -26,9 +26,12 @@
         
         // Currently only support files
         // TODO: FUll URL support
-        assert([url isFileURL]);
+        if(![url isFileURL])
+        {
+            NSRunAlertPanel(@"URLs are not yet supported", @"Currently non-file URLs are unsupported. Please choose a regular file", @"OK", nil, nil);
+            return nil;
+        }
         
-        NSLog(@"path: %@", [url path]);
         theFile = [NSFileHandle fileHandleForReadingAtPath:[url path]];
 		sourceName = [NSString stringWithFormat:@"FileSource{%@}", url];
 	}

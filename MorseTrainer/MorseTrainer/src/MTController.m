@@ -1,5 +1,5 @@
 //
-//  AppController.m
+//  MTController.m
 //  MorseTrainer
 //
 //  Created by Jon Nall on 7/28/08.
@@ -14,6 +14,12 @@
 #import "MTPatternMap.h"
 #include "MTDefines.h"
 
+@interface MTController (Private)
+    -(void)updateText:(NSString*)theText;
+    -(void)textTracker:(id)object;
+    -(void)manageSessionTime:(NSNumber*)theMinutes;
+@end
+
 @implementation MTController
 
 -(id)init
@@ -25,55 +31,6 @@
 	}
 	
 	return self;
-}
-
--(BOOL)windowShouldClose:(id)window
-{
-    return NO;
-}
-
--(void)updateText:(NSString*)theText
-{
-	NSString* newString = [NSString stringWithFormat:@"%@%@", [textField stringValue], theText];
-	[textField setStringValue:newString];
-}
-
--(void)textTracker:(id)object
-{
-    NSNotification* notification = object;
-	[self updateText:[[notification userInfo] objectForKey:kNotifTextKey]];
-}
-
-
--(void)manageSessionTime:(NSNumber*)theMinutes
-{
-	const NSTimeInterval seconds = [theMinutes unsignedIntValue] * 60;
-	
-	NSString* totalString = (seconds == 0) ?
-		@"" :
-		[NSString stringWithFormat:@" / %02d:00", [theMinutes unsignedIntValue]];
-
-	BOOL forever = (seconds == 0);
-	for(NSUInteger i = 1; forever || i <= seconds; ++i)
-	{
-		const NSUInteger elapsedMinutes = i / 60;
-		const NSUInteger elapsedSeconds = i % 60;
-		
-		[NSThread sleepForTimeInterval:1.0];
-
-		if([player stopped])
-		{
-			break;
-		}
-
-		[statusBar setStringValue:[NSString stringWithFormat:@"%@%@",
-		 [NSString stringWithFormat:@"%02d:%02d", elapsedMinutes, elapsedSeconds], totalString]];
-	}
-	
-	if(![player stopped])
-	{
-		[player stop];		
-	}
 }
 
 -(IBAction)showPreferencePanel:(id)sender
@@ -150,6 +107,14 @@
         }
     }
     
+    if(soundSource == nil)
+    {
+        // Don't play anything -- an error occurred and the subsystem should
+        // have alerted the user.
+        return;
+    }
+    
+    //[soundSource dumpAU:@"/Users/nall/data.au"];
 	
 	[player setQRMStations:numQRMStations];
 	[player setNoise:noiseLevel];
@@ -162,6 +127,7 @@
 	
 	[player playCW:soundSource];
 
+    if(minutes > 0)
 	{
 		NSInvocationOperation* theOp = [[NSInvocationOperation alloc]
 										initWithTarget:self
@@ -207,3 +173,59 @@
 }
 
 @end
+
+@implementation MTController (Delegate)
+-(BOOL)windowShouldClose:(id)window
+{
+    return NO;
+}
+@end
+
+@implementation MTController (Private)
+
+-(void)updateText:(NSString*)theText
+{
+	NSString* newString = [NSString stringWithFormat:@"%@%@", [textField stringValue], theText];
+	[textField setStringValue:newString];
+}
+
+-(void)textTracker:(id)object
+{
+    NSNotification* notification = object;
+	[self updateText:[[notification userInfo] objectForKey:kNotifTextKey]];
+}
+
+-(void)manageSessionTime:(NSNumber*)theMinutes
+{
+	const NSTimeInterval seconds = [theMinutes unsignedIntValue] * 60;
+	
+	NSString* totalString = (seconds == 0) ?
+    @"" :
+    [NSString stringWithFormat:@" / %02d:00", [theMinutes unsignedIntValue]];
+    
+	BOOL forever = (seconds == 0);
+	for(NSUInteger i = 1; forever || i <= seconds; ++i)
+	{
+		const NSUInteger elapsedMinutes = i / 60;
+		const NSUInteger elapsedSeconds = i % 60;
+		
+		[NSThread sleepForTimeInterval:1.0];
+        
+		if([player stopped])
+		{
+			break;
+		}
+        
+		[statusBar setStringValue:[NSString stringWithFormat:@"%@%@",
+                                   [NSString stringWithFormat:@"%02d:%02d", elapsedMinutes, elapsedSeconds], totalString]];
+	}
+	
+	if(![player stopped])
+	{
+		[player stop];		
+	}
+}
+@end
+
+
+

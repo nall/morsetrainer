@@ -14,10 +14,6 @@
 {
 	NSUInteger qrmID;	
 }
-// Private
--(NSString*)generateParameters;
-
-// Public
 -(id)initWithID:(NSUInteger)theID;
 
 @end

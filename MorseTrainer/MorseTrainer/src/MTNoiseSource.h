@@ -17,6 +17,7 @@
 #import <CoreAudio/CoreAudio.h>
 #import "MTSoundSource.h"
 
+
 #define kPinkMaxRandomRows 32
 #define kPinkRandomBits    30
 #define kPinkRandomShift   ((sizeof(long)*8)-kPinkRandomBits)
@@ -33,19 +34,8 @@ typedef struct
 
 @interface MTNoiseSource : NSObject<MTSoundSource>
 {
-	PinkNoise noise;
+    PinkNoise noise;
 }
-// Private
-- (void)initRandomEnv:(long)numRows;
-
-// MTSoundSource
--(NSInteger)populateSlice:(ScheduledAudioSlice*)theSlice;
--(NSString*)name;
--(void)reset;
-
-// Public
 -(void)goPink;
 -(void)goWhite;
-
-
 @end
