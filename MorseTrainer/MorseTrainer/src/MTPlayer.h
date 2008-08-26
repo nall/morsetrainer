@@ -16,19 +16,28 @@
 	AUGraph graph;
 
 	AudioUnit cwUnit;
+    AudioUnit cwConverterUnit;
 	AudioUnit noiseUnit;
+    AudioUnit noiseConverterUnit;
 	AudioUnit mixerUnit;
 	AudioUnit outputUnit;
 	AudioUnit qrmUnit[kMaxQRMStations];
+	AudioUnit qrmConverterUnit[kMaxQRMStations];
 	
 	MTSourcePlayer* cwPlayer;
 	MTSourcePlayer* qrmPlayer[kMaxQRMStations];
 	MTSourcePlayer* noisePlayer;
 	
 	BOOL isStopped;
+    BOOL isPaused;
+    BOOL isPlaying;
 }
 
 -(void)playCW:(id<MTSoundSource>)theSource;
+-(BOOL)paused;
+-(void)pause;
+-(BOOL)playing;
+-(void)play;
 -(BOOL)stopped;
 -(void)stop;
 

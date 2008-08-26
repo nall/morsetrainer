@@ -25,10 +25,19 @@ const NSUInteger INTER_PHRASE_DITS = 7;
 // This is 2.1kB. If a frame is 2kB, this gives us a granularity of 1 dit per
 // completion @ 100wpm. This is acceptable to update a display with the
 // character that completed.
+//
+// Compare to 8kHz where 1 dit contains 96 samples of 4 bytes each (384 bytes).
+// In this case, we could play 2-3 E's before updating the display, so we should
+// dial down the slice size to 512.
 
-const NSUInteger kSampleRate = 44100;
+
+// const NSUInteger kSampleRate = 44100;
+// const NSUInteger kMaxFrameSize = 2048;
+
+const NSUInteger kSampleRate = 8000;
+const NSUInteger kMaxFrameSize = 512;
+
 const NSUInteger kNumSlices = 64;
-const NSUInteger kMaxFrameSize = 0x800; // 2kb
 
 const NSUInteger kFifoDepth = 0x1000000; // 16Mb
 
@@ -59,6 +68,7 @@ NSString* const kPrefSignalStrength = @"signalStrength";
 NSString* const kPrefNoiseLevel = @"noiseLevel";
 NSString* const kPrefNumQRMStations = @"qrmStations";
 NSString* const kPrefWPMPhrase = @"wpmPhrase";
+NSString* const kPrefWhiteNoise = @"useWhiteNoise";
 
 const NSUInteger kViewSource = 0;
 const NSUInteger kViewSending = 1;

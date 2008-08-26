@@ -29,6 +29,11 @@
 				<string key="NSClassName">NSFontManager</string>
 			</object>
 			<object class="NSUserDefaultsController" id="625554320">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>signalStrength</string>
+					<string>noiseLevel</string>
+				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="249908629">
@@ -6610,22 +6615,6 @@ AAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">content: signalStrengths</string>
-						<reference key="source" ref="728921306"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="780153827">
-							<reference key="NSSource" ref="728921306"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">content: signalStrengths</string>
-							<string key="NSBinding">content</string>
-							<string key="NSKeyPath">signalStrengths</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">949</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">maxValue: maximumWPM</string>
 						<reference key="source" ref="780911517"/>
 						<reference key="destination" ref="1021"/>
@@ -6791,57 +6780,6 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">1103</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: signalStrengths.value</string>
-						<reference key="source" ref="728921306"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="775025894">
-							<reference key="NSSource" ref="728921306"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: signalStrengths.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">signalStrengths.value</string>
-							<reference key="NSPreviousConnector" ref="780153827"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1108</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: signalStrengths.title</string>
-						<reference key="source" ref="728921306"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="1031611032">
-							<reference key="NSSource" ref="728921306"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: signalStrengths.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">signalStrengths.title</string>
-							<reference key="NSPreviousConnector" ref="775025894"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1109</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedIndex: values.signalStrength</string>
-						<reference key="source" ref="728921306"/>
-						<reference key="destination" ref="625554320"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="728921306"/>
-							<reference key="NSDestination" ref="625554320"/>
-							<string key="NSLabel">selectedIndex: values.signalStrength</string>
-							<string key="NSBinding">selectedIndex</string>
-							<string key="NSKeyPath">values.signalStrength</string>
-							<reference key="NSPreviousConnector" ref="1031611032"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1110</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -7843,23 +7781,6 @@ AAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedIndex: values.noiseLevel</string>
-						<reference key="source" ref="899858574"/>
-						<reference key="destination" ref="625554320"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="899858574"/>
-							<reference key="NSDestination" ref="625554320"/>
-							<string key="NSLabel">selectedIndex: values.noiseLevel</string>
-							<string key="NSBinding">selectedIndex</string>
-							<string key="NSKeyPath">values.noiseLevel</string>
-							<reference key="NSPreviousConnector" ref="406057712"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2787</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: values.minimumCharsPerGroup</string>
 						<reference key="source" ref="562962224"/>
 						<reference key="destination" ref="625554320"/>
@@ -8006,6 +7927,90 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">2832</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">content: signalStrengths</string>
+						<reference key="source" ref="728921306"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="780153827">
+							<reference key="NSSource" ref="728921306"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">content: signalStrengths</string>
+							<string key="NSBinding">content</string>
+							<string key="NSKeyPath">signalStrengths</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2881</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: signalStrengths.value</string>
+						<reference key="source" ref="728921306"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="775025894">
+							<reference key="NSSource" ref="728921306"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: signalStrengths.value</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">signalStrengths.value</string>
+							<reference key="NSPreviousConnector" ref="780153827"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2882</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: signalStrengths.title</string>
+						<reference key="source" ref="728921306"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="1031611032">
+							<reference key="NSSource" ref="728921306"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: signalStrengths.title</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">signalStrengths.title</string>
+							<reference key="NSPreviousConnector" ref="775025894"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2883</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: values.signalStrength</string>
+						<reference key="source" ref="728921306"/>
+						<reference key="destination" ref="625554320"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="728921306"/>
+							<reference key="NSDestination" ref="625554320"/>
+							<string key="NSLabel">selectedValue: values.signalStrength</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">values.signalStrength</string>
+							<reference key="NSPreviousConnector" ref="1031611032"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2886</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: values.noiseLevel</string>
+						<reference key="source" ref="899858574"/>
+						<reference key="destination" ref="625554320"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="899858574"/>
+							<reference key="NSDestination" ref="625554320"/>
+							<string key="NSLabel">selectedValue: values.noiseLevel</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">values.noiseLevel</string>
+							<reference key="NSPreviousConnector" ref="406057712"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2898</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -10648,7 +10653,7 @@ AAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2844</int>
+			<int key="maxID">2898</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

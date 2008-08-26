@@ -21,7 +21,7 @@
 }
 
 // Main Window
--(IBAction)startSending:(id)sender;
+-(IBAction)playOrPause:(id)sender;
 -(IBAction)stopSending:(id)sender;
 -(IBAction)speakBuffer:(id)sender;
 

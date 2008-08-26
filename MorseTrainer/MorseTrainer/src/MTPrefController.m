@@ -81,8 +81,8 @@
 		[defaults setObject:[NSNumber numberWithInt:3] forKey:kPrefMinutesOfCopy];
 		
 		// Noise / QRM
-		[defaults setObject:[NSNumber numberWithInt:7] forKey:kPrefSignalStrength];  // S9
-		[defaults setObject:[NSNumber numberWithInt:0] forKey:kPrefNoiseLevel];      // Off
+		[defaults setObject:@"S9" forKey:kPrefSignalStrength];  // S9
+		[defaults setObject:@"0.0" forKey:kPrefNoiseLevel];      // Off
 		[defaults setObject:[NSNumber numberWithInt:0] forKey:kPrefNumQRMStations];
         
 		// Updates
@@ -152,6 +152,11 @@
 
     [self initPrefPane];
 	return self;
+}
+
+-(void)setSignalStrengths:(id)value
+{
+    NSLog(@"setSignalStrengths: %@", value);
 }
 
 -(IBAction)validateTiming:(id)value

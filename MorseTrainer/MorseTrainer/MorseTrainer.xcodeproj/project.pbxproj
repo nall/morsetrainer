@@ -26,6 +26,7 @@
 		A44DCD280E5D070900E54879 /* ToolbarItemBrowser.png in Resources */ = {isa = PBXBuildFile; fileRef = A44DCD270E5D070900E54879 /* ToolbarItemBrowser.png */; };
 		A4546C780E4CF8CB00237295 /* Architecture.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4546C770E4CF8CB00237295 /* Architecture.rtf */; };
 		A4546CC00E4D0E0100237295 /* MTRandomCWSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */; };
+		A458B3E40E63CEB000C8372E /* MTSLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = A458B3E30E63CEB000C8372E /* MTSLevels.m */; };
 		A46DECBC0E41741000D8C13C /* MTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECBB0E41741000D8C13C /* MTPlayer.m */; };
 		A46DECD00E417B1700D8C13C /* MTNoiseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */; };
 		A46DED880E41829F00D8C13C /* MTFifoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DED870E41829F00D8C13C /* MTFifoSource.m */; };
@@ -76,6 +77,8 @@
 		A4546C770E4CF8CB00237295 /* Architecture.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Architecture.rtf; sourceTree = "<group>"; };
 		A4546CBE0E4D0E0100237295 /* MTRandomCWSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRandomCWSource.h; sourceTree = "<group>"; };
 		A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRandomCWSource.m; sourceTree = "<group>"; };
+		A458B3E20E63CEB000C8372E /* MTSLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSLevels.h; sourceTree = "<group>"; };
+		A458B3E30E63CEB000C8372E /* MTSLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSLevels.m; sourceTree = "<group>"; };
 		A46DECBA0E41741000D8C13C /* MTPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlayer.h; sourceTree = "<group>"; };
 		A46DECBB0E41741000D8C13C /* MTPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlayer.m; sourceTree = "<group>"; };
 		A46DECCD0E417A3F00D8C13C /* MTSoundSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSoundSource.h; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 				A4A699010E3ED6B100B7E22D /* MTPatternMap.m */,
 				A4A699070E3EDBBF00B7E22D /* MTTimeUtils.h */,
 				A4A699080E3EDBBF00B7E22D /* MTTimeUtils.m */,
+				A458B3E20E63CEB000C8372E /* MTSLevels.h */,
+				A458B3E30E63CEB000C8372E /* MTSLevels.m */,
 			);
 			name = "Morse Utilities";
 			path = src;
@@ -392,6 +397,7 @@
 				A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */,
 				A47DC8D80E537D36007BD324 /* MTPrefController.m in Sources */,
 				A41C94720E55FE93002DCC58 /* MTDefines.m in Sources */,
+				A458B3E40E63CEB000C8372E /* MTSLevels.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

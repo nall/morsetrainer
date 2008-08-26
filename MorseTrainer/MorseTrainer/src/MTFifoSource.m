@@ -48,7 +48,7 @@
     data[1] = htonl(24);			// bytes until data
     data[2] = htonl(~0);			// data size unknown
     data[3] = htonl(6);				// data is 32 bit floating values
-    data[4] = htonl(44100);	// sample rate
+    data[4] = htonl(kSampleRate);	// sample rate
     data[5] = htonl(1);				// channels	
     
     [auFile writeData:header];

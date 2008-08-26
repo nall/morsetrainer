@@ -12,9 +12,11 @@
 #import "MTRandomCWSource.h"
 #import "MTTimeUtils.h"
 #import "MTPatternMap.h"
+#import "MTSLevels.h"
 #include "MTDefines.h"
 
 @interface MTController (Private)
+    -(void)startSending;
     -(void)updateText:(NSString*)theText;
     -(void)textTracker:(id)object;
     -(void)manageSessionTime:(NSNumber*)theMinutes;
@@ -38,104 +40,27 @@
     [prefController showPreferences:sender];
 }
 
-
-// Main Window
--(IBAction)startSending:(id)sender
-{	
-	[textField setStringValue:@""];
-	[player stop];
-	
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	
-	NSUInteger baseFreq = [defaults integerForKey:kPrefTonePitch];
-	NSUInteger actualWPM = [defaults integerForKey:kPrefActualWPM];
-	NSUInteger effectiveWPM = [defaults integerForKey:kPrefEffectiveWPM];
-	NSString* phrase = [defaults stringForKey:kPrefWPMPhrase];
-	NSUInteger minutes = [defaults integerForKey:kPrefMinutesOfCopy];
-	
-	TextAnalysis analysis = [MTTimeUtils analyzeText:phrase
-									 withActualWPM:actualWPM
-								  withEffectiveWPM:effectiveWPM];
-	
-	NSUInteger numQRMStations = [defaults integerForKey:kPrefNumQRMStations];
-	
-    const double noiseLevel = [defaults doubleForKey:kPrefNoiseLevel];
-    const double signalStrength = [defaults doubleForKey:kPrefSignalStrength];
-	
-
-    // Create correct sound source
-    id<MTSoundSource> soundSource = nil;
+-(IBAction)playOrPause:(id)sender
+{
+    NSString* newLabel = nil;
+    if([player stopped])
     {
-        const NSUInteger type = [defaults integerForKey:kPrefSourceType];
-        switch(type)
-        {
-            case kSourceTypeCustom:
-            {
-                NSArray* chars = [defaults arrayForKey:kPrefCharSet];                
-                soundSource = [[MTRandomCWSource alloc] initWithCharset:chars
-                                                          withFrequency:baseFreq
-                                                         withSampleRate:kSampleRate
-                                                          withAmplitude:signalStrength
-                                                           withAnalysis:analysis];
-                break;
-            }
-            case kSourceTypeURL:
-            {
-                NSString* textURLString = [defaults stringForKey:kPrefTextFile];
-                
-                if(textURLString == nil)
-                {
-                    // TBD: Alert
-                    NSBeep();
-                    NSLog(@"Internal ERROR -- option should have been disabled");
-                }
-                else
-                {
-                    NSURL* textURL = [NSURL URLWithString:textURLString];
-                    soundSource = [[MTURLSource alloc] initWithURL:textURL
-                                                       withFrequency:baseFreq 
-                                                      withSampleRate:kSampleRate
-                                                       withAmplitude:signalStrength
-                                                        withAnalysis:analysis];
-                }
-                break;
-            }
-            default:
-            {
-                NSLog(@"Internal error: Unexpected source type: %d", type);                
-            }
-        }
+        [self startSending];
+        newLabel = @"Pause";
+    }
+    else if([player paused])
+    {
+        [player play];
+        newLabel = @"Pause";
+    }
+    else
+    {
+        [player pause];
+        newLabel = @"Play";
     }
     
-    if(soundSource == nil)
-    {
-        // Don't play anything -- an error occurred and the subsystem should
-        // have alerted the user.
-        return;
-    }
-    
-    //[soundSource dumpAU:@"/Users/nall/data.au"];
-	
-	[player setQRMStations:numQRMStations];
-	[player setNoise:noiseLevel];
-	
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(textTracker:)
-                                                 name:kNotifTextWasPlayed
-                                               object:player];
-	
-	[player playCW:soundSource];
-
-    if(minutes > 0)
-	{
-		NSInvocationOperation* theOp = [[NSInvocationOperation alloc]
-										initWithTarget:self
-										selector:@selector(manageSessionTime:)
-										object:[NSNumber numberWithUnsignedInt:minutes]];
-		
-		[[MTOperationQueue operationQueue] addOperation:theOp];		
-	}	
+    NSButton* button = sender;
+    [button setTitle:newLabel];
 }
 
 -(IBAction)stopSending:(id)sender
@@ -152,19 +77,21 @@
 {
     NSString* text = [textField stringValue];
 
+    /*
     NSMutableString* spacedOut = [NSMutableString stringWithCapacity:[text length] * 2];
     for(NSUInteger i = 0; i < [text length]; ++i)
     {
         [spacedOut appendString:[text substringWithRange:NSMakeRange(i, 1)]];
         [spacedOut appendString:@". "];
     }
+    */
     
     NSSpeechSynthesizer* synth = [[NSSpeechSynthesizer alloc] initWithVoice:[NSSpeechSynthesizer defaultVoice]];
-    [synth setRate:80];
+    [synth setRate:100];
     [synth setDelegate:self];
     
     
-    [synth startSpeakingString:spacedOut];
+    [synth startSpeakingString:text];
     
     while([synth isSpeaking])
     {
@@ -199,9 +126,8 @@
 {
 	const NSTimeInterval seconds = [theMinutes unsignedIntValue] * 60;
 	
-	NSString* totalString = (seconds == 0) ?
-    @"" :
-    [NSString stringWithFormat:@" / %02d:00", [theMinutes unsignedIntValue]];
+	NSString* totalString = (seconds == 0) ? @"" :
+        [NSString stringWithFormat:@" / %02d:00", [theMinutes unsignedIntValue]];
     
 	BOOL forever = (seconds == 0);
 	for(NSUInteger i = 1; forever || i <= seconds; ++i)
@@ -225,6 +151,105 @@
 		[player stop];		
 	}
 }
+
+-(void)startSending
+{	
+	[textField setStringValue:@""];
+	[player stop];
+	
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	
+	NSUInteger baseFreq = [defaults integerForKey:kPrefTonePitch];
+	NSUInteger actualWPM = [defaults integerForKey:kPrefActualWPM];
+	NSUInteger effectiveWPM = [defaults integerForKey:kPrefEffectiveWPM];
+	NSString* phrase = [defaults stringForKey:kPrefWPMPhrase];
+	NSUInteger minutes = [defaults integerForKey:kPrefMinutesOfCopy];
+	
+	TextAnalysis analysis = [MTTimeUtils analyzeText:phrase
+                                       withActualWPM:actualWPM
+                                    withEffectiveWPM:effectiveWPM];
+	
+	NSUInteger numQRMStations = [defaults integerForKey:kPrefNumQRMStations];
+	
+    const double noiseLevel = [MTSLevels getSLevelValue:[defaults stringForKey:kPrefNoiseLevel]];
+    const double signalStrength = [MTSLevels getSLevelValue:[defaults stringForKey:kPrefSignalStrength]];
+	
+    
+    // Create correct sound source
+    id<MTSoundSource> soundSource = nil;
+    {
+        const NSUInteger type = [defaults integerForKey:kPrefSourceType];
+        switch(type)
+        {
+            case kSourceTypeCustom:
+            {
+                NSArray* chars = [defaults arrayForKey:kPrefCharSet];                
+                soundSource = [[MTRandomCWSource alloc] initWithCharset:chars
+                                                          withFrequency:baseFreq
+                                                         withSampleRate:kSampleRate
+                                                          withAmplitude:signalStrength
+                                                           withAnalysis:analysis];
+                break;
+            }
+            case kSourceTypeURL:
+            {
+                NSString* textURLString = [defaults stringForKey:kPrefTextFile];
+                
+                if(textURLString == nil)
+                {
+                    // TBD: Alert
+                    NSBeep();
+                    NSLog(@"Internal ERROR -- option should have been disabled");
+                }
+                else
+                {
+                    NSURL* textURL = [NSURL URLWithString:textURLString];
+                    soundSource = [[MTURLSource alloc] initWithURL:textURL
+                                                     withFrequency:baseFreq 
+                                                    withSampleRate:kSampleRate
+                                                     withAmplitude:signalStrength
+                                                      withAnalysis:analysis];
+                }
+                break;
+            }
+            default:
+            {
+                NSLog(@"Internal error: Unexpected source type: %d", type);                
+            }
+        }
+    }
+    
+    if(soundSource == nil)
+    {
+        // Don't play anything -- an error occurred and the subsystem should
+        // have alerted the user.
+        return;
+    }
+    
+    //[soundSource dumpAU:@"/Users/nall/data.au"];
+	
+	[player setQRMStations:numQRMStations];
+	[player setNoise:noiseLevel];
+	
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textTracker:)
+                                                 name:kNotifTextWasPlayed
+                                               object:player];
+	
+	[player playCW:soundSource];
+    
+	{
+		NSInvocationOperation* theOp = [[NSInvocationOperation alloc]
+										initWithTarget:self
+										selector:@selector(manageSessionTime:)
+										object:[NSNumber numberWithUnsignedInt:minutes]];
+		
+		[[MTOperationQueue operationQueue] addOperation:theOp];		
+	}
+}
+
+
 @end
 
 

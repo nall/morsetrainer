@@ -63,6 +63,8 @@ extern NSString* const kPrefNoiseLevel;
 extern NSString* const kPrefNumQRMStations;
 extern NSString* const kPrefWPMPhrase;
 
+extern NSString* const kPrefWhiteNoise;
+
 // Preference defaults
 #define kMaxQRMStations 3 // define instead of const int to be used in array decls
 

@@ -17,7 +17,7 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	
 	MTSourcePlayer* player = arg;
 
-	//NSLog(@"%@: completionCallback for offset %f", [player name], slice->mTimeStamp.mSampleTime);
+	// NSLog(@"%@: completionCallback for offset %f", [player name], slice->mTimeStamp.mSampleTime);
 	if(slice->mFlags & kScheduledAudioSliceFlag_BeganToRenderLate)
 	{
 		NSLog([NSString stringWithFormat:@"WARNING: Late render on %@", [player name]]);
