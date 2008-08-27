@@ -598,8 +598,8 @@
         NSString* value = [theCharacters objectAtIndex:i];
         
         NSDictionary* entry = [NSDictionary dictionaryWithObjectsAndKeys:
-                               value, @"prefLabel",
                                value, @"prefValue",
+                               value, @"prefLabel",
                                nil];
         [theArray addObject:entry];
     }

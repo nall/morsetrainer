@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="2273"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -29,10 +30,6 @@
 				<string key="NSClassName">NSFontManager</string>
 			</object>
 			<object class="NSUserDefaultsController" id="625554320">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>signalStrength</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="249908629">
@@ -70,7 +67,7 @@
 								</object>
 								<string key="NSToolbarItemLabel">Interference</string>
 								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
-								<string key="NSToolbarItemToolTip"/>
+								<string key="NSToolbarItemToolTip">Noise and QRM options</string>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
@@ -92,7 +89,7 @@
 								</object>
 								<string key="NSToolbarItemLabel">Update</string>
 								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
-								<string key="NSToolbarItemToolTip"/>
+								<string key="NSToolbarItemToolTip">Automatic update preferences</string>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
@@ -114,7 +111,7 @@
 								</object>
 								<string key="NSToolbarItemLabel">Content</string>
 								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
-								<string key="NSToolbarItemToolTip"/>
+								<string key="NSToolbarItemToolTip">Choose content from file or random generation</string>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
@@ -136,7 +133,7 @@
 								</object>
 								<string key="NSToolbarItemLabel">Source</string>
 								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
-								<string key="NSToolbarItemToolTip"/>
+								<string key="NSToolbarItemToolTip">Sending speed, tone, and signal strength</string>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
@@ -174,9 +171,10 @@
 				</object>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="704801848">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrameSize">{354, 356}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -6840,40 +6838,6 @@ AAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetKoch.value</string>
-						<reference key="source" ref="155444247"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="779529905">
-							<reference key="NSSource" ref="155444247"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetKoch.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetKoch.value</string>
-							<reference key="NSPreviousConnector" ref="470377900"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1800</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetKoch.title</string>
-						<reference key="source" ref="155444247"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="155444247"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetKoch.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetKoch.title</string>
-							<reference key="NSPreviousConnector" ref="779529905"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1801</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: charsetLetters</string>
 						<reference key="source" ref="794965402"/>
 						<reference key="destination" ref="1021"/>
@@ -6887,40 +6851,6 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">1876</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetLetters.value</string>
-						<reference key="source" ref="794965402"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="80151074">
-							<reference key="NSSource" ref="794965402"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetLetters.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetLetters.value</string>
-							<reference key="NSPreviousConnector" ref="391253477"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1878</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetLetters.title</string>
-						<reference key="source" ref="794965402"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="794965402"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetLetters.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetLetters.title</string>
-							<reference key="NSPreviousConnector" ref="80151074"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1881</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -6945,40 +6875,6 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">1953</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetNumbers.value</string>
-						<reference key="source" ref="695117218"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="711899487">
-							<reference key="NSSource" ref="695117218"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetNumbers.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetNumbers.value</string>
-							<reference key="NSPreviousConnector" ref="346450161"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1957</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetNumbers.title</string>
-						<reference key="source" ref="695117218"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="695117218"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetNumbers.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetNumbers.title</string>
-							<reference key="NSPreviousConnector" ref="711899487"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1959</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -7030,40 +6926,6 @@ AAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetPunctuation.value</string>
-						<reference key="source" ref="726820998"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="50393944">
-							<reference key="NSSource" ref="726820998"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetPunctuation.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetPunctuation.value</string>
-							<reference key="NSPreviousConnector" ref="1011604948"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1994</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetPunctuation.title</string>
-						<reference key="source" ref="726820998"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="726820998"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetPunctuation.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetPunctuation.title</string>
-							<reference key="NSPreviousConnector" ref="50393944"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1996</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: charsetProsigns</string>
 						<reference key="source" ref="482040953"/>
 						<reference key="destination" ref="1021"/>
@@ -7077,40 +6939,6 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">2028</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetProsigns.value</string>
-						<reference key="source" ref="482040953"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="528855527">
-							<reference key="NSSource" ref="482040953"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetProsigns.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetProsigns.value</string>
-							<reference key="NSPreviousConnector" ref="827252761"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2031</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetProsigns.title</string>
-						<reference key="source" ref="482040953"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="482040953"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetProsigns.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetProsigns.title</string>
-							<reference key="NSPreviousConnector" ref="528855527"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2033</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -7378,40 +7206,6 @@ AAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetLetters.value</string>
-						<reference key="source" ref="515718930"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="975313131">
-							<reference key="NSSource" ref="515718930"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetLetters.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetLetters.value</string>
-							<reference key="NSPreviousConnector" ref="61899484"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2715</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetLetters.title</string>
-						<reference key="source" ref="515718930"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="515718930"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetLetters.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetLetters.title</string>
-							<reference key="NSPreviousConnector" ref="975313131"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2717</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: charsetNumbers</string>
 						<reference key="source" ref="273597022"/>
 						<reference key="destination" ref="1021"/>
@@ -7425,40 +7219,6 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">2727</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetNumbers.value</string>
-						<reference key="source" ref="273597022"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="301916864">
-							<reference key="NSSource" ref="273597022"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetNumbers.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetNumbers.value</string>
-							<reference key="NSPreviousConnector" ref="17157827"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2730</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetNumbers.title</string>
-						<reference key="source" ref="273597022"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="273597022"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetNumbers.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetNumbers.title</string>
-							<reference key="NSPreviousConnector" ref="301916864"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2732</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -7478,40 +7238,6 @@ AAA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetProsigns.value</string>
-						<reference key="source" ref="921931117"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="569937190">
-							<reference key="NSSource" ref="921931117"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetProsigns.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetProsigns.value</string>
-							<reference key="NSPreviousConnector" ref="355996051"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2745</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetProsigns.title</string>
-						<reference key="source" ref="921931117"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="921931117"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetProsigns.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetProsigns.title</string>
-							<reference key="NSPreviousConnector" ref="569937190"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2747</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">content: charsetPunctuation</string>
 						<reference key="source" ref="260891359"/>
 						<reference key="destination" ref="1021"/>
@@ -7525,40 +7251,6 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">2754</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentObjects: charsetPunctuation.value</string>
-						<reference key="source" ref="260891359"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector" id="643740712">
-							<reference key="NSSource" ref="260891359"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentObjects: charsetPunctuation.value</string>
-							<string key="NSBinding">contentObjects</string>
-							<string key="NSKeyPath">charsetPunctuation.value</string>
-							<reference key="NSPreviousConnector" ref="1037052719"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2757</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentValues: charsetPunctuation.title</string>
-						<reference key="source" ref="260891359"/>
-						<reference key="destination" ref="1021"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="260891359"/>
-							<reference key="NSDestination" ref="1021"/>
-							<string key="NSLabel">contentValues: charsetPunctuation.title</string>
-							<string key="NSBinding">contentValues</string>
-							<string key="NSKeyPath">charsetPunctuation.title</string>
-							<reference key="NSPreviousConnector" ref="643740712"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2759</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -7913,7 +7605,7 @@ AAA</bytes>
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<integer value="0" id="6"/>
+									<reference ref="8"/>
 									<integer value="1"/>
 								</object>
 							</object>
@@ -8059,8 +7751,8 @@ AAA</bytes>
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="6"/>
-									<reference ref="6"/>
+									<reference ref="8"/>
+									<reference ref="8"/>
 								</object>
 							</object>
 							<reference key="NSPreviousConnector" ref="134419792"/>
@@ -8127,6 +7819,312 @@ AAA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">3126</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetNumbers.prefValue</string>
+						<reference key="source" ref="695117218"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="953493564">
+							<reference key="NSSource" ref="695117218"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetNumbers.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetNumbers.prefValue</string>
+							<reference key="NSPreviousConnector" ref="346450161"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3130</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetNumbers.prefLabel</string>
+						<reference key="source" ref="695117218"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="695117218"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetNumbers.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetNumbers.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="953493564"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3132</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetKoch.prefValue</string>
+						<reference key="source" ref="155444247"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="2136">
+							<reference key="NSSource" ref="155444247"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetKoch.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetKoch.prefValue</string>
+							<reference key="NSPreviousConnector" ref="470377900"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3133</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetKoch.prefLabel</string>
+						<reference key="source" ref="155444247"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="155444247"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetKoch.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetKoch.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="2136"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3135</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetPunctuation.prefValue</string>
+						<reference key="source" ref="726820998"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="2206">
+							<reference key="NSSource" ref="726820998"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetPunctuation.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetPunctuation.prefValue</string>
+							<reference key="NSPreviousConnector" ref="1011604948"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3136</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetPunctuation.prefLabel</string>
+						<reference key="source" ref="726820998"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="726820998"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetPunctuation.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetPunctuation.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="2206"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3138</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetProsigns.prefValue</string>
+						<reference key="source" ref="482040953"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="446378931">
+							<reference key="NSSource" ref="482040953"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetProsigns.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetProsigns.prefValue</string>
+							<reference key="NSPreviousConnector" ref="827252761"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3139</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetProsigns.prefLabel</string>
+						<reference key="source" ref="482040953"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="482040953"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetProsigns.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetProsigns.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="446378931"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3141</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetLetters.prefValue</string>
+						<reference key="source" ref="794965402"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="441342029">
+							<reference key="NSSource" ref="794965402"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetLetters.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetLetters.prefValue</string>
+							<reference key="NSPreviousConnector" ref="391253477"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3147</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetLetters.prefLabel</string>
+						<reference key="source" ref="794965402"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="794965402"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetLetters.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetLetters.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="441342029"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3150</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetLetters.prefValue</string>
+						<reference key="source" ref="515718930"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="596010769">
+							<reference key="NSSource" ref="515718930"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetLetters.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetLetters.prefValue</string>
+							<reference key="NSPreviousConnector" ref="61899484"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3151</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetLetters.prefLabel</string>
+						<reference key="source" ref="515718930"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="515718930"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetLetters.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetLetters.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="596010769"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3153</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetNumbers.prefValue</string>
+						<reference key="source" ref="273597022"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="573980545">
+							<reference key="NSSource" ref="273597022"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetNumbers.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetNumbers.prefValue</string>
+							<reference key="NSPreviousConnector" ref="17157827"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3154</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetNumbers.prefLabel</string>
+						<reference key="source" ref="273597022"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="273597022"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetNumbers.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetNumbers.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="573980545"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3156</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetProsigns.prefValue</string>
+						<reference key="source" ref="921931117"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="2184">
+							<reference key="NSSource" ref="921931117"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetProsigns.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetProsigns.prefValue</string>
+							<reference key="NSPreviousConnector" ref="355996051"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3157</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetProsigns.prefLabel</string>
+						<reference key="source" ref="921931117"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="921931117"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetProsigns.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetProsigns.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="2184"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3159</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentObjects: charsetPunctuation.prefValue</string>
+						<reference key="source" ref="260891359"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector" id="998436522">
+							<reference key="NSSource" ref="260891359"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentObjects: charsetPunctuation.prefValue</string>
+							<string key="NSBinding">contentObjects</string>
+							<string key="NSKeyPath">charsetPunctuation.prefValue</string>
+							<reference key="NSPreviousConnector" ref="1037052719"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3160</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: charsetPunctuation.prefLabel</string>
+						<reference key="source" ref="260891359"/>
+						<reference key="destination" ref="1021"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="260891359"/>
+							<reference key="NSDestination" ref="1021"/>
+							<string key="NSLabel">contentValues: charsetPunctuation.prefLabel</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">charsetPunctuation.prefLabel</string>
+							<reference key="NSPreviousConnector" ref="998436522"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">3162</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -10385,17 +10383,22 @@ AAA</bytes>
 					<string>2545.IBEditorWindowLastContentRect</string>
 					<string>2545.IBPluginDependency</string>
 					<string>2546.IBPluginDependency</string>
+					<string>2547.IBAttributePlaceholdersKey</string>
 					<string>2547.IBPluginDependency</string>
 					<string>2548.IBPluginDependency</string>
 					<string>2549.IBPluginDependency</string>
 					<string>2550.IBPluginDependency</string>
+					<string>2551.IBAttributePlaceholdersKey</string>
 					<string>2551.IBPluginDependency</string>
+					<string>2552.IBAttributePlaceholdersKey</string>
 					<string>2552.IBPluginDependency</string>
 					<string>2553.IBPluginDependency</string>
 					<string>2554.IBPluginDependency</string>
 					<string>2555.IBAttributePlaceholdersKey</string>
 					<string>2555.IBPluginDependency</string>
+					<string>2556.IBAttributePlaceholdersKey</string>
 					<string>2556.IBPluginDependency</string>
+					<string>2557.IBAttributePlaceholdersKey</string>
 					<string>2557.IBPluginDependency</string>
 					<string>2558.IBPluginDependency</string>
 					<string>2559.IBPluginDependency</string>
@@ -10476,15 +10479,18 @@ AAA</bytes>
 					<string>2666.IBPluginDependency</string>
 					<string>2667.IBPluginDependency</string>
 					<string>2668.IBPluginDependency</string>
+					<string>2844.IBAttributePlaceholdersKey</string>
 					<string>2920.IBPluginDependency</string>
 					<string>3089.IBPluginDependency</string>
 					<string>785.IBPluginDependency</string>
 					<string>795.IBPluginDependency</string>
 					<string>796.IBPluginDependency</string>
 					<string>797.IBPluginDependency</string>
+					<string>798.IBAttributePlaceholdersKey</string>
 					<string>798.IBPluginDependency</string>
 					<string>799.IBPluginDependency</string>
 					<string>800.IBPluginDependency</string>
+					<string>801.IBAttributePlaceholdersKey</string>
 					<string>801.IBPluginDependency</string>
 					<string>802.IBPluginDependency</string>
 					<string>803.IBPluginDependency</string>
@@ -10499,8 +10505,10 @@ AAA</bytes>
 					<string>822.IBPluginDependency</string>
 					<string>823.IBPluginDependency</string>
 					<string>824.IBPluginDependency</string>
+					<string>825.IBAttributePlaceholdersKey</string>
 					<string>825.IBPluginDependency</string>
 					<string>826.IBPluginDependency</string>
+					<string>827.IBAttributePlaceholdersKey</string>
 					<string>827.IBPluginDependency</string>
 					<string>828.IBPluginDependency</string>
 					<string>829.IBPluginDependency</string>
@@ -10623,14 +10631,6 @@ AAA</bytes>
 					<string>{{63, 321}, {473, 535}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
@@ -10642,6 +10642,54 @@ AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="931044760"/>
+							<string key="toolTip">Clear all characters in the current set</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="595059536"/>
+							<string key="toolTip">Select all characters in the current set</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="776102301"/>
+							<string key="toolTip">The maximum number of characters per group is 10</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="272472529"/>
+							<string key="toolTip">Choose the length of the random run. A value of 0 will run forever.</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="543515260"/>
+							<string key="toolTip">The minimum number of characters per group is 1</string>
+						</object>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10722,6 +10770,39 @@ AAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="855806463"/>
+							<string key="toolTip">Selects the number of stations to overlay on top of the sent signal</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="342856220"/>
+							<string key="toolTip">Supported speeds are 5-100 wpm</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="379201330"/>
+							<string key="toolTip">Supported speeds are 5-100 wpm</string>
+						</object>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10736,17 +10817,24 @@ AAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="727035159"/>
+							<string key="toolTip">Selects the noise level</string>
+						</object>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="728921306"/>
+							<string key="toolTip">Selects the amplitude of the sent signal</string>
+						</object>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10785,7 +10873,7 @@ AAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">3126</int>
+			<int key="maxID">3162</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
