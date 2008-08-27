@@ -17,6 +17,10 @@
     IBOutlet NSView* noiseQRMView;
     IBOutlet NSView* updateView;
     
+    // Need these as part of selectedObject bug
+    IBOutlet NSMatrix* signalStrengthMatrix;
+    IBOutlet NSMatrix* noiseMatrix;
+    
     // Need these outlets for validation routines
 	IBOutlet NSTextField* actualWPMField;
 	IBOutlet NSTextField* effectiveWPMField;

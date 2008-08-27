@@ -81,8 +81,8 @@
 		[defaults setObject:[NSNumber numberWithInt:3] forKey:kPrefMinutesOfCopy];
 		
 		// Noise / QRM
-		[defaults setObject:@"S9" forKey:kPrefSignalStrength];  // S9
-		[defaults setObject:@"0.0" forKey:kPrefNoiseLevel];      // Off
+		[defaults setObject:[NSNumber numberWithDouble:1.0] forKey:kPrefSignalStrength];  // S9
+		[defaults setObject:[NSNumber numberWithDouble:0.0] forKey:kPrefNoiseLevel];      // Off
 		[defaults setObject:[NSNumber numberWithInt:0] forKey:kPrefNumQRMStations];
         
 		// Updates
@@ -105,7 +105,7 @@
                        nil];
         
         noiseLevels = [self makeBindingArrayWithValues:noiseLevelValues withLabels:noiseLevelLabels];
-        		
+        
 		NSArray* signalStrengthValues = [NSArray arrayWithObjects:
                                          [NSNumber numberWithDouble:0.10], // S1
                                          [NSNumber numberWithDouble:0.50], // S5
@@ -151,6 +151,7 @@
 	}
 
     [self initPrefPane];
+    
 	return self;
 }
 
@@ -529,7 +530,7 @@
     [self setTextFileEnabled:fileExists];
     
     [textFileLabel setStringValue:fileExists ? [textURL lastPathComponent] :
-     @"[None Selected]"];
+        @"[None Selected]"];
     
     if(![self textFileEnabled])
     {
@@ -542,6 +543,32 @@
     
     
     [self showToolbarPane:[[[prefWindow toolbar] items] objectAtIndex:0]];
+    
+    // WORKAROUND for selectedObject bug in NSMatrix
+    {
+        const double noiseLevel = [defaults doubleForKey:kPrefNoiseLevel];
+        for(NSUInteger i = 0; i < [noiseLevels count]; ++i)
+        {
+            const double tmpLevel = [[[noiseLevels objectAtIndex:i] objectForKey:@"prefValue"] doubleValue];
+            if(noiseLevel == tmpLevel)
+            {
+                [noiseMatrix selectCellWithTag:i];
+            }
+        }
+
+        const double strengthLevel = [defaults doubleForKey:kPrefSignalStrength];
+        for(NSUInteger i = 0; i < [signalStrengths count]; ++i)
+        {
+            const double tmpLevel = [[[signalStrengths objectAtIndex:i] objectForKey:@"prefValue"] doubleValue];
+            NSLog(@"%f / %f", strengthLevel, tmpLevel);
+            if(strengthLevel == tmpLevel)
+            {
+                NSLog(@"select %d", i);
+                [signalStrengthMatrix selectCellWithTag:i];
+            }
+        }        
+    }
+    
 }
 
 -(NSArray*)makeBindingArrayWithValues:(NSArray*)theValues withLabels:(NSArray*)theLabels
@@ -553,7 +580,7 @@
                             [theValues objectAtIndex:i],
                             nil];
         
-        NSArray* keys = [NSArray arrayWithObjects:@"title", @"value", nil];
+        NSArray* keys = [NSArray arrayWithObjects:@"prefLabel", @"prefValue", nil];
         
         NSDictionary* dict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
         
@@ -571,8 +598,8 @@
         NSString* value = [theCharacters objectAtIndex:i];
         
         NSDictionary* entry = [NSDictionary dictionaryWithObjectsAndKeys:
-                               value, @"value",
-                               value, @"title",
+                               value, @"prefLabel",
+                               value, @"prefValue",
                                nil];
         [theArray addObject:entry];
     }

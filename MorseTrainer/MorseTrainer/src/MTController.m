@@ -12,7 +12,6 @@
 #import "MTRandomCWSource.h"
 #import "MTTimeUtils.h"
 #import "MTPatternMap.h"
-#import "MTSLevels.h"
 #include "MTDefines.h"
 
 @interface MTController (Private)
@@ -171,9 +170,8 @@
 	
 	NSUInteger numQRMStations = [defaults integerForKey:kPrefNumQRMStations];
 	
-    const double noiseLevel = [MTSLevels getSLevelValue:[defaults stringForKey:kPrefNoiseLevel]];
-    const double signalStrength = [MTSLevels getSLevelValue:[defaults stringForKey:kPrefSignalStrength]];
-	
+    const double noiseLevel = [defaults doubleForKey:kPrefNoiseLevel];
+    const double signalStrength = [defaults doubleForKey:kPrefSignalStrength];
     
     // Create correct sound source
     id<MTSoundSource> soundSource = nil;

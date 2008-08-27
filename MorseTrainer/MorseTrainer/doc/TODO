@@ -9,6 +9,7 @@
 * UI Items
     * Artwork
     * Play/Pause/Speak buttons
+    * Text field shouldn't be editable
     
 * Verify all defaults
 
@@ -17,6 +18,10 @@
 * ToolTips
 
 * Code Comments!!
+
+* DMG packaging
+
+* Sparkle server side
 
 * Feedback
     * Interference icon should pop more (Eric)
