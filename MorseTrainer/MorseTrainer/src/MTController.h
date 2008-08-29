@@ -15,7 +15,12 @@
 {
 	IBOutlet NSTextField* textField;
 	IBOutlet NSTextField* statusBar;
+    
+    IBOutlet NSButton* stopButton;
+    IBOutlet NSButton* playPauseButton;
+    IBOutlet NSButton* talkButton;
 	
+    NSString* aboutText;
 	MTPlayer* player;
     MTPrefController* prefController;
 }

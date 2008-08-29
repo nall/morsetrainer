@@ -9,6 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="2273"/>
+			<integer value="2545"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -109,13 +110,13 @@
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
 									<characters key="NS.bytes">EB6F1DD1-DABC-41D3-A9C9-CD58DC463FB3</characters>
 								</object>
-								<string key="NSToolbarItemLabel">Content</string>
+								<string key="NSToolbarItemLabel">Source Content</string>
 								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
 								<string key="NSToolbarItemToolTip">Choose content from file or random generation</string>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">GenericFontIcon</string>
+									<string key="NSResourceName">ABC</string>
 								</object>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
@@ -131,13 +132,13 @@
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
 									<characters key="NS.bytes">EC8C89C0-0E99-4958-A6AD-F4CF51160AAD</characters>
 								</object>
-								<string key="NSToolbarItemLabel">Source</string>
+								<string key="NSToolbarItemLabel">Sending Station</string>
 								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
 								<string key="NSToolbarItemToolTip">Sending speed, tone, and signal strength</string>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">ToolbarSource</string>
+									<string key="NSResourceName">General</string>
 								</object>
 								<nil key="NSToolbarItemTarget"/>
 								<nil key="NSToolbarItemAction"/>
@@ -4153,7 +4154,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="582368135">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">260</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4185,7 +4186,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<object class="NSButtonCell" id="978397870">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">0</int>
-								<string key="NSContents">Generate Random Groups</string>
+								<string key="NSContents">Generate random groups</string>
 								<reference key="NSSupport" ref="512817312"/>
 								<reference key="NSControlView" ref="391402064"/>
 								<int key="NSButtonFlags">1211912703</int>
@@ -6524,6 +6525,7 @@ AAA</bytes>
 					</object>
 				</object>
 				<string key="NSFrameSize">{473, 535}</string>
+				<reference key="NSSuperview"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSArrayController" id="475441129">

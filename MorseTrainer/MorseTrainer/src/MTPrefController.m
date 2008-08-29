@@ -70,7 +70,7 @@
         sourceValues = [self makeBindingArrayWithValues:[NSArray arrayWithObjects:
                                                    [NSNumber numberWithUnsignedInt:kSourceTypeURL],
                                                    [NSNumber numberWithUnsignedInt:kSourceTypeCustom]]
-                                             withLabels:[NSArray arrayWithObjects:@"Play from text file named:",@"Generate Random Groups",nil]];
+                                             withLabels:[NSArray arrayWithObjects:@"Play from text file named:",@"Generate random groups",nil]];
         
 		// Sending 
 		[defaults setObject:[NSNumber numberWithInt:20] forKey:kPrefActualWPM];

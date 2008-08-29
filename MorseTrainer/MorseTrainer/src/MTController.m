@@ -29,9 +29,43 @@
 	{		
         prefController = [[MTPrefController alloc] init];
 		player = [[MTPlayer alloc] init];
+        
+        aboutText = [NSString stringWithString:@"\
+AD5RX Morse Code Trainer\n\
+Copyright © 2008 Jon Nall\n\
+All rights reserved.\n\
+\n\n\
+LICENSE\n\
+This program is free software: you can redistribute it and/or modify\n\
+it under the terms of the GNU General Public License as published by\n\
+the Free Software Foundation, either version 3 of the License, or\n\
+(at your option) any later version.\n\
+\n\
+This program is distributed in the hope that it will be useful,\n\
+but WITHOUT ANY WARRANTY; without even the implied warranty of\n\
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\
+GNU General Public License for more details.\n\
+\n\
+You should have received a copy of the GNU General Public License\n\
+along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\
+\n\
+Contains source code from Noise application. The below is the required\n\
+copyright notice. See NoiseLicense.pdf in this distribution for the\n\
+details of that license.\n\
+\n\
+http://www.blackholemedia.com/noise\n\
+Copyright © 2001, Blackhole Media\n\
+All rights reserved.\n\
+"];
 	}
 	
 	return self;
+}
+
+-(void)awakeFromNib
+{
+    [stopButton setEnabled:NO];
+    [talkButton setEnabled:NO];
 }
 
 -(IBAction)showPreferencePanel:(id)sender
@@ -45,6 +79,8 @@
     if([player stopped])
     {
         [self startSending];
+        [stopButton setEnabled:YES];
+        [talkButton setEnabled:NO];
         newLabel = @"Pause";
     }
     else if([player paused])
@@ -58,13 +94,15 @@
         newLabel = @"Play";
     }
     
-    NSButton* button = sender;
-    [button setTitle:newLabel];
+    [playPauseButton setTitle:newLabel];
 }
 
 -(IBAction)stopSending:(id)sender
 {
 	[player stop];
+    [stopButton setEnabled:NO];
+    [talkButton setEnabled:YES];
+    [playPauseButton setTitle:@"Play"];
 }
 
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender willSpeakWord:(NSRange)wordToSpeak ofString:(NSString *)text

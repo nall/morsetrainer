@@ -205,7 +205,7 @@ static const NSUInteger baseQRMElement = 2;
     isPlaying = NO;
     isPaused = YES;
     
-    AUGraphStop(graph);
+    AUGraphStop(graph);    
 }
 
 @end
