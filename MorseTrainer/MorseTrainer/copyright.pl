@@ -13,7 +13,9 @@ open(FILE, "<$inpath") or die("Cannot open $inpath for reading");
 open(OUT, ">$outpath") or die("Cannot open tmp file for writing");
 
 print OUT <<EOH;
+//
 // $filename
+//
 // AD5RX Morse Trainer
 // Copyright (c) 2008 Jon Nall
 // All rights reserved.

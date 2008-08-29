@@ -341,7 +341,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A44667730E687E0100AB0BDC</string>
+										<string>A44667760E68874700AB0BDC</string>
 										<key>history</key>
 										<array>
 											<string>A4A6992B0E3EE53600B7E22D</string>
@@ -667,10 +667,10 @@
 	<array>
 		<string>A44666F80E68724F00AB0BDC</string>
 		<string>A44666F90E68724F00AB0BDC</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>A4A699500E3EE53600B7E22D</string>
 		<string>/Users/nall/t/svn/MorseTrainer/MorseTrainer/MorseTrainer.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>136 116 1340 728 0 0 1440 878 </string>
@@ -1009,7 +1009,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1376, 594}}</string>
 								<key>RubberWindowFrame</key>
-								<string>138 98 1376 635 0 0 1440 878 </string>
+								<string>90 120 1376 635 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
@@ -1038,11 +1038,11 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>138 98 1376 635 0 0 1440 878 </string>
+			<string>90 120 1376 635 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
