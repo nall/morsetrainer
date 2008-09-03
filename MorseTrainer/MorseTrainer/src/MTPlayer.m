@@ -126,6 +126,7 @@ static const NSUInteger baseQRMElement = 2;
 	if(noiseLevel > 0.0)
 	{
 		[noisePlayer setEnabled:YES];
+        NSLog(@"enabled");
 	}
 	else
 	{

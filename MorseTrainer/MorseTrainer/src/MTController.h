@@ -36,7 +36,13 @@
     IBOutlet NSButton* stopButton;
     IBOutlet NSButton* playPauseButton;
     IBOutlet NSButton* talkButton;
-	
+    
+    NSImage* playImage;
+    NSImage* pauseImage;
+    
+	NSSpeechSynthesizer* speechSynth;
+    BOOL keepTalking;
+    
     NSString* aboutText;
 	MTPlayer* player;
     MTPrefController* prefController;

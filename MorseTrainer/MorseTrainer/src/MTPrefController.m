@@ -578,10 +578,8 @@
         for(NSUInteger i = 0; i < [signalStrengths count]; ++i)
         {
             const double tmpLevel = [[[signalStrengths objectAtIndex:i] objectForKey:@"prefValue"] doubleValue];
-            NSLog(@"%f / %f", strengthLevel, tmpLevel);
             if(strengthLevel == tmpLevel)
             {
-                NSLog(@"select %d", i);
                 [signalStrengthMatrix selectCellWithTag:i];
             }
         }        

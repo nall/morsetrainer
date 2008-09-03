@@ -46,6 +46,10 @@
 	{		
         prefController = [[MTPrefController alloc] init];
 		player = [[MTPlayer alloc] init];
+        speechSynth = [[NSSpeechSynthesizer alloc] initWithVoice:[NSSpeechSynthesizer defaultVoice]];
+        [speechSynth setRate:100];
+        [speechSynth setDelegate:self];
+        keepTalking = NO;
         
         aboutText = [NSString stringWithString:@"\
 AD5RX Morse Code Trainer\n\
@@ -83,6 +87,9 @@ All rights reserved.\n\
 {
     [stopButton setEnabled:NO];
     [talkButton setEnabled:NO];
+    
+    playImage = [playPauseButton image];
+    pauseImage = [playPauseButton alternateImage];
 }
 
 -(IBAction)showPreferencePanel:(id)sender
@@ -92,65 +99,87 @@ All rights reserved.\n\
 
 -(IBAction)playOrPause:(id)sender
 {
-    NSString* newLabel = nil;
+    BOOL showPlay = NO;
+    NSString* tooltip = @"BUG: Report Me!!";
     if([player stopped])
     {
         [self startSending];
         [stopButton setEnabled:YES];
         [talkButton setEnabled:NO];
-        newLabel = @"Pause";
+        showPlay = NO;
+        tooltip = @"Pause morse code";
     }
     else if([player paused])
     {
         [player play];
-        newLabel = @"Pause";
+        showPlay = NO;
+        tooltip = @"Pause morse code";
     }
     else
     {
         [player pause];
-        newLabel = @"Play";
+        showPlay = YES;
+        tooltip = @"Resume morse code";
     }
     
-    [playPauseButton setTitle:newLabel];
+    [playPauseButton setImage:(showPlay ? playImage : pauseImage)];
+    [playPauseButton setToolTip:tooltip];
+    [stopButton setToolTip:@"Stop playback"];
 }
 
 -(IBAction)stopSending:(id)sender
 {
+    // Kill talking and sound player, whichever is active
+    keepTalking = NO;
 	[player stop];
+
     [stopButton setEnabled:NO];
     [talkButton setEnabled:YES];
-    [playPauseButton setTitle:@"Play"];
+
+    // Force play
+    [playPauseButton setImage:playImage];
 }
 
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender willSpeakWord:(NSRange)wordToSpeak ofString:(NSString *)text
 {
-    NSLog(@"reading '%@'", [text substringWithRange:wordToSpeak]);
+    if(keepTalking == NO)
+    {
+        [sender stopSpeaking];
+    }
+}
+
+- (void)speechSynthesizer:(NSSpeechSynthesizer *)sender didFinishSpeaking:(BOOL)success
+{
+    [stopButton setEnabled:NO];
+    [playPauseButton setEnabled:YES];
+}
+
+
+-(void)speechThread:(NSString*)theText
+{
+    /*
+     NSMutableString* spacedOut = [NSMutableString stringWithCapacity:[text length] * 2];
+     for(NSUInteger i = 0; i < [text length]; ++i)
+     {
+     [spacedOut appendString:[text substringWithRange:NSMakeRange(i, 1)]];
+     [spacedOut appendString:@". "];
+     }
+     */
+    
+    keepTalking = YES;
+    [stopButton setToolTip:@"Stop speaking"];
+    [stopButton setEnabled:YES];
+    [speechSynth startSpeakingString:theText];    
 }
 
 -(IBAction)speakBuffer:(id)sender
 {
-    NSString* text = [textField stringValue];
-
-    /*
-    NSMutableString* spacedOut = [NSMutableString stringWithCapacity:[text length] * 2];
-    for(NSUInteger i = 0; i < [text length]; ++i)
-    {
-        [spacedOut appendString:[text substringWithRange:NSMakeRange(i, 1)]];
-        [spacedOut appendString:@". "];
-    }
-    */
+    NSInvocationOperation* theOp = [[NSInvocationOperation alloc]
+                                    initWithTarget:self
+                                    selector:@selector(speechThread:)
+                                    object:[textField stringValue]];
     
-    NSSpeechSynthesizer* synth = [[NSSpeechSynthesizer alloc] initWithVoice:[NSSpeechSynthesizer defaultVoice]];
-    [synth setRate:100];
-    [synth setDelegate:self];
-    
-    
-    [synth startSpeakingString:text];
-    
-    while([synth isSpeaking])
-    {
-        [NSThread sleepForTimeInterval:0.25];
-    }
+    [[MTOperationQueue operationQueue] addOperation:theOp];		    
 }
 
 @end
@@ -195,6 +224,12 @@ All rights reserved.\n\
 		{
 			break;
 		}
+        else if([player paused])
+        {
+            // Keep looping, but keep i constant.
+            // Decrement to offset increment in for loop
+            --i;
+        }
         
 		[statusBar setStringValue:[NSString stringWithFormat:@"%@%@",
                                    [NSString stringWithFormat:@"%02d:%02d", elapsedMinutes, elapsedSeconds], totalString]];
@@ -267,7 +302,7 @@ All rights reserved.\n\
             }
             default:
             {
-                NSLog(@"Internal error: Unexpected source type: %d", type);                
+                NSLog(@"Internal ERROR: Unexpected source type: %d", type);                
             }
         }
     }

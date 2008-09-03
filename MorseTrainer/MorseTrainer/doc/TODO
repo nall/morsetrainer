@@ -3,13 +3,11 @@
     * Support full URLs
     * Support for user defined characters
 
-* Add speech synth
-    * Check prosign phenomes
-    
-* UI Items
-    * Artwork
-    * Play/Pause/Speak buttons
-    
+    * Add speech synth
+        * Check prosign phenomes
+
+* App Icon
+
 * Verify all defaults
 
 * Verify all validations

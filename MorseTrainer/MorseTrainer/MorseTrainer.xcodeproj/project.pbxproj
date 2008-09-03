@@ -25,6 +25,10 @@
 		A44DCD280E5D070900E54879 /* ToolbarItemBrowser.png in Resources */ = {isa = PBXBuildFile; fileRef = A44DCD270E5D070900E54879 /* ToolbarItemBrowser.png */; };
 		A4546C780E4CF8CB00237295 /* Architecture.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A4546C770E4CF8CB00237295 /* Architecture.rtf */; };
 		A4546CC00E4D0E0100237295 /* MTRandomCWSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */; };
+		A45A78810E6E46AE00B8B77F /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A45A78800E6E46AE00B8B77F /* PlayButton.png */; };
+		A45A78860E6E47ED00B8B77F /* StopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A45A78850E6E47ED00B8B77F /* StopButton.png */; };
+		A45A78890E6E4A2F00B8B77F /* PauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A45A78880E6E4A2F00B8B77F /* PauseButton.png */; };
+		A45A78AB0E6E506400B8B77F /* TalkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A45A78AA0E6E506400B8B77F /* TalkButton.png */; };
 		A46DECBC0E41741000D8C13C /* MTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECBB0E41741000D8C13C /* MTPlayer.m */; };
 		A46DECD00E417B1700D8C13C /* MTNoiseSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DECCF0E417B1700D8C13C /* MTNoiseSource.m */; };
 		A46DED880E41829F00D8C13C /* MTFifoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A46DED870E41829F00D8C13C /* MTFifoSource.m */; };
@@ -76,6 +80,10 @@
 		A4546C770E4CF8CB00237295 /* Architecture.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Architecture.rtf; sourceTree = "<group>"; };
 		A4546CBE0E4D0E0100237295 /* MTRandomCWSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRandomCWSource.h; sourceTree = "<group>"; };
 		A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRandomCWSource.m; sourceTree = "<group>"; };
+		A45A78800E6E46AE00B8B77F /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
+		A45A78850E6E47ED00B8B77F /* StopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StopButton.png; sourceTree = "<group>"; };
+		A45A78880E6E4A2F00B8B77F /* PauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButton.png; sourceTree = "<group>"; };
+		A45A78AA0E6E506400B8B77F /* TalkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TalkButton.png; sourceTree = "<group>"; };
 		A46DECBA0E41741000D8C13C /* MTPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlayer.h; sourceTree = "<group>"; };
 		A46DECBB0E41741000D8C13C /* MTPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlayer.m; sourceTree = "<group>"; };
 		A46DECCD0E417A3F00D8C13C /* MTSoundSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSoundSource.h; sourceTree = "<group>"; };
@@ -198,6 +206,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A45A78AA0E6E506400B8B77F /* TalkButton.png */,
+				A45A78850E6E47ED00B8B77F /* StopButton.png */,
+				A45A78880E6E4A2F00B8B77F /* PauseButton.png */,
+				A45A78800E6E46AE00B8B77F /* PlayButton.png */,
 				A4A8F4D10E65BDE800C74B6D /* ABC.png */,
 				A4A8F4CB0E65B96000C74B6D /* General.icns */,
 				A4278AB40E5E428D00F81265 /* ToolbarSource.png */,
@@ -370,6 +382,10 @@
 				A4278AB50E5E428D00F81265 /* ToolbarSource.png in Resources */,
 				A4A8F4CC0E65B96000C74B6D /* General.icns in Resources */,
 				A4A8F4D20E65BDE800C74B6D /* ABC.png in Resources */,
+				A45A78810E6E46AE00B8B77F /* PlayButton.png in Resources */,
+				A45A78860E6E47ED00B8B77F /* StopButton.png in Resources */,
+				A45A78890E6E4A2F00B8B77F /* PauseButton.png in Resources */,
+				A45A78AB0E6E506400B8B77F /* TalkButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
