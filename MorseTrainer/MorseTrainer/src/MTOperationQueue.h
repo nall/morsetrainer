@@ -26,6 +26,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+// Provides a singleton NSOperationQueue for the application
 
 @interface MTOperationQueue : NSObject
 {

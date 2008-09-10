@@ -10,6 +10,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1859"/>
 			<integer value="29"/>
+			<integer value="1837"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -555,23 +556,23 @@
 				<string key="NSClassName">SUUpdater</string>
 			</object>
 			<object class="NSWindowTemplate" id="1012905196">
-				<int key="NSWindowStyleMask">27</int>
+				<int key="NSWindowStyleMask">19</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{586, 265}, {430, 411}}</string>
+				<string key="NSWindowRect">{{586, 216}, {430, 460}}</string>
 				<int key="NSWTFlags">-1543503872</int>
 				<string key="NSWindowTitle">About AD5RX Morse Trainer</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="523647242">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSTextField" id="883871916">
 							<reference key="NSNextResponder" ref="523647242"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{17, 20}, {396, 371}}</string>
+							<string key="NSFrame">{{17, 69}, {396, 371}}</string>
 							<reference key="NSSuperview" ref="523647242"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="842429630">
@@ -585,7 +586,8 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrameSize">{430, 411}</string>
+					<string key="NSFrameSize">{430, 460}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -1393,9 +1395,9 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{152, 293}, {430, 411}}</string>
+					<string>{{152, 244}, {430, 460}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{152, 293}, {430, 411}}</string>
+					<string>{{152, 244}, {430, 460}}</string>
 					<integer value="0"/>
 					<string>{3.40282e+38, 3.40282e+38}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

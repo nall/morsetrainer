@@ -78,6 +78,10 @@ details of that license.\n\
 http://www.blackholemedia.com/noise\n\
 Copyright © 2001, Blackhole Media\n\
 All rights reserved.\n\
+\n\
+Uses the Sparkle Framework Copyright © 2006 Andy Matuschak\n\
+See SparkleLicense.txt in the distribution for the details\n\
+of that license.\n\
 "];
 	}
 	
@@ -86,6 +90,7 @@ All rights reserved.\n\
 
 -(void)awakeFromNib
 {
+    // Window has loaded. We can now access objects in the NIB
     [stopButton setEnabled:NO];
     [talkButton setEnabled:NO];
     
@@ -175,6 +180,10 @@ All rights reserved.\n\
 
 -(IBAction)speakBuffer:(id)sender
 {
+    // Don't speak in this thread to avoid blocking the UI.
+    // Just setup a simple operation to do it for us.
+    // Real work happens in MTController::speechThread
+    
     NSInvocationOperation* theOp = [[NSInvocationOperation alloc]
                                     initWithTarget:self
                                     selector:@selector(speechThread:)

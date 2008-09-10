@@ -21,7 +21,12 @@
 // You should have received a copy of the GNU General Public License
 // along with AD5RX Morse Trainer.  If not, see <http://www.gnu.org/licenses/>.
 
-
+// Contains source code from Noise application. The below is the required
+// copyright notice. See NoiseLicense.pdf in this distribution for the
+// details of that license.
+// http://www.blackholemedia.com/noise
+// Copyright © 2001, Blackhole Media
+// All rights reserved.
 
 
 #import "MTNoiseSource.h"

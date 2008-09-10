@@ -31,29 +31,48 @@
 
 @interface MTController : NSWindowController
 {
+    // The textfield where displayed characters show up
 	IBOutlet NSTextField* textField;
+    
+    // Status bar used to display elapsed time
 	IBOutlet NSTextField* statusBar;
     
+    // Buttons to control playback
     IBOutlet NSButton* stopButton;
     IBOutlet NSButton* playPauseButton;
     IBOutlet NSButton* talkButton;
     
+    // Play/Pause image references so we can swap them out based on state
     NSImage* playImage;
     NSImage* pauseImage;
     
+    // Speech synth stuff
 	NSSpeechSynthesizer* speechSynth;
-    BOOL keepTalking;
     
+    // Boolean set to TRUE when we start speaking. Pressing "Stop" sets it to
+    // NO to stop speech
+    BOOL keepTalking;
+
+    // Text shown in the about dialog
     NSString* aboutText;
+    
+    // The sound player, including mixer, sources, etc
 	MTPlayer* player;
+    
+    // The preference pane controller
     MTPrefController* prefController;
 }
 
-// Main Window
+// Play or pause, based on state
 -(IBAction)playOrPause:(id)sender;
+
+// Stop playback or speech, based on state
 -(IBAction)stopSending:(id)sender;
+
+// Start speaking
 -(IBAction)speakBuffer:(id)sender;
 
+// Show the preferences
 -(IBAction)showPreferencePanel:(id)sender;
 
 @end
