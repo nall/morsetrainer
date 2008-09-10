@@ -135,15 +135,8 @@ of that license.\n\
 
 -(IBAction)stopSending:(id)sender
 {
-    // Kill talking and sound player, whichever is active
-    keepTalking = NO;
+    // This will initiate a message that invokes cwComplete
 	[player stop];
-
-    [stopButton setEnabled:NO];
-    [talkButton setEnabled:YES];
-
-    // Force play
-    [playPauseButton setImage:playImage];
 }
 
 - (void)speechSynthesizer:(NSSpeechSynthesizer *)sender willSpeakWord:(NSRange)wordToSpeak ofString:(NSString *)text
@@ -215,11 +208,26 @@ of that license.\n\
 	[self updateText:[[notification userInfo] objectForKey:kNotifTextKey]];
 }
 
+-(void)cwComplete:(id)object
+{
+    // Kill talking and sound player, whichever is active
+    keepTalking = NO;
+    
+    [stopButton setEnabled:NO];
+    [talkButton setEnabled:YES];
+    
+    // Force play
+    [playPauseButton setImage:playImage];
+}
+
 -(void)manageSessionTime:(NSNumber*)theMinutes
 {
 	const NSTimeInterval seconds = [theMinutes unsignedIntValue] * 60;
 	
-	NSString* totalString = (seconds == 0) ? @"" :
+    const BOOL hideTotalTime = (seconds == 0) ||
+        [[NSUserDefaults standardUserDefaults] integerForKey:kPrefSourceType] == kSourceTypeURL;
+    
+	NSString* totalString = hideTotalTime ? @"" :
         [NSString stringWithFormat:@" / %02d:00", [theMinutes unsignedIntValue]];
     
 	BOOL forever = (seconds == 0);
@@ -333,6 +341,11 @@ of that license.\n\
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textTracker:)
                                                  name:kNotifTextWasPlayed
+                                               object:player];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cwComplete:)
+                                                 name:kNotifSoundPlayerComplete
                                                object:player];
 	
 	[player playCW:soundSource];

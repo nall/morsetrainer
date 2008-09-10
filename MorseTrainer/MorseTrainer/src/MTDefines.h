@@ -68,6 +68,7 @@ extern const NSUInteger kCharsToFillCWSource;
 extern NSString* const kNotifSoundPlayerComplete;
 extern NSString* const kNotifTextWasPlayed;
 extern NSString* const kNotifTextKey;
+extern NSString* const kNotifCWComplete;
 
 #define kSourceTypeURL    0
 #define kSourceTypeCustom 1

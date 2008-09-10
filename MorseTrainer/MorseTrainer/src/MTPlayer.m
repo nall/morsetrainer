@@ -183,6 +183,8 @@ static const NSUInteger baseQRMElement = 2;
 	{
 		[qrmPlayer[i] stop];
 	}
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotifSoundPlayerComplete object:self];
 }
 
 -(BOOL)playing
@@ -381,7 +383,7 @@ static const NSUInteger baseQRMElement = 2;
 	if(![self stopped])
 	{
 		[self stop];		
-	}
+	}    
 }
 
 -(void)textTracker:(id)object

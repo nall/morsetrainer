@@ -121,7 +121,7 @@
 	NSUInteger usedIndices = 0;
 	for(NSUInteger i = 0; i < [sampleTimeTimes count]; ++i)
 	{
-		if(theTime >= [[sampleTimeTimes objectAtIndex:i] floatValue])
+		if((theTime + kMaxFrameSize) >= [[sampleTimeTimes objectAtIndex:i] floatValue])
 		{
 			[buf appendString:[sampleTimeChars objectAtIndex:i]];
 			++usedIndices;
@@ -131,7 +131,7 @@
 			break;
 		}
 	}
-	
+    
 	[sampleTimeTimes removeObjectsInRange:NSMakeRange(0, usedIndices)];
 	[sampleTimeChars removeObjectsInRange:NSMakeRange(0, usedIndices)];
 	
