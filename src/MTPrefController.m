@@ -159,7 +159,6 @@
         
         masterCharSet = [NSMutableSet setWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:kPrefCharSet]];
         
-
         characterViewMapLabels = [NSArray arrayWithObjects:kCharViewAll,
                                     kCharViewLetters,
                                     kCharViewNumbers,
@@ -612,8 +611,7 @@
     NSMutableArray* theArray = [NSMutableArray array];
     for(NSUInteger i = 0; i < [theCharacters count]; ++i)
     {
-        NSString* value = [theCharacters objectAtIndex:i];
-        
+        NSString* value = [theCharacters objectAtIndex:i];        
         NSDictionary* entry = [NSDictionary dictionaryWithObjectsAndKeys:
                                value, @"prefValue",
                                value, @"prefLabel",

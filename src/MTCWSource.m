@@ -264,7 +264,7 @@
 		}
 	}
 	
-	NSString* string = [character length] == 1 ? character : [NSString stringWithFormat:@"(%@)", character];
+	NSString* string = [character length] == 1 ? character : [NSString stringWithFormat:@"^%@", character];
 	
 	[sampleTimeChars addObject:(theError == nil) ? string : theError];
 	[sampleTimeTimes addObject:[NSNumber numberWithFloat:currentSampleTime]];

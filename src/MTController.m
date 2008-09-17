@@ -32,6 +32,8 @@
 #import "MTPatternMap.h"
 #include "MTDefines.h"
 
+extern NSString* svnRevision;
+
 @interface MTController (Private)
     -(void)startSending;
     -(void)updateText:(NSString*)theText;
@@ -48,12 +50,13 @@
         prefController = [[MTPrefController alloc] init];
 		player = [[MTPlayer alloc] init];
         speechSynth = [[NSSpeechSynthesizer alloc] initWithVoice:[NSSpeechSynthesizer defaultVoice]];
-        [speechSynth setRate:100];
+        [speechSynth setRate:110];
         [speechSynth setDelegate:self];
         keepTalking = NO;
         
-        aboutText = [NSString stringWithString:@"\
-AD5RX Morse Code Trainer\n\
+        aboutText = [NSString stringWithString:[[@"\
+AD5RX Morse Code Trainer " stringByAppendingString:svnRevision]
+                           stringByAppendingString:@"\n\
 Copyright © 2008 Jon Nall\n\
 All rights reserved.\n\
 \n\n\
@@ -82,7 +85,7 @@ All rights reserved.\n\
 Uses the Sparkle Framework Copyright © 2006 Andy Matuschak\n\
 See SparkleLicense.txt in the distribution for the details\n\
 of that license.\n\
-"];
+"]];
 	}
 	
 	return self;
@@ -156,19 +159,20 @@ of that license.\n\
 
 -(void)speechThread:(NSString*)theText
 {
-    /*
-     NSMutableString* spacedOut = [NSMutableString stringWithCapacity:[text length] * 2];
-     for(NSUInteger i = 0; i < [text length]; ++i)
-     {
-     [spacedOut appendString:[text substringWithRange:NSMakeRange(i, 1)]];
+    // Insert a . after every character to ensure the synth doesn't try to
+    // pronounce phenomes.
+    NSMutableString* spacedOut = [NSMutableString stringWithCapacity:[theText length] * 2];
+    for(NSUInteger i = 0; i < [theText length]; ++i)
+    {
+     [spacedOut appendString:[theText substringWithRange:NSMakeRange(i, 1)]];
      [spacedOut appendString:@". "];
-     }
-     */
+    }
+     
     
     keepTalking = YES;
     [stopButton setToolTip:@"Stop speaking"];
     [stopButton setEnabled:YES];
-    [speechSynth startSpeakingString:theText];    
+    [speechSynth startSpeakingString:spacedOut];    
 }
 
 -(IBAction)speakBuffer:(id)sender

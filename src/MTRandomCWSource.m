@@ -72,7 +72,13 @@
 		for(NSUInteger i = 0; i < groupLength; ++i)
 		{
 			const NSUInteger randIdx = random() % [charSet count];
-			[sentence appendString:[charSet objectAtIndex:randIdx]];
+            NSString* character = [charSet objectAtIndex:randIdx];
+            if([character length] > 1)
+            {
+                character = [@"^" stringByAppendingString:character];
+            }
+            
+			[sentence appendString:character];
 		}
 		[sentence appendString:@" "];
 		

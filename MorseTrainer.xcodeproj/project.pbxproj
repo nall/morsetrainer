@@ -35,6 +35,8 @@
 		A4A8F4CC0E65B96000C74B6D /* ToolbarSource.icns in Resources */ = {isa = PBXBuildFile; fileRef = A4A8F4CB0E65B96000C74B6D /* ToolbarSource.icns */; };
 		A4A8F4D20E65BDE800C74B6D /* ToolbarContent.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A8F4D10E65BDE800C74B6D /* ToolbarContent.png */; };
 		A4BE28810E3EEE3C0099926B /* MTCWSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE28800E3EEE3C0099926B /* MTCWSource.m */; };
+		A4C4F16F0E80C62A0019AA9D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C4F16E0E80C62A0019AA9D /* Sparkle.framework */; };
+		A4C4F1B80E80CD0C0019AA9D /* svnRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C4F1B70E80CD0C0019AA9D /* svnRevision.m */; };
 		A4C6575E0E4354A60064F74B /* MTQRMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C6575D0E4354A60064F74B /* MTQRMSource.m */; };
 		A4C658D20E438CC90064F74B /* QSO5.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CC0E438CC90064F74B /* QSO5.txt */; };
 		A4C658D30E438CC90064F74B /* QSO4.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CD0E438CC90064F74B /* QSO4.txt */; };
@@ -44,8 +46,6 @@
 		A4C658D70E438CC90064F74B /* QSO0.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D10E438CC90064F74B /* QSO0.txt */; };
 		A4D7613B0E77795A004C6816 /* NoiseLicense.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A4D7613A0E77795A004C6816 /* NoiseLicense.pdf */; };
 		A4D7613F0E777B30004C6816 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A4D7613E0E777B30004C6816 /* COPYING */; };
-		A4D7619C0E778394004C6816 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D7619B0E778394004C6816 /* Sparkle.framework */; };
-		A4D761C50E7788B7004C6816 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A4D7619B0E778394004C6816 /* Sparkle.framework */; };
 		A4D761C90E7789C2004C6816 /* SparkleLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4D761C80E7789C2004C6816 /* SparkleLicense.txt */; };
 		A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */; };
 		A4ECE4930E57A28B008265A1 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4ECE4920E57A28B008265A1 /* Preferences.xib */; };
@@ -58,7 +58,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A4D761C50E7788B7004C6816 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +68,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MorseTrainer.xib; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MorseTrainer_Prefix.pch; sourceTree = "<group>"; };
@@ -113,6 +112,8 @@
 		A4A8F4D10E65BDE800C74B6D /* ToolbarContent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarContent.png; sourceTree = "<group>"; };
 		A4BE287F0E3EEE3C0099926B /* MTCWSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCWSource.h; sourceTree = "<group>"; };
 		A4BE28800E3EEE3C0099926B /* MTCWSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCWSource.m; sourceTree = "<group>"; };
+		A4C4F16E0E80C62A0019AA9D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../Library/Frameworks/Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		A4C4F1B70E80CD0C0019AA9D /* svnRevision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = svnRevision.m; path = ../MorseTrainer.build/Release/MorseTrainer.build/DerivedSources/svnRevision.m; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C6575C0E4354A60064F74B /* MTQRMSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTQRMSource.h; sourceTree = "<group>"; };
 		A4C6575D0E4354A60064F74B /* MTQRMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTQRMSource.m; sourceTree = "<group>"; };
 		A4C658CC0E438CC90064F74B /* QSO5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO5.txt; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		A4C658D10E438CC90064F74B /* QSO0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO0.txt; sourceTree = "<group>"; };
 		A4D7613A0E77795A004C6816 /* NoiseLicense.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = NoiseLicense.pdf; sourceTree = "<group>"; };
 		A4D7613E0E777B30004C6816 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		A4D7619B0E778394004C6816 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../../../../../Library/Frameworks/Sparkle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D761C80E7789C2004C6816 /* SparkleLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SparkleLicense.txt; path = ../../SparkleLicense.txt; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4DB92C80E528BCF00080FA2 /* MTOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOperationQueue.h; sourceTree = "<group>"; };
 		A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOperationQueue.m; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */,
 				A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */,
 				A444BB600E400A0700A65384 /* CoreAudio.framework in Frameworks */,
-				A4D7619C0E778394004C6816 /* Sparkle.framework in Frameworks */,
+				A4C4F16F0E80C62A0019AA9D /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +160,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A4D7619B0E778394004C6816 /* Sparkle.framework */,
+				A4C4F16E0E80C62A0019AA9D /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -203,6 +203,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A4C4F1C30E80CE1B0019AA9D /* Dynamically Generated */,
 				32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -212,18 +213,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4C4F15B0E80C5930019AA9D /* Icons */,
+				A4C658CB0E438CC90064F74B /* QSO Files */,
 				A4D761C80E7789C2004C6816 /* SparkleLicense.txt */,
 				A4D7613E0E777B30004C6816 /* COPYING */,
-				A45A78AA0E6E506400B8B77F /* TalkButton.png */,
 				A4D7613A0E77795A004C6816 /* NoiseLicense.pdf */,
-				A45A78850E6E47ED00B8B77F /* StopButton.png */,
-				A45A78880E6E4A2F00B8B77F /* PauseButton.png */,
-				A45A78800E6E46AE00B8B77F /* PlayButton.png */,
-				A4A8F4D10E65BDE800C74B6D /* ToolbarContent.png */,
-				A4A8F4CB0E65B96000C74B6D /* ToolbarSource.icns */,
-				A427890A0E5E018D00F81265 /* ToolbarUpdate.icns */,
-				A42789000E5DF63A00F81265 /* ToolbarInterference.png */,
-				A4C658CB0E438CC90064F74B /* QSO Files */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MorseTrainer.xib */,
@@ -262,6 +256,31 @@
 			);
 			name = "Data Sources";
 			path = src;
+			sourceTree = "<group>";
+		};
+		A4C4F15B0E80C5930019AA9D /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				A45A78850E6E47ED00B8B77F /* StopButton.png */,
+				A45A78880E6E4A2F00B8B77F /* PauseButton.png */,
+				A45A78800E6E46AE00B8B77F /* PlayButton.png */,
+				A4A8F4D10E65BDE800C74B6D /* ToolbarContent.png */,
+				A4A8F4CB0E65B96000C74B6D /* ToolbarSource.icns */,
+				A427890A0E5E018D00F81265 /* ToolbarUpdate.icns */,
+				A42789000E5DF63A00F81265 /* ToolbarInterference.png */,
+				A45A78AA0E6E506400B8B77F /* TalkButton.png */,
+			);
+			name = Icons;
+			path = icons;
+			sourceTree = "<group>";
+		};
+		A4C4F1C30E80CE1B0019AA9D /* Dynamically Generated */ = {
+			isa = PBXGroup;
+			children = (
+				A4C4F1B70E80CD0C0019AA9D /* svnRevision.m */,
+			);
+			name = "Dynamically Generated";
+			path = doc;
 			sourceTree = "<group>";
 		};
 		A4C658CB0E438CC90064F74B /* QSO Files */ = {
@@ -332,6 +351,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MorseTrainer" */;
 			buildPhases = (
+				A4C4F1990E80C8C60019AA9D /* ShellScript */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -394,6 +414,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A4C4F1990E80C8C60019AA9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/svnRevision.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PWD/gensvnrev.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -415,6 +452,7 @@
 				A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */,
 				A47DC8D80E537D36007BD324 /* MTPrefController.m in Sources */,
 				A41C94720E55FE93002DCC58 /* MTDefines.m in Sources */,
+				A4C4F1B80E80CD0C0019AA9D /* svnRevision.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +494,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+					"\"$(SRCROOT)/../../Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -478,6 +517,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+					"\"$(SRCROOT)/../../Library/Frameworks\"",
 				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
