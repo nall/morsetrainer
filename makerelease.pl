@@ -10,7 +10,8 @@ my $VERSION = "1.0";
 my $RELEASEDIR = "/tmp/AD5RX\\ Morse\\ Trainer";
 
 my @RELEASEFILES = (
-                        "COPYING",
+                        "LICENSE",
+                        "src",
                         "NoiseLicense.pdf",
                         "SparkleLicense.txt",
                         "Word\\ Files",
