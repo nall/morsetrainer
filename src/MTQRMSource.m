@@ -40,12 +40,15 @@
 {
 
 	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-	NSString* qsoPath = [bundle pathForResource:[NSString stringWithFormat:@"QSO%d", theID] ofType:@"txt"];
+	NSMutableString* qsoPath = [[NSMutableString alloc] initWithString:
+                                [bundle pathForResource:[NSString stringWithFormat:@"QSO%d", theID] ofType:@"txt"]];
 	if(qsoPath == nil)
 	{
 		NSLog([NSString stringWithFormat:@"ERROR: Cannot load QSO%d.txt", theID]);
 		return nil;
 	}	
+
+    [qsoPath replaceOccurrencesOfString:@" " withString:@"%20" options:0 range:NSMakeRange(0, [qsoPath length])];
 
 	NSString* paramString = [self generateParameters];
 	
