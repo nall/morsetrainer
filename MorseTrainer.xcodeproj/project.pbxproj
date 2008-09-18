@@ -47,7 +47,7 @@
 		A4C658D60E438CC90064F74B /* QSO1.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D00E438CC90064F74B /* QSO1.txt */; };
 		A4C658D70E438CC90064F74B /* QSO0.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658D10E438CC90064F74B /* QSO0.txt */; };
 		A4D7613B0E77795A004C6816 /* NoiseLicense.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A4D7613A0E77795A004C6816 /* NoiseLicense.pdf */; };
-		A4D7613F0E777B30004C6816 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A4D7613E0E777B30004C6816 /* COPYING */; };
+		A4D7613F0E777B30004C6816 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A4D7613E0E777B30004C6816 /* LICENSE */; };
 		A4D761C90E7789C2004C6816 /* SparkleLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4D761C80E7789C2004C6816 /* SparkleLicense.txt */; };
 		A4DB92CA0E528BCF00080FA2 /* MTOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */; };
 		A4ECE4930E57A28B008265A1 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4ECE4920E57A28B008265A1 /* Preferences.xib */; };
@@ -127,7 +127,7 @@
 		A4C658D00E438CC90064F74B /* QSO1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO1.txt; sourceTree = "<group>"; };
 		A4C658D10E438CC90064F74B /* QSO0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QSO0.txt; sourceTree = "<group>"; };
 		A4D7613A0E77795A004C6816 /* NoiseLicense.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = NoiseLicense.pdf; sourceTree = "<group>"; };
-		A4D7613E0E777B30004C6816 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		A4D7613E0E777B30004C6816 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A4D761C80E7789C2004C6816 /* SparkleLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SparkleLicense.txt; path = ../../SparkleLicense.txt; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4DB92C80E528BCF00080FA2 /* MTOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOperationQueue.h; sourceTree = "<group>"; };
 		A4DB92C90E528BCF00080FA2 /* MTOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOperationQueue.m; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				A4C4F15B0E80C5930019AA9D /* Icons */,
 				A4C658CB0E438CC90064F74B /* QSO Files */,
 				A4D761C80E7789C2004C6816 /* SparkleLicense.txt */,
-				A4D7613E0E777B30004C6816 /* COPYING */,
+				A4D7613E0E777B30004C6816 /* LICENSE */,
 				A4D7613A0E77795A004C6816 /* NoiseLicense.pdf */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -412,7 +412,7 @@
 				A45A78890E6E4A2F00B8B77F /* PauseButton.png in Resources */,
 				A45A78AB0E6E506400B8B77F /* TalkButton.png in Resources */,
 				A4D7613B0E77795A004C6816 /* NoiseLicense.pdf in Resources */,
-				A4D7613F0E777B30004C6816 /* COPYING in Resources */,
+				A4D7613F0E777B30004C6816 /* LICENSE in Resources */,
 				A4D761C90E7789C2004C6816 /* SparkleLicense.txt in Resources */,
 				A400A1DC0E81D45900B2AC04 /* sparkle_pub.pem in Resources */,
 			);

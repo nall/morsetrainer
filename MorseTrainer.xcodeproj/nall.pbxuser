@@ -158,15 +158,12 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 243388433;
-			PBXWorkspaceStateSaveDate = 243388433;
+			PBXPerProjectTemplateStateSaveDate = 243393149;
+			PBXWorkspaceStateSaveDate = 243393149;
 		};
 		perUserProjectItems = {
 			A400A1DF0E81D4B200B2AC04 /* PBXTextBookmark */ = A400A1DF0E81D4B200B2AC04 /* PBXTextBookmark */;
 			A400A1E00E81D4B200B2AC04 /* PBXTextBookmark */ = A400A1E00E81D4B200B2AC04 /* PBXTextBookmark */;
-			A400A1E10E81D4B200B2AC04 /* PlistBookmark */ = A400A1E10E81D4B200B2AC04 /* PlistBookmark */;
-			A400A1E20E81D4B200B2AC04 /* PBXTextBookmark */ = A400A1E20E81D4B200B2AC04 /* PBXTextBookmark */;
-			A400A1E30E81D4B200B2AC04 /* PlistBookmark */ = A400A1E30E81D4B200B2AC04 /* PlistBookmark */;
 			A400A1E40E81D4B200B2AC04 /* PBXTextBookmark */ = A400A1E40E81D4B200B2AC04 /* PBXTextBookmark */;
 			A400A1EF0E81D54600B2AC04 /* PlistBookmark */ = A400A1EF0E81D54600B2AC04 /* PlistBookmark */;
 			A414D2750E525FBB00E67D98 /* PBXTextBookmark */ = A414D2750E525FBB00E67D98 /* PBXTextBookmark */;
@@ -174,6 +171,7 @@
 			A42789860E5E2BB600F81265 /* PBXTextBookmark */ = A42789860E5E2BB600F81265 /* PBXTextBookmark */;
 			A427898C0E5E2BB600F81265 /* PBXTextBookmark */ = A427898C0E5E2BB600F81265 /* PBXTextBookmark */;
 			A4278A6B0E5E2FE100F81265 /* PBXTextBookmark */ = A4278A6B0E5E2FE100F81265 /* PBXTextBookmark */;
+			A43159BC0E81E291001C386F /* PlistBookmark */ = A43159BC0E81E291001C386F /* PlistBookmark */;
 			A444BB7F0E400ED400A65384 /* PBXTextBookmark */ = A444BB7F0E400ED400A65384 /* PBXTextBookmark */;
 			A444BB800E400ED400A65384 /* PBXTextBookmark */ = A444BB800E400ED400A65384 /* PBXTextBookmark */;
 			A446674A0E687BE900AB0BDC /* PBXTextBookmark */ = A446674A0E687BE900AB0BDC /* PBXTextBookmark */;
@@ -333,40 +331,6 @@
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 0;
-	};
-	A400A1E10E81D4B200B2AC04 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			SUPublicDSAKeyFile,
-		);
-		name = /Users/nall/Code/morsetrainer/Info.plist;
-		rLen = 0;
-		rLoc = 2147483647;
-	};
-	A400A1E20E81D4B200B2AC04 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = A4546CBF0E4D0E0100237295 /* MTRandomCWSource.m */;
-		name = "MTRandomCWSource.m: 60";
-		rLen = 0;
-		rLoc = 1490;
-		rType = 0;
-		vrLen = 1019;
-		vrLoc = 1392;
-	};
-	A400A1E30E81D4B200B2AC04 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			SUPublicDSAKeyFile,
-		);
-		name = /Users/nall/Code/morsetrainer/Info.plist;
-		rLen = 0;
-		rLoc = 2147483647;
 	};
 	A400A1E40E81D4B200B2AC04 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -565,6 +529,18 @@
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 0;
+	};
+	A43159BC0E81E291001C386F /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			SUPublicDSAKeyFile,
+		);
+		name = /Users/nall/Code/morsetrainer/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
 	};
 	A444BB520E40093D00A65384 /* MTSourcePlayer.h */ = {
 		uiCtxt = {
