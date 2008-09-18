@@ -11,6 +11,9 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A400A1CD0E81D2C800B2AC04 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A400A1CC0E81D2C800B2AC04 /* Sparkle.framework */; };
+		A400A1D90E81D2FB00B2AC04 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A400A1CC0E81D2C800B2AC04 /* Sparkle.framework */; };
+		A400A1DC0E81D45900B2AC04 /* sparkle_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = A400A1DB0E81D45900B2AC04 /* sparkle_pub.pem */; };
 		A41C94720E55FE93002DCC58 /* MTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = A41C94710E55FE93002DCC58 /* MTDefines.m */; };
 		A42789010E5DF63A00F81265 /* ToolbarInterference.png in Resources */ = {isa = PBXBuildFile; fileRef = A42789000E5DF63A00F81265 /* ToolbarInterference.png */; };
 		A427890B0E5E018D00F81265 /* ToolbarUpdate.icns in Resources */ = {isa = PBXBuildFile; fileRef = A427890A0E5E018D00F81265 /* ToolbarUpdate.icns */; };
@@ -35,7 +38,6 @@
 		A4A8F4CC0E65B96000C74B6D /* ToolbarSource.icns in Resources */ = {isa = PBXBuildFile; fileRef = A4A8F4CB0E65B96000C74B6D /* ToolbarSource.icns */; };
 		A4A8F4D20E65BDE800C74B6D /* ToolbarContent.png in Resources */ = {isa = PBXBuildFile; fileRef = A4A8F4D10E65BDE800C74B6D /* ToolbarContent.png */; };
 		A4BE28810E3EEE3C0099926B /* MTCWSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE28800E3EEE3C0099926B /* MTCWSource.m */; };
-		A4C4F16F0E80C62A0019AA9D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C4F16E0E80C62A0019AA9D /* Sparkle.framework */; };
 		A4C4F1B80E80CD0C0019AA9D /* svnRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C4F1B70E80CD0C0019AA9D /* svnRevision.m */; };
 		A4C6575E0E4354A60064F74B /* MTQRMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C6575D0E4354A60064F74B /* MTQRMSource.m */; };
 		A4C658D20E438CC90064F74B /* QSO5.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4C658CC0E438CC90064F74B /* QSO5.txt */; };
@@ -52,12 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A4D761A90E77849E004C6816 /* CopyFiles */ = {
+		A400A1D80E81D2E500B2AC04 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A400A1D90E81D2FB00B2AC04 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +77,8 @@
 		32CA4F630368D1EE00C91783 /* MorseTrainer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MorseTrainer_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MorseTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A400A1CC0E81D2C800B2AC04 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		A400A1DB0E81D45900B2AC04 /* sparkle_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_pub.pem; sourceTree = "<group>"; };
 		A41C94710E55FE93002DCC58 /* MTDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDefines.m; sourceTree = "<group>"; };
 		A42789000E5DF63A00F81265 /* ToolbarInterference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarInterference.png; sourceTree = "<group>"; };
 		A427890A0E5E018D00F81265 /* ToolbarUpdate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ToolbarUpdate.icns; sourceTree = "<group>"; };
@@ -112,7 +117,6 @@
 		A4A8F4D10E65BDE800C74B6D /* ToolbarContent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToolbarContent.png; sourceTree = "<group>"; };
 		A4BE287F0E3EEE3C0099926B /* MTCWSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTCWSource.h; sourceTree = "<group>"; };
 		A4BE28800E3EEE3C0099926B /* MTCWSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCWSource.m; sourceTree = "<group>"; };
-		A4C4F16E0E80C62A0019AA9D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../../Library/Frameworks/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		A4C4F1B70E80CD0C0019AA9D /* svnRevision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = svnRevision.m; path = ../MorseTrainer.build/Release/MorseTrainer.build/DerivedSources/svnRevision.m; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C6575C0E4354A60064F74B /* MTQRMSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTQRMSource.h; sourceTree = "<group>"; };
 		A4C6575D0E4354A60064F74B /* MTQRMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTQRMSource.m; sourceTree = "<group>"; };
@@ -139,7 +143,7 @@
 				A444BB5C0E4009F100A65384 /* AudioToolbox.framework in Frameworks */,
 				A444BB5E0E4009FC00A65384 /* AudioUnit.framework in Frameworks */,
 				A444BB600E400A0700A65384 /* CoreAudio.framework in Frameworks */,
-				A4C4F16F0E80C62A0019AA9D /* Sparkle.framework in Frameworks */,
+				A400A1CD0E81D2C800B2AC04 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +164,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A4C4F16E0E80C62A0019AA9D /* Sparkle.framework */,
+				A400A1CC0E81D2C800B2AC04 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -213,6 +217,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A400A1DB0E81D45900B2AC04 /* sparkle_pub.pem */,
 				A4C4F15B0E80C5930019AA9D /* Icons */,
 				A4C658CB0E438CC90064F74B /* QSO Files */,
 				A4D761C80E7789C2004C6816 /* SparkleLicense.txt */,
@@ -355,7 +360,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				A4D761A90E77849E004C6816 /* CopyFiles */,
+				A400A1D80E81D2E500B2AC04 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -409,6 +414,7 @@
 				A4D7613B0E77795A004C6816 /* NoiseLicense.pdf in Resources */,
 				A4D7613F0E777B30004C6816 /* COPYING in Resources */,
 				A4D761C90E7789C2004C6816 /* SparkleLicense.txt in Resources */,
+				A400A1DC0E81D45900B2AC04 /* sparkle_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +501,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
 					"\"$(SRCROOT)/../../Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -518,6 +525,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
 					"\"$(SRCROOT)/../../Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_MODEL_TUNING = G5;
