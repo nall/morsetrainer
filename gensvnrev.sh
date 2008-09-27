@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SVN=/opt/local/bin/svn
+SVN="/usr/bin/env svn"
 GREP=/usr/bin/grep
 SED=/usr/bin/sed
 RM=/bin/rm
