@@ -49,14 +49,14 @@
 	if([self init] != nil)
 	{
 		dataLength = theSize;
-		emptyLevel = emptyLevel;
+		emptyLevel = theEmptyLevel;
 		rdPtr = 0;
 		endPtr = 0;
 		data = calloc(dataLength, sizeof(float));
 		
 		if(data == NULL)
 		{
-			NSLog([NSString stringWithFormat:@"ERROR: Cannot allocate %d floats", dataLength]);
+			NSLog(@"ERROR: Cannot allocate %lu floats", dataLength);
 			return nil;
 		}
 	}
@@ -71,8 +71,6 @@
 		free(data);
 		data = NULL;
 	}
-	
-	[super dealloc];
 }
 
 -(NSUInteger)count
@@ -120,7 +118,7 @@
 	const NSUInteger remainingEntries = dataLength - [self count];
 	if(numFloats > remainingEntries)
 	{
-		NSLog(@"ERROR: Trying to push more data that FIFO can hold (pushing %d bytes with %d available)", numFloats, remainingEntries);
+		NSLog(@"ERROR: Trying to push more data that FIFO can hold (pushing %lu bytes with %lu available)", (unsigned long)numFloats, (unsigned long)remainingEntries);
 		return;
 	}
 	
@@ -149,11 +147,11 @@
 	}
 	else
 	{
-        NSLog(@"Internal Error. Invalid FIFO condition (rdPtr = %d, endPtr = %d, numFloats = %d)",
-              rdPtr, endPtr, numFloats);
+        NSLog(@"Internal Error. Invalid FIFO condition (rdPtr = %lu, endPtr = %lu, numFloats = %lu)",
+              (unsigned long)rdPtr, (unsigned long)endPtr, (unsigned long)numFloats);
         NSRunAlertPanel(@"Internal Error",
-                        @"Internal Error. Invalid FIFO condition (rdPtr = %d, endPtr = %d, numFloats = %d)",
-                        @"Quit", nil, nil, rdPtr, endPtr, numFloats);
+                        @"Internal Error. Invalid FIFO condition (rdPtr = %lu, endPtr = %lu, numFloats = %lu)",
+                        @"Quit", nil, nil, (unsigned long)rdPtr, (unsigned long)endPtr, (unsigned long)numFloats);
         exit(1);
 	}
 

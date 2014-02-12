@@ -33,12 +33,12 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	static NSUInteger count = 0;
 	++count;
 	
-	MTSourcePlayer* player = arg;
+	MTSourcePlayer* player = (__bridge MTSourcePlayer *)(arg);
 
 	// NSLog(@"%@: completionCallback for offset %f", [player name], slice->mTimeStamp.mSampleTime);
 	if(slice->mFlags & kScheduledAudioSliceFlag_BeganToRenderLate)
 	{
-		NSLog([NSString stringWithFormat:@"WARNING: Late render on %@", [player name]]);
+		NSLog(@"WARNING: Late render on %@", [player name]);
 	}
 	
 	[player sliceCompleted:slice];
@@ -73,7 +73,7 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 	{
 		sliceRing[s].mTimeStamp = timestamp;
 		sliceRing[s].mCompletionProc = sourcePlayerCompleteProc;
-		sliceRing[s].mCompletionProcUserData = self;
+		sliceRing[s].mCompletionProcUserData = (__bridge void *)(self);
 		
 		sliceRing[s].mNumberFrames = kMaxFrameSize;
 		sliceRing[s].mFlags = kScheduledAudioSliceFlag_Complete;
@@ -112,8 +112,6 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 		free(sliceRing);
 		sliceRing = nil;
 	}
-	
-	[super dealloc];
 }
 
 -(void)setSource:(id<MTSoundSource>)theSource
@@ -263,7 +261,7 @@ void sourcePlayerCompleteProc(void* arg, ScheduledAudioSlice* slice)
 												   sizeof(struct ScheduledAudioSlice));
 		if(err != noErr)
 		{
-			NSLog(@"ERROR: Can't schedule slice %d to play", s);
+			NSLog(@"ERROR: Can't schedule slice %ld to play", s);
 			return (kNumSlices - freeSlices);
 		}			
 	}

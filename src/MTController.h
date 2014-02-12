@@ -29,7 +29,7 @@
 #import "MTPrefController.h"
 
 
-@interface MTController : NSWindowController
+@interface MTController : NSWindowController<NSSpeechSynthesizerDelegate>
 {
     // The textfield where displayed characters show up
 	IBOutlet NSTextField* textField;

@@ -176,7 +176,7 @@
 			NSString* curChar = [theText substringWithRange:NSMakeRange(i, 1)];
 			if(iswspace([curChar characterAtIndex:0]))
 			{
-				NSLog([NSString stringWithFormat:@"WARNING: Found whitespace without matching a prosign. [Text leading to this was: [%@]", currentProsign]);
+				NSLog(@"WARNING: Found whitespace without matching a prosign. [Text leading to this was: [%@]", currentProsign);
 				break;
 			}
 			

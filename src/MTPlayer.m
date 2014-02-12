@@ -236,7 +236,7 @@ static const NSUInteger baseQRMElement = 2;
 {
 	NewAUGraph(&graph);
 	
-	ComponentDescription cd;
+	AudioComponentDescription cd;
 	cd.componentManufacturer = kAudioUnitManufacturer_Apple;
 	cd.componentFlags = 0;
 	cd.componentFlagsMask = 0;

@@ -41,10 +41,10 @@
 
 	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 	NSMutableString* qsoPath = [[NSMutableString alloc] initWithString:
-                                [bundle pathForResource:[NSString stringWithFormat:@"QSO%d", theID] ofType:@"txt"]];
+                                [bundle pathForResource:[NSString stringWithFormat:@"QSO%lu", (unsigned long)theID] ofType:@"txt"]];
 	if(qsoPath == nil)
 	{
-		NSLog([NSString stringWithFormat:@"ERROR: Cannot load QSO%d.txt", theID]);
+		NSLog(@"ERROR: Cannot load QSO%lu.txt", theID);
 		return nil;
 	}	
 
@@ -52,7 +52,7 @@
 
 	NSString* paramString = [self generateParameters];
 	
-    NSURL* qsoURL = [NSURL URLWithString:[[NSString stringWithString:@"file://"]
+    NSURL* qsoURL = [NSURL URLWithString:[@"file://"
                                           stringByAppendingString:qsoPath]];
 	if([super initWithURL:qsoURL
 			 withFrequency:frequency
@@ -100,7 +100,7 @@
 	NSUInteger freqOffset = random() % lrint(((baseFreq / 2) * freqMultiplier));
 	frequency = baseFreq + ((random() % 2) ? freqOffset : -freqOffset);
 	
-	return [NSString stringWithFormat:@"{WPM=%d, EWPM=%d, F=%d, A=%f}",
-				  wpm, effectiveWPM, frequency, amplitude];
+	return [NSString stringWithFormat:@"{WPM=%lu, EWPM=%lu, F=%lu, A=%f}",
+				  (unsigned long)wpm, (unsigned long)effectiveWPM, (unsigned long)frequency, amplitude];
 }
 @end

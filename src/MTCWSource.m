@@ -89,7 +89,7 @@
     if(numChars > [morseText length])
     {
         textToGenerate = [morseText substringToIndex:numChars];
-        morseText = @"";
+        [morseText setString:@""];
     }
     else
     {
@@ -374,7 +374,7 @@
 	
 	if(bytesWritten != bytesRequired)
 	{
-		NSLog(@"INTERNAL ERROR: bytesRequired: %d, bytesWritten: %d", bytesRequired, bytesWritten);
+		NSLog(@"INTERNAL ERROR: bytesRequired: %lu, bytesWritten: %lu", (unsigned long)bytesRequired, (unsigned long)bytesWritten);
 	}
 	
 	// NSLog(@"generated %d bytes (%d floats) (%f is sample)", [nsdata length], ([nsdata length] / sizeof(float)), currentSampleTime);

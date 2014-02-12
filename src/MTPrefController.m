@@ -88,7 +88,7 @@
         
         sourceValues = [self makeBindingArrayWithValues:[NSArray arrayWithObjects:
                                                    [NSNumber numberWithUnsignedInt:kSourceTypeURL],
-                                                   [NSNumber numberWithUnsignedInt:kSourceTypeCustom]]
+                                                   [NSNumber numberWithUnsignedInt:kSourceTypeCustom], nil]
                                              withLabels:[NSArray arrayWithObjects:@"Play from text file named:",@"Generate random groups",nil]];
         
 		// Sending 
@@ -145,7 +145,7 @@
 			NSMutableArray* stations = [NSMutableArray array];
 			for(NSUInteger i = 0; i < kMaxQRMStations; ++i)
 			{
-				[stations addObject:[NSString stringWithFormat:@"%d", i]];
+				[stations addObject:[NSString stringWithFormat:@"%lu", (unsigned long)i]];
 			}
 			
 			qrmStationValues = [NSArray arrayWithArray:stations];			
@@ -348,7 +348,8 @@
 	[dialog setCanChooseFiles:YES];
 	[dialog setCanChooseDirectories:NO];
 	[dialog setAllowsMultipleSelection:NO];
-	const NSInteger result = [dialog runModalForTypes:[NSArray arrayWithObjects:@"txt", @"qso", nil]];
+    [dialog setAllowedFileTypes:[NSArray arrayWithObjects:@"txt", @"qso", nil]];
+    const NSInteger result = [dialog runModal];
 	
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	if(result == NSOKButton)

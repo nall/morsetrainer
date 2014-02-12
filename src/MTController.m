@@ -32,8 +32,6 @@
 #import "MTPatternMap.h"
 #include "MTDefines.h"
 
-extern NSString* svnRevision;
-
 @interface MTController (Private)
     -(void)startSending;
     -(void)updateText:(NSString*)theText;
@@ -54,10 +52,9 @@ extern NSString* svnRevision;
         [speechSynth setDelegate:self];
         keepTalking = NO;
         
-        aboutText = [NSString stringWithString:[[@"\
-AD5RX Morse Code Trainer " stringByAppendingString:svnRevision]
-                           stringByAppendingString:@"\n\
-Copyright © 2008 Jon Nall\n\
+        aboutText = @"\
+AD5RX Morse Code Trainer\n\
+Copyright © 2008-2014 Jon Nall\n\
 All rights reserved.\n\
 \n\n\
 LICENSE\n\
@@ -85,7 +82,7 @@ All rights reserved.\n\
 Uses the Sparkle Framework Copyright © 2006 Andy Matuschak\n\
 See SparkleLicense.txt in the distribution for the details\n\
 of that license.\n\
-"]];
+";
 	}
 	
 	return self;
@@ -254,7 +251,7 @@ of that license.\n\
         }
         
 		[statusBar setStringValue:[NSString stringWithFormat:@"%@%@",
-                                   [NSString stringWithFormat:@"%02d:%02d", elapsedMinutes, elapsedSeconds], totalString]];
+                                   [NSString stringWithFormat:@"%02lu:%02lu", (unsigned long)elapsedMinutes, (unsigned long)elapsedSeconds], totalString]];
 	}
 	
 	if(![player stopped])
@@ -324,7 +321,7 @@ of that license.\n\
             }
             default:
             {
-                NSLog(@"Internal ERROR: Unexpected source type: %d", type);                
+                NSLog(@"Internal ERROR: Unexpected source type: %lu", (unsigned long)type);                
             }
         }
     }

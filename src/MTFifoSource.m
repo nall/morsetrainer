@@ -52,8 +52,6 @@
     {
         [auFile closeFile];        
     }
-
-    [super dealloc];
 }
 
 -(void)dumpAU:(NSString*)theFilename
